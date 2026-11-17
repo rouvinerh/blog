@@ -59,7 +59,7 @@ svg { flex-shrink: 0; }
 .theme-toggle:hover svg { transform: rotate(15deg); }
 .control-divider { width: 1px; height: 17px; margin: 0 4px; background: var(--line); }
 main { min-height: 410px; outline: 0; }
-.page-stage { overflow: clip; margin: -10px; padding: 10px; }
+.page-stage { overflow: clip; margin: -16px; padding: 16px; }
 h1 { font-size: 36px; line-height: 1.25; font-weight: 650; letter-spacing: -.85px; margin: 0 0 20px; overflow-wrap: anywhere; }
 h2 { font-size: 21px; font-weight: 600; line-height: 1.4; margin: 0 0 15px; letter-spacing: -.3px; }
 p, li { font-size: var(--body-size); line-height: 1.8; }
@@ -96,9 +96,9 @@ p { margin: 0 0 18px; }
 .empty-state p { font-size: 1rem; }
 .post-list { list-style: none; padding: 0; margin: 0; }
 .post-list > li { border-top: 1px solid var(--line); }
-.post-link { display: block; margin: 0 -8px; padding: 26px 8px; border-radius: 6px; color: var(--text); text-decoration: none; transition: background .2s, transform .2s, box-shadow .2s; }
+.post-link { display: block; margin: 0 -14px; padding: 24px 14px; border-radius: 8px; color: var(--text); text-decoration: none; transition: background .2s, transform .2s, box-shadow .2s; }
 .post-link:is(:hover, :focus-visible) { background: var(--surface-hover); transform: translateY(-2px); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 60%, var(--line)), 0 8px 22px -14px #0006; }
-.post-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.post-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; }
 .post-link:active { transform: translateY(0) scale(.995); }
 @media (prefers-reduced-motion: reduce) { .post-link { transition: none; } .post-link:is(:hover, :focus-visible, :active) { transform: none; } }
 .post-list h3 { margin: 7px 0 8px; font-size: 21px; font-weight: 600; line-height: 1.45; letter-spacing: -.3px; transition: color .2s; }
