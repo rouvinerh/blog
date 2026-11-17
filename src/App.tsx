@@ -1,8 +1,9 @@
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import type { ComponentType, MouseEvent as ReactMouseEvent } from 'react';
-import { ArrowLeft, ArrowUpRight, Info, Mail, Moon, Sun } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Info, Mail } from 'lucide-react';
 import { GitHubIcon, LinkedInIcon } from './BrandIcons.tsx';
 import PageTransition from './PageTransition.tsx';
+import ThemeSwitch from './ThemeSwitch.tsx';
 import HomeEntrance from './HomeEntrance.tsx';
 import PathCard from './PathCard.tsx';
 import HelloText from './HelloText.tsx';
@@ -16,13 +17,11 @@ import type { Page, Route } from './routes.ts';
 
 const LazyMarkdown = lazy(() => import('./Markdown.tsx'));
 
-type Theme = 'light' | 'dark';
 export interface AppProps {
     initialPath?: string;
     MarkdownComponent?: ComponentType<MarkdownProps>;
 }
 
-const themeKey = 'rouvin-theme-v2';
 const pageNames: Record<Page, string> = {
     home: 'Home',
     about: 'About',
@@ -123,11 +122,6 @@ function App({ initialPath, MarkdownComponent }: AppProps = {}) {
             ? window.history.state.rouvinIndex
             : 0,
     );
-    const [theme, setTheme] = useState<Theme>(() =>
-        typeof document !== 'undefined' && document.documentElement.dataset.theme === 'light'
-            ? 'light'
-            : 'dark',
-    );
     const kind =
         route.page === 'blog' || route.page === 'bugs' ? route.page : undefined;
     const post = kind && route.slug ? getPost(kind, route.slug) : undefined;
@@ -223,18 +217,6 @@ function App({ initialPath, MarkdownComponent }: AppProps = {}) {
     };
 
     useEffect(() => {
-        document.documentElement.dataset.theme = theme;
-        document
-            .querySelector('meta[name="theme-color"]')
-            ?.setAttribute('content', theme === 'dark' ? '#0f171e' : '#fafbfc');
-        try {
-            localStorage.setItem(themeKey, theme);
-        } catch {
-            return;
-        }
-    }, [theme]);
-
-    useEffect(() => {
         const title = route.slug
             ? (post?.title ?? 'Post not found')
             : pageNames[route.page];
@@ -289,21 +271,7 @@ function App({ initialPath, MarkdownComponent }: AppProps = {}) {
                         <LinkedInIcon />
                     </a>
                     <span className="control-divider" aria-hidden="true" />
-                    <button
-                        className="icon-control theme-toggle"
-                        type="button"
-                        onClick={() =>
-                            setTheme(theme === 'light' ? 'dark' : 'light')
-                        }
-                        aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
-                        title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
-                    >
-                        {theme === 'light' ? (
-                            <Moon size={18} strokeWidth={1.7} />
-                        ) : (
-                            <Sun size={18} strokeWidth={1.7} />
-                        )}
-                    </button>
+                    <ThemeSwitch />
                 </div>
             </header>
 
