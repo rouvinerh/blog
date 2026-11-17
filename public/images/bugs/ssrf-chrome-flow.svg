@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="310" viewBox="0 0 400 310" role="img" aria-labelledby="title">
+    <title id="title">Page JavaScript runs before PDF capture</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --text: #243442;
+            --muted: #4f5f6c;
+            --rule: #9fb0be;
+            --teal: #276f66;
+            --amber: #8a641f;
+            --violet: #6a4fa3;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text: #e6edf3;
+                --muted: #c2cfda;
+                --rule: #61798b;
+                --teal: #73c4b7;
+                --amber: #e4bd78;
+                --violet: #b9a3ec;
+            }
+        }
+        text { fill: var(--text); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+        .mono { font-family: "Cascadia Code", ui-monospace, Consolas, monospace; }
+        .muted { fill: var(--muted); }
+        .teal { fill: var(--teal); }
+        .amber { fill: var(--amber); }
+        .violet { fill: var(--violet); }
+        .label { font-size: 16px; }
+        .heading { font-size: 18px; font-weight: 600; }
+        .small { font-size: 15px; }
+        .code { font-size: 17px; }
+        .rule { fill: none; stroke: var(--rule); stroke-width: 1; }
+        .line { fill: none; stroke: var(--muted); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+        .line-teal { fill: none; stroke: var(--teal); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+    <text x="16" y="30" class="mono small muted">1</text>
+    <text x="44" y="30" class="mono code amber">/pdf/download</text>
+    <text x="44" y="56" class="label">Receives the supplied HTML URL</text>
+    <path d="M21 72V102M16 97l5 5 5-5" class="line" />
+
+    <text x="16" y="128" class="mono small muted">2</text>
+    <text x="44" y="128" class="heading">Chromium</text>
+    <text x="44" y="154" class="label teal">Loads HTML, then runs page JS</text>
+    <path d="M52 166V184H88M83 179l5 5-5 5" class="line-teal" />
+    <text x="98" y="190" class="label teal">HTTP callback</text>
+    <path d="M21 204V242M16 237l5 5 5-5" class="line" />
+
+    <text x="16" y="268" class="mono small muted">3</text>
+    <text x="44" y="268" class="heading">Capture PDF</text>
+    <text x="44" y="294" class="mono code amber">/pdf/sample.pdf</text>
+</svg>

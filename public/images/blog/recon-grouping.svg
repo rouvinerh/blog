@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="460" viewBox="0 0 400 460" role="img" aria-labelledby="title">
+    <title id="title">Technology groups and response outliers</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --text: #243442;
+            --line: #c9d5df;
+            --peer: #1d5fa8;
+            --outlier: #b14b1c;
+            --outlier-fill: #fbe5d8;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text: #e6edf3;
+                --muted: #c2cfda;
+                --line: #61798b;
+                --peer: #80b8f4;
+                --outlier: #f4a16f;
+                --outlier-fill: #34271f;
+            }
+        }
+        text { fill: var(--text); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+        .heading { font-size: 24px; font-weight: 600; }
+        .label { font-size: 18px; }
+        .peer { fill: var(--peer); }
+        .outlier { fill: var(--outlier-fill); stroke: var(--outlier); stroke-width: 2.5; stroke-linejoin: round; }
+        .annotation { fill: var(--outlier); font-size: 18px; font-weight: 600; }
+        .leader { fill: none; stroke: var(--outlier); stroke-width: 1.5; stroke-linecap: round; }
+        .rule { stroke: var(--line); stroke-width: 1; }
+    </style>
+
+    <text x="20" y="29" class="heading">Technology groups</text>
+
+    <text x="20" y="81" class="heading">AWS</text>
+    <g class="peer">
+        <circle cx="36" cy="116" r="9" />
+        <circle cx="84" cy="116" r="9" />
+        <circle cx="132" cy="116" r="9" />
+        <circle cx="180" cy="116" r="9" />
+        <circle cx="228" cy="116" r="9" />
+        <circle cx="276" cy="116" r="9" />
+    </g>
+    <line x1="20" y1="149" x2="380" y2="149" class="rule" />
+
+    <text x="20" y="191" class="heading">WordPress</text>
+    <g class="peer">
+        <circle cx="36" cy="226" r="9" />
+        <circle cx="84" cy="226" r="9" />
+        <circle cx="132" cy="226" r="9" />
+        <circle cx="180" cy="226" r="9" />
+        <circle cx="228" cy="226" r="9" />
+        <circle cx="324" cy="226" r="9" />
+        <circle cx="372" cy="226" r="9" />
+    </g>
+    <path d="M276 214l12 12-12 12-12-12z" class="outlier" />
+    <text x="280" y="191" class="annotation">Outlier</text>
+    <path d="M296 197l-13 13" class="leader" />
+    <line x1="20" y1="259" x2="380" y2="259" class="rule" />
+
+    <text x="20" y="301" class="heading">Apache</text>
+    <g class="peer">
+        <circle cx="36" cy="336" r="9" />
+        <circle cx="84" cy="336" r="9" />
+        <circle cx="132" cy="336" r="9" />
+        <circle cx="180" cy="336" r="9" />
+        <circle cx="228" cy="336" r="9" />
+    </g>
+    <line x1="20" y1="369" x2="380" y2="369" class="rule" />
+
+    <circle cx="26" cy="403" r="7" class="peer" />
+    <text x="44" y="409" class="label">Hosts with similar responses</text>
+    <path d="M26 428l8 8-8 8-8-8z" class="outlier" />
+    <text x="44" y="442" class="label">Host with a different response</text>
+</svg>

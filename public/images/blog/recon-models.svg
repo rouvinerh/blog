@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="374" viewBox="0 0 400 374" role="img" aria-labelledby="title">
+    <title id="title">How the work is split across models</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --text: #243442;
+            --muted: #4f5f6c;
+            --card: #f0f4f7;
+            --card-line: #c9d5df;
+            --model: #c4501a;
+            --model-soft: #fbe5d8;
+            --code: #1d5fa8;
+            --code-soft: #dfeaf6;
+            --on-fill: #ffffff;
+            --arrow: #6f8191;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text: #e6edf3;
+                --muted: #c2cfda;
+                --card: #151f28;
+                --card-line: #3a4b59;
+                --model: #f4a16f;
+                --model-soft: #34271f;
+                --code: #80b8f4;
+                --code-soft: #1b3044;
+                --on-fill: #0f171e;
+                --arrow: #768796;
+            }
+        }
+        text { fill: var(--text); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+        .mono { font-family: "Cascadia Code", ui-monospace, Consolas, monospace; }
+        .card { fill: var(--card); stroke: var(--card-line); stroke-width: 1; }
+        .card-model { fill: var(--model-soft); stroke: var(--model); stroke-width: 1.4; }
+        .card-code { fill: var(--code-soft); stroke: var(--code); stroke-width: 1.4; }
+        .arrow { fill: none; stroke: var(--arrow); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+        .model { font-size: 19px; font-weight: 600; text-anchor: middle; }
+        .role { font-size: 16px; fill: var(--muted); text-anchor: middle; }
+    </style>
+    <rect x="70.5" y="8.5" width="259" height="75" rx="10" class="card-model" />
+    <text x="200" y="40" class="model">Opus 5</text>
+    <text x="200" y="66" class="role">Plans and delegates the work</text>
+
+    <path d="M150 84C150 104 103 100 103 118M97 112l6 6 6-6" class="arrow" />
+    <path d="M250 84C250 104 297 100 297 118M291 112l6 6 6-6" class="arrow" />
+
+    <rect x="12.5" y="122.5" width="181" height="107" rx="10" class="card-model" />
+    <text x="103" y="152" class="model">Haiku 5</text>
+    <text x="103" y="178" class="role">Mechanical steps,</text>
+    <text x="103" y="198" class="role">like gathering</text>
+    <text x="103" y="218" class="role">evidence</text>
+
+    <rect x="206.5" y="122.5" width="181" height="107" rx="10" class="card-model" />
+    <text x="297" y="152" class="model">Sonnet 5</text>
+    <text x="297" y="178" class="role">Crawling and</text>
+    <text x="297" y="198" class="role">finding new things</text>
+
+    <path d="M103 230C103 252 170 248 170 266M164 260l6 6 6-6" class="arrow" />
+    <path d="M297 230C297 252 230 248 230 266M224 260l6 6 6-6" class="arrow" />
+
+    <rect x="50.5" y="270.5" width="299" height="95" rx="10" class="card-model" />
+    <text x="200" y="302" class="model">Opus 5 review</text>
+    <text x="200" y="328" class="role">Does this have impact?</text>
+    <text x="200" y="348" class="role">Is it worth bringing up?</text>
+</svg>

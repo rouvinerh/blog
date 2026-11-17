@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="428" viewBox="0 0 400 428" role="img" aria-labelledby="title">
+    <title id="title">UUIDv1</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --text: #243442;
+            --muted: #4f5f6c;
+            --rule: #9fb0be;
+            --teal: #276f66;
+            --amber: #8a641f;
+            --violet: #6a4fa3;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text: #e6edf3;
+                --muted: #c2cfda;
+                --rule: #61798b;
+                --teal: #73c4b7;
+                --amber: #e4bd78;
+                --violet: #b9a3ec;
+            }
+        }
+        text { fill: var(--text); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+        .mono { font-family: "Cascadia Code", ui-monospace, Consolas, monospace; }
+        .muted { fill: var(--muted); }
+        .teal { fill: var(--teal); }
+        .amber { fill: var(--amber); }
+        .violet { fill: var(--violet); }
+        .label { font-size: 16px; }
+        .heading { font-size: 18px; font-weight: 600; }
+        .small { font-size: 15px; }
+        .code { font-size: 17px; }
+        .rule { fill: none; stroke: var(--rule); stroke-width: 1; }
+        .line { fill: none; stroke: var(--muted); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+        .line-teal { fill: none; stroke: var(--teal); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+    <text x="16" y="26" class="heading">UUIDv1</text>
+    <text x="16" y="62" class="mono code"><tspan class="teal">447c8290-dbfc-</tspan><tspan class="amber">1</tspan><tspan class="teal">1f1</tspan><tspan class="muted">-</tspan><tspan class="violet">84e8</tspan><tspan class="muted">-</tspan>7ced8de54b88</text>
+    <path d="M16 80H384" class="rule" />
+    <text x="16" y="112" class="heading teal">Timestamp</text>
+    <text x="384" y="112" class="mono small teal" text-anchor="end">447c8290 dbfc 1f1</text>
+    <text x="16" y="137" class="label">Counts 100 ns ticks since 15 October 1582,</text>
+    <text x="16" y="158" class="label">split into low, middle and high parts.</text>
+    <text x="16" y="196" class="heading amber">Version</text>
+    <text x="384" y="196" class="mono small amber" text-anchor="end">1</text>
+    <text x="16" y="221" class="label">The first 1 marks version 1.</text>
+    <text x="16" y="242" class="label">The remaining 1f1 stores time.</text>
+    <text x="16" y="280" class="heading violet">Variant + sequence</text>
+    <text x="384" y="280" class="mono small violet" text-anchor="end">84e8</text>
+    <text x="16" y="305" class="label">Two format bits, then a 14-bit clock</text>
+    <text x="16" y="326" class="label">sequence. Here it is 1256.</text>
+    <text x="16" y="364" class="heading ">Node</text>
+    <text x="384" y="364" class="mono small " text-anchor="end">7ced8de54b88</text>
+    <text x="16" y="389" class="label">48 bits: a MAC address or a generated</text>
+    <text x="16" y="410" class="label">value, not always a real device ID.</text>
+</svg>

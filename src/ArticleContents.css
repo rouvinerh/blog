@@ -1,0 +1,111 @@
+.article {
+    position: relative;
+}
+
+.contents-rail {
+    display: none;
+}
+
+.article-contents ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid var(--line);
+}
+
+.article-contents li {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.article-contents a {
+    display: block;
+    margin-left: -1px;
+    padding: 5px 0 5px 14px;
+    border-left: 2px solid transparent;
+    color: var(--muted);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+    transition: color 0.15s;
+}
+
+.article-contents a:hover {
+    color: var(--text);
+}
+
+.article-contents a[aria-current='location'] {
+    border-left-color: var(--accent);
+    color: var(--accent);
+}
+
+.article-contents .contents-subsection a {
+    padding-left: 26px;
+}
+
+.contents-mobile {
+    margin: 0 0 24px;
+    padding: 0;
+    border: 0;
+}
+
+.contents-mobile summary {
+    width: fit-content;
+    font-size: 1.0625rem;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.contents-mobile summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 5px;
+}
+
+.contents-mobile[open] .article-contents {
+    margin: 12px 0 2px;
+}
+
+@media (max-width: 1179px) {
+    .article .article-heading {
+        margin-bottom: 20px;
+    }
+}
+
+@media (min-width: 1180px) {
+    body {
+        overflow-x: clip;
+    }
+
+    .site--article .page-stage {
+        overflow: visible;
+    }
+
+    .contents-mobile {
+        display: none;
+    }
+
+    .contents-rail {
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: calc(100% + 24px);
+        width: min(176px, calc((100vw - 792px) / 2 - 40px));
+    }
+
+    .contents-rail .article-contents {
+        position: sticky;
+        top: 32px;
+        max-height: calc(100dvh - 64px);
+        overflow-y: auto;
+        scrollbar-width: thin;
+    }
+
+    .article-contents h2 {
+        margin: 0 0 14px;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 0;
+        color: var(--text);
+    }
+}

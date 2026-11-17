@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="318" viewBox="0 0 400 318" role="img" aria-labelledby="title">
+    <title id="title">Two interpretations of the same URL</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --text: #243442;
+            --muted: #4f5f6c;
+            --rule: #9fb0be;
+            --teal: #276f66;
+            --amber: #8a641f;
+            --violet: #6a4fa3;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text: #e6edf3;
+                --muted: #c2cfda;
+                --rule: #61798b;
+                --teal: #73c4b7;
+                --amber: #e4bd78;
+                --violet: #b9a3ec;
+            }
+        }
+        text { fill: var(--text); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+        .mono { font-family: "Cascadia Code", ui-monospace, Consolas, monospace; }
+        .muted { fill: var(--muted); }
+        .teal { fill: var(--teal); }
+        .amber { fill: var(--amber); }
+        .violet { fill: var(--violet); }
+        .label { font-size: 16px; }
+        .heading { font-size: 18px; font-weight: 600; }
+        .small { font-size: 15px; }
+        .code { font-size: 17px; }
+        .rule { fill: none; stroke: var(--rule); stroke-width: 1; }
+        .line { fill: none; stroke: var(--muted); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+        .line-teal { fill: none; stroke: var(--teal); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+    <text x="16" y="24" class="small muted">Same request</text>
+    <text x="16" y="54" class="mono code">/content/example.infinity.json/a.css</text>
+    <path d="M16 74H384" class="rule" />
+
+    <text x="16" y="106" class="heading">Dispatcher</text>
+    <text x="16" y="129" class="small muted">Loose URL rule</text>
+    <text x="16" y="162" class="mono code amber">*.css</text>
+    <path d="M84 156H136M131 151l5 5-5 5" class="line" />
+    <text x="148" y="162" class="label amber">may allow</text>
+    <path d="M16 184H384" class="rule" />
+
+    <text x="16" y="216" class="heading">Sling</text>
+    <text x="16" y="239" class="small muted">Resolved parts</text>
+    <text x="16" y="272" class="mono code teal">extension: json</text>
+    <path d="M196 266H248M243 261l5 5-5 5" class="line-teal" />
+    <text x="260" y="272" class="label teal">JSON</text>
+    <text x="16" y="302" class="mono code muted">suffix: /a.css</text>
+</svg>

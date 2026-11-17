@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="422" viewBox="0 0 400 422" role="img" aria-labelledby="title">
+    <title id="title">Security questions for a JWT</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --text: #243442;
+            --muted: #4f5f6c;
+            --card: #f0f4f7;
+            --card-line: #c9d5df;
+            --model: #c4501a;
+            --model-soft: #fbe5d8;
+            --code: #1d5fa8;
+            --code-soft: #dfeaf6;
+            --on-fill: #ffffff;
+            --arrow: #6f8191;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text: #e6edf3;
+                --muted: #c2cfda;
+                --card: #151f28;
+                --card-line: #3a4b59;
+                --model: #f4a16f;
+                --model-soft: #34271f;
+                --code: #80b8f4;
+                --code-soft: #1b3044;
+                --on-fill: #0f171e;
+                --arrow: #768796;
+            }
+        }
+        text { fill: var(--text); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+        .mono { font-family: "Cascadia Code", ui-monospace, Consolas, monospace; }
+        .card { fill: var(--card); stroke: var(--card-line); stroke-width: 1; }
+        .card-model { fill: var(--model-soft); stroke: var(--model); stroke-width: 1.4; }
+        .card-code { fill: var(--code-soft); stroke: var(--code); stroke-width: 1.4; }
+        .arrow { fill: none; stroke: var(--arrow); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+        .kicker { font-size: 13px; font-weight: 600; fill: var(--muted); letter-spacing: 0.04em; }
+        .main { font-size: 18px; font-weight: 600; }
+        .q { font-size: 16px; font-weight: 600; }
+        .note { font-size: 15px; fill: var(--muted); text-anchor: middle; }
+        .link { fill: none; stroke: var(--arrow); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+    <rect x="12.5" y="8.5" width="219" height="59" rx="10" class="card-code" />
+    <text x="28" y="31" class="kicker">OBSERVATION</text>
+    <text x="28" y="56" class="main">Found a JWT</text>
+    <path d="M30 68V219" class="link" />
+    <path d="M30 107H52" class="link" />
+    <rect x="52.5" y="84.5" width="335" height="45" rx="10" class="card-model" />
+    <text x="68" y="112.5" class="q">Weak signing secret?</text>
+    <path d="M30 163H52" class="link" />
+    <rect x="52.5" y="140.5" width="335" height="45" rx="10" class="card-model" />
+    <text x="68" y="168.5" class="q">Accepts alg: none?</text>
+    <path d="M30 219H52" class="link" />
+    <rect x="52.5" y="196.5" width="335" height="45" rx="10" class="card-model" />
+    <text x="68" y="224.5" class="q">Algorithm confusion?</text>
+    <text x="220" y="270" class="note">Answers lead to more questions</text>
+    <path d="M220 280V294H30V391" class="link" />
+    <path d="M30 335H52" class="link" />
+    <rect x="52.5" y="312.5" width="335" height="45" rx="10" class="card-model" />
+    <text x="68" y="340.5" class="q">What can this token do?</text>
+    <path d="M30 391H52" class="link" />
+    <rect x="52.5" y="368.5" width="335" height="45" rx="10" class="card-model" />
+    <text x="68" y="396.5" class="q">Which endpoints accept it?</text>
+</svg>

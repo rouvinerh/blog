@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="488" viewBox="0 0 400 488" role="img" aria-labelledby="title">
+    <title id="title">Recon methodology</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --text: #243442;
+            --muted: #4f5f6c;
+            --card: #f0f4f7;
+            --card-line: #c9d5df;
+            --model: #c4501a;
+            --model-soft: #fbe5d8;
+            --code: #1d5fa8;
+            --code-soft: #dfeaf6;
+            --on-fill: #ffffff;
+            --arrow: #6f8191;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text: #e6edf3;
+                --muted: #c2cfda;
+                --card: #151f28;
+                --card-line: #3a4b59;
+                --model: #f4a16f;
+                --model-soft: #34271f;
+                --code: #80b8f4;
+                --code-soft: #1b3044;
+                --on-fill: #0f171e;
+                --arrow: #768796;
+            }
+        }
+        text { fill: var(--text); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+        .mono { font-family: "Cascadia Code", ui-monospace, Consolas, monospace; }
+        .card { fill: var(--card); stroke: var(--card-line); stroke-width: 1; }
+        .card-model { fill: var(--model-soft); stroke: var(--model); stroke-width: 1.4; }
+        .card-code { fill: var(--code-soft); stroke: var(--code); stroke-width: 1.4; }
+        .arrow { fill: none; stroke: var(--arrow); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+        .step { font-size: 18px; font-weight: 600; }
+        .desc { font-size: 16px; fill: var(--muted); }
+        .num { font-size: 15px; font-weight: 700; fill: var(--on-fill); text-anchor: middle; }
+        .tag { font-size: 14px; font-weight: 600; text-anchor: middle; }
+        .badge-code { fill: var(--code); }
+        .badge-model { fill: var(--model); }
+        .tag-code { fill: none; stroke: var(--code); stroke-width: 1.4; }
+        .tag-model { fill: none; stroke: var(--model); stroke-width: 1.4; }
+    </style>
+    <rect x="12.5" y="8.5" width="375" height="99" rx="10" class="card" />
+    <circle cx="40" cy="38" r="15" class="badge-code" />
+    <text x="40" y="43" class="num">1</text>
+    <text x="66" y="44" class="step">Collect</text>
+    <rect x="262" y="24" width="110" height="28" rx="14" class="tag-code" />
+    <text x="317" y="43" class="tag">Deterministic</text>
+    <text x="66" y="74" class="desc">2,518 subdomains, 42,825 URLs,</text>
+    <text x="66" y="96" class="desc">1,795 JS files</text>
+    <path d="M200 112V128M194 122l6 6 6-6" class="arrow" />
+    <rect x="12.5" y="132.5" width="375" height="99" rx="10" class="card" />
+    <circle cx="40" cy="162" r="15" class="badge-code" />
+    <text x="40" y="167" class="num">2</text>
+    <text x="66" y="168" class="step">Group</text>
+    <rect x="262" y="148" width="110" height="28" rx="14" class="tag-code" />
+    <text x="317" y="167" class="tag">Deterministic</text>
+    <text x="66" y="198" class="desc">924 applications across</text>
+    <text x="66" y="220" class="desc">121 technologies</text>
+    <path d="M200 236V252M194 246l6 6 6-6" class="arrow" />
+    <rect x="12.5" y="256.5" width="375" height="99" rx="10" class="card" />
+    <circle cx="40" cy="286" r="15" class="badge-code" />
+    <text x="40" y="291" class="num">3</text>
+    <text x="66" y="292" class="step">Probe</text>
+    <rect x="262" y="272" width="110" height="28" rx="14" class="tag-code" />
+    <text x="317" y="291" class="tag">Deterministic</text>
+    <text x="66" y="322" class="desc">7,954 responses,</text>
+    <text x="66" y="344" class="desc">4,371 of them distinct</text>
+    <path d="M200 360V376M194 370l6 6 6-6" class="arrow" />
+    <rect x="12.5" y="380.5" width="375" height="99" rx="10" class="card-model" />
+    <circle cx="40" cy="410" r="15" class="badge-model" />
+    <text x="40" y="415" class="num">4</text>
+    <text x="66" y="416" class="step">Ask</text>
+    <rect x="324" y="396" width="48" height="28" rx="14" class="tag-model" />
+    <text x="348" y="415" class="tag">AI</text>
+    <text x="66" y="446" class="desc">A model turns what stands out</text>
+    <text x="66" y="468" class="desc">into questions</text>
+</svg>

@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="568" viewBox="0 0 400 568" role="img" aria-labelledby="title">
+    <title id="title">Benchmark coverage of ATT&amp;CK</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --text: #243442;
+            --muted: #4f5f6c;
+            --empty: #f0f4f7;
+            --dash: #8293a1;
+            --bench: #c4501a;
+            --bench-soft: #f3b896;
+            --on-bench: #ffffff;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text: #e6edf3;
+                --muted: #c2cfda;
+                --empty: #151f28;
+                --dash: #839bad;
+                --bench: #f4a16f;
+                --bench-soft: #67442d;
+                --on-bench: #0f171e;
+            }
+        }
+        text { fill: var(--text); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+        .mono { font-family: "Cascadia Code", ui-monospace, Consolas, monospace; }
+        .head { font-size: 15px; font-weight: 600; text-anchor: middle; }
+        .tactic { font-size: 16px; font-weight: 600; }
+        .muted { fill: var(--muted); font-weight: 500; }
+        .on-bench { fill: var(--on-bench); }
+        .empty { fill: var(--empty); stroke: var(--dash); stroke-width: 1.2; stroke-dasharray: 5 4; }
+        .soft { fill: var(--bench-soft); stroke: var(--bench); stroke-width: 1.4; }
+        .bench { fill: var(--bench); }
+        .hit { fill: var(--bench); }
+        .miss { fill: none; stroke: var(--dash); stroke-width: 1.4; }
+    </style>
+    <text x="258" y="22" class="head">NYU CTF</text>
+    <text x="348" y="22" class="head">ExploitGym</text>
+    <rect x="12.5" y="40.5" width="200" height="29" rx="7" class="empty" />
+    <text x="26" y="60.5" class="tactic muted">Reconnaissance</text>
+    <circle cx="258" cy="55" r="3.5" class="miss" />
+    <circle cx="348" cy="55" r="3.5" class="miss" />
+    <rect x="12.5" y="75.5" width="200" height="29" rx="7" class="empty" />
+    <text x="26" y="95.5" class="tactic muted">Resource Development</text>
+    <circle cx="258" cy="90" r="3.5" class="miss" />
+    <circle cx="348" cy="90" r="3.5" class="miss" />
+    <rect x="12.5" y="110.5" width="200" height="29" rx="7" class="soft" />
+    <text x="26" y="130.5" class="tactic">Initial Access</text>
+    <circle cx="258" cy="125" r="8" class="hit" />
+    <circle cx="348" cy="125" r="3.5" class="miss" />
+    <rect x="12.5" y="145.5" width="200" height="29" rx="7" class="bench" />
+    <text x="26" y="165.5" class="tactic on-bench">Execution</text>
+    <circle cx="258" cy="160" r="8" class="hit" />
+    <circle cx="348" cy="160" r="8" class="hit" />
+    <rect x="12.5" y="180.5" width="200" height="29" rx="7" class="empty" />
+    <text x="26" y="200.5" class="tactic muted">Persistence</text>
+    <circle cx="258" cy="195" r="3.5" class="miss" />
+    <circle cx="348" cy="195" r="3.5" class="miss" />
+    <rect x="12.5" y="215.5" width="200" height="29" rx="7" class="bench" />
+    <text x="26" y="235.5" class="tactic on-bench">Privilege Escalation</text>
+    <circle cx="258" cy="230" r="8" class="hit" />
+    <circle cx="348" cy="230" r="8" class="hit" />
+    <rect x="12.5" y="250.5" width="200" height="29" rx="7" class="empty" />
+    <text x="26" y="270.5" class="tactic muted">Stealth</text>
+    <circle cx="258" cy="265" r="3.5" class="miss" />
+    <circle cx="348" cy="265" r="3.5" class="miss" />
+    <rect x="12.5" y="285.5" width="200" height="29" rx="7" class="empty" />
+    <text x="26" y="305.5" class="tactic muted">Defense Impairment</text>
+    <circle cx="258" cy="300" r="3.5" class="miss" />
+    <circle cx="348" cy="300" r="3.5" class="miss" />
+    <rect x="12.5" y="320.5" width="200" height="29" rx="7" class="empty" />
+    <text x="26" y="340.5" class="tactic muted">Credential Access</text>
+    <circle cx="258" cy="335" r="3.5" class="miss" />
+    <circle cx="348" cy="335" r="3.5" class="miss" />
+    <rect x="12.5" y="355.5" width="200" height="29" rx="7" class="empty" />
+    <text x="26" y="375.5" class="tactic muted">Discovery</text>
+    <circle cx="258" cy="370" r="3.5" class="miss" />
+    <circle cx="348" cy="370" r="3.5" class="miss" />
+    <rect x="12.5" y="390.5" width="200" height="29" rx="7" class="empty" />
+    <text x="26" y="410.5" class="tactic muted">Lateral Movement</text>
+    <circle cx="258" cy="405" r="3.5" class="miss" />
+    <circle cx="348" cy="405" r="3.5" class="miss" />
+    <rect x="12.5" y="425.5" width="200" height="29" rx="7" class="empty" />
+    <text x="26" y="445.5" class="tactic muted">Collection</text>
+    <circle cx="258" cy="440" r="3.5" class="miss" />
+    <circle cx="348" cy="440" r="3.5" class="miss" />
+    <rect x="12.5" y="460.5" width="200" height="29" rx="7" class="empty" />
+    <text x="26" y="480.5" class="tactic muted">Command and Control</text>
+    <circle cx="258" cy="475" r="3.5" class="miss" />
+    <circle cx="348" cy="475" r="3.5" class="miss" />
+    <rect x="12.5" y="495.5" width="200" height="29" rx="7" class="empty" />
+    <text x="26" y="515.5" class="tactic muted">Exfiltration</text>
+    <circle cx="258" cy="510" r="3.5" class="miss" />
+    <circle cx="348" cy="510" r="3.5" class="miss" />
+    <rect x="12.5" y="530.5" width="200" height="29" rx="7" class="empty" />
+    <text x="26" y="550.5" class="tactic muted">Impact</text>
+    <circle cx="258" cy="545" r="3.5" class="miss" />
+    <circle cx="348" cy="545" r="3.5" class="miss" />
+</svg>

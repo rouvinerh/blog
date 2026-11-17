@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="google-site-verification"
+            content="37FWudzPltCfCTyliUDWq_EYvxq2WG1fIFvX9O_SynU"
+        />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Rouvin Erh's blogs and bug reports. Tools, security engineering, and things I look into."
+        />
+        <meta name="theme-color" content="#0f171e" />
+        <title>Rouvin Erh</title>
+        <script>
+            try {
+                document.documentElement.dataset.theme =
+                    localStorage.getItem('rouvin-theme-v2') === 'light'
+                        ? 'light'
+                        : 'dark';
+            } catch {
+                document.documentElement.dataset.theme = 'dark';
+            }
+        </script>
+    </head>
+    <body>
+        <div id="root"><!--app-html--></div>
+        <script type="module" src="/src/main.tsx"></script>
+    </body>
+</html>

@@ -1,0 +1,244 @@
+.markdown-content {
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+    --code-purple: #c7a8ed;
+    --code-green: #a8d8a0;
+    --code-blue: #8ab6e5;
+    --code-orange: #e8bd84;
+    --code-comment: #8b9ba9;
+}
+
+:root[data-theme='light'] .markdown-content {
+    --code-purple: #7540a3;
+    --code-green: #276e46;
+    --code-blue: #175a9b;
+    --code-orange: #955712;
+    --code-comment: #586a79;
+}
+
+.markdown-content h2,
+.markdown-content h3 {
+    scroll-margin-top: 28px;
+}
+.markdown-content .heading-anchor {
+    display: inline-flex;
+    margin-left: 0.15em;
+    padding: 4px;
+    border-radius: 4px;
+    vertical-align: middle;
+    color: var(--muted);
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+.markdown-content :is(h2, h3, h4):hover .heading-anchor,
+.markdown-content .heading-anchor:focus-visible {
+    opacity: 1;
+}
+.markdown-content .heading-anchor:hover {
+    color: var(--accent);
+}
+@media (hover: none) {
+    .markdown-content .heading-anchor {
+        opacity: 0.8;
+    }
+}
+.markdown-content :is(h2, h3):focus {
+    outline: none;
+}
+.markdown-content .hljs {
+    color: var(--text);
+}
+.markdown-content .hljs-keyword,
+.markdown-content .hljs-selector-tag,
+.markdown-content .hljs-literal {
+    color: var(--code-purple);
+}
+.markdown-content .hljs-string,
+.markdown-content .hljs-regexp,
+.markdown-content .hljs-addition {
+    color: var(--code-green);
+}
+.markdown-content .hljs-title,
+.markdown-content .hljs-built_in,
+.markdown-content .hljs-attr {
+    color: var(--code-blue);
+}
+.markdown-content .hljs-number,
+.markdown-content .hljs-params,
+.markdown-content .hljs-variable {
+    color: var(--code-orange);
+}
+.markdown-content .hljs-comment,
+.markdown-content .hljs-quote {
+    color: var(--code-comment);
+}
+.markdown-content .hljs-tag,
+.markdown-content .hljs-name,
+.markdown-content .hljs-deletion {
+    color: #e39a9d;
+}
+:root[data-theme='light']
+    .markdown-content
+    :is(.hljs-tag, .hljs-name, .hljs-deletion) {
+    color: #a83945;
+}
+
+.markdown-content > :first-child {
+    margin-top: 0;
+}
+.markdown-content > :last-child {
+    margin-bottom: 0;
+}
+.markdown-content p,
+.markdown-content ul,
+.markdown-content ol,
+.markdown-content blockquote,
+.markdown-content pre,
+.markdown-content .markdown-table-wrap {
+    margin: 1.15em 0;
+}
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4 {
+    margin: 1.8em 0 0.65em;
+    font-family: inherit;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: normal;
+}
+.markdown-content h1 {
+    font-size: 1.65em;
+}
+.markdown-content h2 {
+    font-size: 1.4em;
+}
+.markdown-content h3 {
+    font-size: 1.2em;
+}
+.markdown-content h4 {
+    font-size: 1.05em;
+}
+.markdown-content a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in srgb, currentColor 55%, transparent);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.15s;
+}
+.markdown-content a:hover {
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 2px;
+}
+.markdown-content ul,
+.markdown-content ol {
+    padding-left: 1.5em;
+}
+.markdown-content li + li {
+    margin-top: 0.3em;
+}
+.markdown-content li > p {
+    margin: 0.4em 0;
+}
+.markdown-content blockquote {
+    position: relative;
+    padding: 0.8em 1.1em 0.8em 3em;
+    border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+    border-radius: 8px;
+    background: color-mix(in srgb, currentColor 5%, transparent);
+}
+.markdown-content blockquote::before {
+    content: '';
+    position: absolute;
+    left: 1.1em;
+    top: calc(0.8em + 0.9em - 0.575em);
+    width: 1.15em;
+    height: 1.15em;
+    background-color: currentColor;
+    opacity: 0.7;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4M12 8h.01'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4M12 8h.01'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.markdown-content blockquote > :first-child {
+    margin-top: 0;
+}
+.markdown-content blockquote > :last-child {
+    margin-bottom: 0;
+}
+.markdown-content code {
+    font-family: 'Cascadia Code', Consolas, monospace;
+    font-size: 0.88em;
+    background: color-mix(in srgb, currentColor 7%, transparent);
+    border-radius: 3px;
+    padding: 0.15em 0.3em;
+}
+.markdown-content pre {
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    padding: 1em;
+    border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    border-radius: 4px;
+    line-height: 1.65;
+}
+.markdown-content pre code {
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    white-space: inherit;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    tab-size: 4;
+}
+.markdown-content img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    margin: 1.5em auto;
+}
+.markdown-content hr {
+    border: 0;
+    border-top: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+    margin: 2em 0;
+}
+.markdown-table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+}
+.markdown-content table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92em;
+    line-height: 1.6;
+}
+.markdown-content th,
+.markdown-content td {
+    border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+    padding: 0.5em 0.75em;
+    text-align: left;
+    overflow-wrap: break-word;
+}
+.markdown-content th {
+    font-weight: 600;
+}
+.markdown-content td code {
+    overflow-wrap: anywhere;
+}
+@media (max-width: 620px) {
+    .markdown-content table {
+        font-size: 0.875em;
+    }
+    .markdown-content th,
+    .markdown-content td {
+        padding: 0.45em 0.55em;
+    }
+}
+.markdown-content .contains-task-list {
+    list-style: none;
+    padding-left: 0.25em;
+}
+.markdown-content .task-list-item input {
+    margin-right: 0.6em;
+}

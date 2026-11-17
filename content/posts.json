@@ -1,0 +1,26 @@
+{
+    "bugs/ssrf-chrome-scanner": {
+        "description": "Chromium PDF converter = Arbitrary JS execution",
+        "publicationOrder": 2
+    },
+    "bugs/aem-misconfigurations": {
+        "description": "Common things AEM apps miss out, and various bypasses to farm reports",
+        "publicationOrder": 1
+    },
+    "bugs/uuidv1-idors": {
+        "description": "RFC4122 is not random!",
+        "publicationOrder": 3
+    },
+    "blog/pre-gbbp-experience": {
+        "description": "Hunting for bugs on Singapore government websites",
+        "status": "wip"
+    },
+    "blog/recon-with-ai": {
+        "description": "Deterministically and cheaply finding the right applications to point LLMs at",
+        "publicationOrder": 4
+    },
+    "blog/finding-signal-through-noise": {
+        "description": "Can AI be a good triager?",
+        "status": "wip"
+    }
+}

@@ -1,0 +1,69 @@
+.pixel-character {
+  display: inline-block;
+  position: relative;
+  flex: none;
+  width: var(--pixel-size, 54px);
+  height: var(--pixel-size, 54px);
+  vertical-align: bottom;
+  image-rendering: pixelated;
+}
+
+.pixel-character-figure { position: absolute; inset: 0; }
+.pixel-frame { display: block; position: absolute; inset: 0; overflow: visible; }
+.pixel-frame--1 { opacity: 0; }
+.pixel-character-tool { display: block; position: absolute; overflow: visible; }
+.pixel-character-tool--pickaxe { right: -14%; bottom: 8%; transform: rotate(-15deg); transform-origin: 50% 90%; }
+.pixel-character-tool--paper { left: -14%; bottom: 6%; }
+.pixel-character-tool--pen { right: -13%; bottom: 6%; }
+
+.pixel-scene {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 106px;
+  height: 76px;
+  flex: none;
+  gap: 4px;
+  padding-bottom: 4px;
+}
+
+.pixel-scene--home { width: 66px; height: 62px; }
+.pixel-scene-prop { position: absolute; right: 0; bottom: 3px; image-rendering: pixelated; }
+.pixel-scene-buddy { margin-left: -2px; }
+.tiny-magnet { display: inline-block; position: relative; line-height: 0; }
+.tiny-magnet-content { display: inline-block; transition: transform 180ms ease-out; will-change: transform; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .pixel-character:hover .pixel-character-figure,
+  :is(a, button):is(:hover, :focus-visible) .pixel-character-figure {
+    animation: pixel-bob 600ms steps(1, end) 2;
+  }
+
+  .pixel-character[data-animated]:hover .pixel-frame--0,
+  :is(a, button):is(:hover, :focus-visible) .pixel-character[data-animated] .pixel-frame--0 {
+    animation: pixel-frame-a 600ms steps(1, end) 2;
+  }
+
+  .pixel-character[data-animated]:hover .pixel-frame--1,
+  :is(a, button):is(:hover, :focus-visible) .pixel-character[data-animated] .pixel-frame--1 {
+    animation: pixel-frame-b 600ms steps(1, end) 2;
+  }
+
+  .pixel-character--writer:hover .pixel-character-tool--pen,
+  :is(a, button):is(:hover, :focus-visible) .pixel-character--writer .pixel-character-tool--pen {
+    animation: pixel-write 600ms steps(1, end) 2;
+  }
+
+  .pixel-greeting .pixel-frame--0 { animation: pixel-frame-a 600ms steps(1, end) 2 120ms; }
+  .pixel-greeting .pixel-frame--1 { animation: pixel-frame-b 600ms steps(1, end) 2 120ms; }
+
+  @keyframes pixel-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -2px; } }
+  @keyframes pixel-frame-a { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+  @keyframes pixel-frame-b { 0%, 49% { opacity: 0; } 50%, 100% { opacity: 1; } }
+  @keyframes pixel-write { 0%, 100% { translate: 0 0; } 50% { translate: -2px 1px; } }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tiny-magnet-content { transform: none !important; transition: none; }
+}
