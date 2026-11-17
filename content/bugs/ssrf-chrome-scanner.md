@@ -12,7 +12,7 @@ Changing the URL to a Burp Collaborator address gave me HTTP callbacks. I then s
 
 The PDF's producer was `Skia/PDF m115`, which matched the `Chrome/115.0.0.0` user agent in the callbacks. This suggested Chromium was visiting the page and generating the PDF.
 
-![Controlled HTML is opened by server-side Chromium. The renderer generates a PDF, while page JavaScript sends an outbound callback.](/images/bugs/ssrf-chrome-flow.svg)
+![](/images/bugs/ssrf-chrome-flow.svg)
 
 ## JavaScript Execution 
 

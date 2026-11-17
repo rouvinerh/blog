@@ -9,7 +9,7 @@ import PathCard from './PathCard.tsx';
 import HelloText from './HelloText.tsx';
 import { PixelCharacter, PixelScene } from './PixelCharacters.tsx';
 import { getLatestPosts, getPost, getPosts } from './content.ts';
-import type { Post } from './content.ts';
+import type { Post, PostKind } from './content.ts';
 import About from './About.tsx';
 import type { MarkdownProps } from './Markdown.tsx';
 import { canonicalPath, isKnownPathname, parseRoute, routePath } from './routes.ts';
@@ -27,6 +27,11 @@ const pageNames: Record<Page, string> = {
     about: 'About',
     blog: 'Blog',
     bugs: 'Bugs',
+};
+
+const pageDescriptions: Record<PostKind, string> = {
+    blog: 'Writing down my thought process for the things I build or test',
+    bugs: "Cool bugs I've found while testing other people's applications",
 };
 
 function browserPath(): string {
@@ -53,6 +58,14 @@ function setHistoryEntry(method: 'pushState' | 'replaceState', path: string, ind
     );
 }
 
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+/** "2026-11-16" becomes "16 Nov 2026" and "2026-06" becomes "Jun 2026", the same on the server and in every browser. */
+function formatDate(date: string): string {
+    const [year, month, day] = date.split('-').map(Number);
+    return day ? `${day} ${MONTHS[month - 1]} ${year}` : `${MONTHS[month - 1]} ${year}`;
+}
+
 function PostMeta({
     post,
     showKind = false,
@@ -70,9 +83,16 @@ function PostMeta({
             {post.status === 'wip' ? (
                 <span className="post-status">Work in progress</span>
             ) : (
-                <span className="post-reading-time">
-                    {post.readingMinutes} min read
-                </span>
+                <>
+                    <span className="post-reading-time">
+                        {post.readingMinutes} min read
+                    </span>
+                    {post.date && (
+                        <time className="post-date" dateTime={post.date}>
+                            {formatDate(post.date)}
+                        </time>
+                    )}
+                </>
             )}
         </div>
     );
@@ -381,6 +401,7 @@ function App({ initialPath, MarkdownComponent }: AppProps = {}) {
                             <div className="page-heading">
                                 <div>
                                     <h1>{pageNames[kind]}</h1>
+                                    <p>{pageDescriptions[kind]}</p>
                                 </div>
                                 <PixelScene variant={kind} />
                             </div>

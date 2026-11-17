@@ -1,15 +1,15 @@
 {
     "bugs/ssrf-chrome-scanner": {
         "description": "Chromium PDF converter = Arbitrary JS execution",
-        "publicationOrder": 2
+        "date": "2026-09"
     },
     "bugs/aem-misconfigurations": {
         "description": "Common things AEM apps miss out, and various bypasses to farm reports",
-        "publicationOrder": 1
+        "date": "2026-10"
     },
     "bugs/uuidv1-idors": {
         "description": "RFC4122 is not random!",
-        "publicationOrder": 3
+        "date": "2026-11-10"
     },
     "blog/pre-gbbp-experience": {
         "description": "Hunting for bugs on Singapore government websites",
@@ -17,10 +17,14 @@
     },
     "blog/recon-with-ai": {
         "description": "Deterministically and cheaply finding the right applications to point LLMs at",
-        "publicationOrder": 4
+        "date": "2026-11-16"
     },
     "blog/finding-signal-through-noise": {
         "description": "Can AI be a good triager?",
         "status": "wip"
+    },
+    "bugs/oracle-error-sqli": {
+        "description": "Getting a blind SQLi past a WAF with only division",
+        "date": "2026-11-17"
     }
 }

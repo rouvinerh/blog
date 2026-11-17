@@ -20,16 +20,16 @@ function codeBlock(html, language) {
     return match[1];
 }
 
-test('plain Markdown supplies titles and previews while publication order controls the list', () => {
+test('plain Markdown supplies titles and previews while publication dates control the list', () => {
     const files = {
         '/content/blog/known.md': '# A **known** post\n\nThe first paragraph has `code` and **useful details**.\n\n## More\n\nThe rest of the article.',
         '/content/blog/new-note.md': 'A newly added note without a title heading.',
         '/content/bugs/finding.md': '# A finding\n\nThe full report starts here.',
     };
     const registration = registerPublications(files, {
-        'bugs/finding': { description: 'A shorter report preview.', publicationOrder: 2 },
-        'blog/known': { publicationOrder: 1 },
-    });
+        'bugs/finding': { description: 'A shorter report preview.', date: '2026-02-01' },
+        'blog/known': { date: '2026-01-01' },
+    }, '2026-03-01');
     const posts = createPostIndex(files, registration.catalogue);
 
     assert.deepEqual(posts.map(({ kind, slug }) => [kind, slug]), [
@@ -37,7 +37,7 @@ test('plain Markdown supplies titles and previews while publication order contro
         ['bugs', 'finding'],
         ['blog', 'known'],
     ]);
-    assert.deepEqual(posts.map(({ publicationOrder }) => publicationOrder), [3, 2, 1]);
+    assert.deepEqual(posts.map(({ date }) => date), ['2026-03-01', '2026-02-01', '2026-01-01']);
     assert.equal(posts[0].title, 'New note');
     assert.equal(posts[1].description, 'A shorter report preview.');
     assert.equal(posts[2].title, 'A known post');
@@ -47,7 +47,7 @@ test('plain Markdown supplies titles and previews while publication order contro
     assert.ok(posts[2].content.includes('## More'));
 });
 
-test('registration publishes new writing once, preserves edits, and gives completed WIP the next order', () => {
+test('registration dates new writing once, preserves edits, and dates completed WIP when it is published', () => {
     const files = {
         '/content/bugs/older.md': '# Older report\n\nOriginal body.',
         '/content/blog/current.md': '# Current post\n\nCurrent body.',
@@ -56,40 +56,40 @@ test('registration publishes new writing once, preserves edits, and gives comple
         '/content/bugs/_template.md': '# Hidden template\n\nTemplate body.',
     };
     const catalogue = {
-        'bugs/older': { description: 'Keep this description.', publicationOrder: 1 },
-        'blog/current': { publicationOrder: 4 },
+        'bugs/older': { description: 'Keep this description.', date: '2026-01-01' },
+        'blog/current': { date: '2026-01-04' },
         'blog/in-progress': { status: 'wip', description: 'Still working on it.' },
         'blog/private': { draft: true },
         'bugs/_template': 'Hidden files do not need valid catalogue details.',
     };
     const originalCatalogue = structuredClone(catalogue);
-    assert.deepEqual(registerPublications(files, catalogue).assignments, []);
+    assert.deepEqual(registerPublications(files, catalogue, '2026-01-05').assignments, []);
 
     const withNewPost = { ...files, '/content/bugs/new-finding.md': '# A new finding\n\nNew body.' };
-    const published = registerPublications(withNewPost, catalogue);
-    assert.deepEqual(published.assignments, [{ key: 'bugs/new-finding', publicationOrder: 5 }]);
+    const published = registerPublications(withNewPost, catalogue, '2026-01-05');
+    assert.deepEqual(published.assignments, [{ key: 'bugs/new-finding', date: '2026-01-05' }]);
     assert.equal(createPostIndex(withNewPost, published.catalogue)[0].slug, 'new-finding');
     assert.deepEqual(catalogue, originalCatalogue, 'Registration must not mutate its input');
     assert.equal(published.catalogue['bugs/older'].description, 'Keep this description.');
-    assert.ok(!('publicationOrder' in published.catalogue['blog/in-progress']));
-    assert.ok(!('publicationOrder' in published.catalogue['blog/private']));
+    assert.ok(!('date' in published.catalogue['blog/in-progress']));
+    assert.ok(!('date' in published.catalogue['blog/private']));
     assert.equal(published.catalogue['bugs/_template'], catalogue['bugs/_template']);
 
     const editedFiles = { ...withNewPost, '/content/bugs/older.md': '# Older report, edited\n\nAn updated body.' };
-    const edited = registerPublications(editedFiles, published.catalogue);
+    const edited = registerPublications(editedFiles, published.catalogue, '2026-01-06');
     assert.deepEqual(edited.assignments, []);
     assert.deepEqual(edited.catalogue, published.catalogue);
     const older = createPostIndex(editedFiles, edited.catalogue).find(({ slug }) => slug === 'older');
     assert.equal(older.title, 'Older report, edited');
-    assert.equal(older.publicationOrder, 1);
+    assert.equal(older.date, '2026-01-01');
 
     const completedDetails = { ...published.catalogue['blog/in-progress'] };
     delete completedDetails.status;
-    const completed = registerPublications(editedFiles, { ...published.catalogue, 'blog/in-progress': completedDetails });
-    assert.deepEqual(completed.assignments, [{ key: 'blog/in-progress', publicationOrder: 6 }]);
+    const completed = registerPublications(editedFiles, { ...published.catalogue, 'blog/in-progress': completedDetails }, '2026-01-06');
+    assert.deepEqual(completed.assignments, [{ key: 'blog/in-progress', date: '2026-01-06' }]);
     assert.equal(completed.catalogue['blog/in-progress'].description, 'Still working on it.');
     assert.equal(createPostIndex(editedFiles, completed.catalogue)[0].slug, 'in-progress');
-    assert.deepEqual(registerPublications(editedFiles, completed.catalogue).assignments, []);
+    assert.deepEqual(registerPublications(editedFiles, completed.catalogue, '2026-01-07').assignments, []);
 });
 
 test('BOM and CRLF input are normalised and fenced headings cannot become titles or sections', () => {
@@ -139,9 +139,9 @@ test('catalogue flags keep WIP writing visible, hide drafts, and reject invalid 
     assert.throws(() => createPostIndex(files, { 'blog/entry': { draft: 'true' } }), /blog\/entry: draft must be true or false/);
     assert.throws(() => createPostIndex(files, { 'blog/entry': { status: 'unfinished' } }), /blog\/entry: status must be wip/);
     assert.throws(() => createPostIndex(files, { 'blog/entry': { description: 42 } }), /blog\/entry: description must be text/);
-    for (const publicationOrder of [0, -1, 1.5, '2', NaN, Infinity, Number.MAX_SAFE_INTEGER + 1]) {
-        assert.throws(() => registerPublications(files, { 'blog/entry': { publicationOrder } }), /blog\/entry: publicationOrder must be a positive integer/);
-        assert.throws(() => createPostIndex(files, { 'blog/entry': { publicationOrder } }), /blog\/entry: publicationOrder must be a positive integer/);
+    for (const date of [20261116, '16 Nov 2026', '2026-11-31', '2026-13-01', '2026-1-5', '']) {
+        assert.throws(() => registerPublications(files, { 'blog/entry': { date } }), /blog\/entry: date must be a real date/);
+        assert.throws(() => createPostIndex(files, { 'blog/entry': { date } }), /blog\/entry: date must be a real date/);
     }
 });
 

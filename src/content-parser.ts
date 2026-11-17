@@ -13,8 +13,8 @@ export interface Post {
     title: string;
     description?: string;
     status?: 'wip';
-    /** Published posts have a positive order; unregistered WIP entries use zero. */
-    publicationOrder: number;
+    /** Publication date as YYYY-MM-DD, or YYYY-MM for older posts. WIP entries, and posts marked `"date": null`, have none. */
+    date?: string;
     sections: ArticleSection[];
     /** Estimated minutes to read, 265 words a minute, from the words alone. */
     readingMinutes: number;
@@ -60,12 +60,12 @@ interface ContentEntry {
     details: Record<string, unknown>;
     description?: string;
     status?: 'wip';
-    publicationOrder?: number;
+    date?: string;
 }
 
 export interface PublicationRegistration {
     catalogue: Record<string, unknown>;
-    assignments: { key: string; publicationOrder: number }[];
+    assignments: { key: string; date: string }[];
 }
 
 const parser = unified().use(remarkParse).use(remarkGfm);
@@ -82,16 +82,29 @@ function optionalText(
     return value.trim() || undefined;
 }
 
-function readPublicationOrder(
+function readDate(
     details: Record<string, unknown>,
     key: string,
-): number | undefined {
-    const value = details.publicationOrder;
-    if (value === undefined) return undefined;
-    if (typeof value !== 'number' || !Number.isSafeInteger(value) || value <= 0) {
-        throw new Error(`${key}: publicationOrder must be a positive integer within JavaScript's safe range.`);
-    }
-    return value;
+): string | undefined {
+    const value = details.date;
+    // null marks an older post (from the GitBook) that is published without a date.
+    if (value === undefined || value === null) return undefined;
+    // Older posts can give just the month, as YYYY-MM.
+    const day = typeof value === 'string' && /^\d{4}-\d{2}$/.test(value) ? `${value}-01` : value;
+    const valid =
+        typeof day === 'string' &&
+        /^\d{4}-\d{2}-\d{2}$/.test(day) &&
+        !Number.isNaN(Date.parse(`${day}T00:00:00Z`)) &&
+        new Date(`${day}T00:00:00Z`).toISOString().startsWith(day);
+    if (!valid) throw new Error(`${key}: date must be a real date written as YYYY-MM-DD, or YYYY-MM for just the month.`);
+    return value as string;
+}
+
+/** Today's date where the site is being built, as YYYY-MM-DD. */
+function today(): string {
+    const now = new Date();
+    const pad = (value: number) => String(value).padStart(2, '0');
+    return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
 }
 
 function visibleEntries(
@@ -128,40 +141,33 @@ function visibleEntries(
             details,
             description: optionalText(details, 'description', key),
             status: details.status as 'wip' | undefined,
-            publicationOrder: readPublicationOrder(details, key),
+            date: readDate(details, key),
         });
     }
     return entries;
 }
 
-/** Assign an order once. Reading or editing an existing article does not republish it. */
+/** Date a post once, when it's first published. Editing an existing article does not change its date. */
 export function registerPublications(
     files: Record<string, string>,
     catalogue: Record<string, unknown> = {},
+    date: string = today(),
 ): PublicationRegistration {
     const entries = visibleEntries(files, catalogue);
-    let highestOrder = 0;
-    for (const raw of Object.values(catalogue)) {
-        if (typeof raw !== 'object' || raw === null || Array.isArray(raw)) continue;
-        const value = (raw as Record<string, unknown>).publicationOrder;
-        if (typeof value === 'number' && Number.isSafeInteger(value) && value > highestOrder) {
-            highestOrder = value;
-        }
-    }
-
     let updatedCatalogue = catalogue;
     const assignments: PublicationRegistration['assignments'] = [];
     for (const entry of entries.sort((left, right) => left.key.localeCompare(right.key))) {
-        if (entry.status === 'wip' || entry.publicationOrder !== undefined) continue;
-        if (highestOrder === Number.MAX_SAFE_INTEGER) {
-            throw new Error(`${entry.key}: no safe publicationOrder remains after ${highestOrder}.`);
-        }
-        highestOrder += 1;
+        if (entry.status === 'wip' || entry.details.date !== undefined) continue;
         if (assignments.length === 0) updatedCatalogue = { ...catalogue };
-        updatedCatalogue[entry.key] = { ...entry.details, publicationOrder: highestOrder };
-        assignments.push({ key: entry.key, publicationOrder: highestOrder });
+        updatedCatalogue[entry.key] = { ...entry.details, date };
+        assignments.push({ key: entry.key, date });
     }
     return { catalogue: updatedCatalogue, assignments };
+}
+
+/** Newest first. Undated posts go last, and posts on the same date keep their posts.json order. */
+export function byDate(left: Pick<Post, 'date'>, right: Pick<Post, 'date'>): number {
+    return (right.date ?? '').localeCompare(left.date ?? '');
 }
 
 /** Markdown holds the writing. List details and publication order live in content/posts.json. */
@@ -207,7 +213,7 @@ export function createPostIndex(
                 `${fallback.charAt(0).toUpperCase()}${fallback.slice(1)}`,
             description: entry.description ?? description,
             status: entry.status,
-            publicationOrder: entry.publicationOrder ?? 0,
+            date: entry.date,
             sections: getSections(tree),
             readingMinutes: estimateReadingMinutes({
                 ...tree,
@@ -218,7 +224,7 @@ export function createPostIndex(
     }
 
     return posts.sort((left, right) => {
-        const byPublication = right.publicationOrder - left.publicationOrder;
+        const byPublication = byDate(left, right);
         if (byPublication) return byPublication;
         const rank = (post: Post) =>
             catalogueRank.get(`${post.kind}/${post.slug}`) ?? Number.MAX_SAFE_INTEGER;

@@ -10,7 +10,9 @@ Adobe Experience Manager is a content management system. It uses Apache Sling to
 
 A Sling URL has a few parts. For an existing `/content/example` resource, it can look like this:
 
-![A Sling URL split into its resource path, selector, extension and suffix.](/images/bugs/aem-url-parts.svg)
+![](/images/bugs/aem-url-parts.svg)
+
+Parts of a Sling URL
 
 The `.infinity` part is a selector, `.json` is the extension, and `/a.css` is the suffix. That last bit matters when looking at filter bypasses. [Sling's documentation](https://sling.apache.org/documentation/the-sling-engine/url-decomposition.html) explains the rules, including how the resource structure affects this split.
 
@@ -49,7 +51,9 @@ Dispatcher filters requests before they reach AEM. A loose URL rule can miss the
 
 A rule allowing anything ending in `.css` might accept the second request, while Sling still sees a JSON extension.
 
-![A loose filter can see a CSS ending while Sling resolves the request as JSON.](/images/bugs/aem-filter-mismatch.svg)
+![](/images/bugs/aem-filter-mismatch.svg)
+
+The filter sees CSS while Sling sees JSON
 
 That depends on the site's configuration. In the finding above, a trailing slash was enough. I couldn't tell which exact filter rule caused it from the responses alone. Adobe supports [filtering the path, selectors, extension and suffix separately](https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration#configuring-access-to-content-filter).
 

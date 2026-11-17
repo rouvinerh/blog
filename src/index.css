@@ -105,6 +105,7 @@ p { margin: 0 0 18px; }
 .post-list p { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.8; }
 .post-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 7px 14px; font-family: var(--mono); color: var(--muted); font-size: .875rem; line-height: 1.7; }
 .post-kind { color: var(--accent); font-size: 1rem; font-weight: 600; }
+.post-date { margin-left: auto; }
 .post-status { color: #dfc16e; border: 1px solid color-mix(in srgb, currentColor 30%, transparent); border-radius: 3px; padding: 2px 8px; font-size: .875rem; }
 :root[data-theme="light"] .post-status { color: #805d0c; }
 .back-link { display: inline-flex; align-items: center; gap: 8px; font-size: 1rem; text-decoration: none; }
@@ -118,8 +119,8 @@ p { margin: 0 0 18px; }
 .article .markdown-content pre { background: var(--surface); border-color: var(--line); }
 .article .markdown-content blockquote { border-color: var(--line); background: var(--surface); color: var(--text); }
 .article .markdown-content blockquote::before { background-color: var(--muted); opacity: 1; }
-/* In blog posts, the paragraph right after a table or diagram is its caption. */
-.article--blog .markdown-content :is(.markdown-table-wrap, p:has(> :is(img, .themed-img):only-child)) + p {
+/* In posts, the paragraph right after a table or diagram is its caption. */
+.article .markdown-content :is(.markdown-table-wrap, p:has(> :is(img, .themed-img):only-child)) + p {
   margin-top: -0.35em;
   color: var(--muted);
   font-size: 0.9em;

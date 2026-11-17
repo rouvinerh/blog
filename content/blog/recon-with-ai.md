@@ -51,7 +51,7 @@ Fixed benchmarks also stop being useful as models improve. As models get smarter
 
 On a real attack surface, I have to pick the application myself first. In [MITRE ATT&CK](https://attack.mitre.org/tactics/enterprise/) terms that's reconnaissance, the first of its 15 tactics. By my reading, the tasks in ExploitGym and [NYU CTF Bench](https://arxiv.org/abs/2406.05590) (200 CTF challenges) map most closely to 3 of them, Initial Access, Execution and Privilege Escalation, where most exploitation techniques sit. Reconnaissance and the other 11 aren't covered as much.
 
-![Lack of MITRE Coverage](/images/blog/recon-attack-focus.svg)
+![](/images/blog/recon-attack-focus.svg)
 
 ATT&CK tactics covered by NYU CTF Bench and ExploitGym
 
@@ -63,7 +63,7 @@ Neither benchmark covers how an agent finds and compares applications before cho
 
 Before deciding where to point them, I looked at how much a model still needs built around it. A harness is the scaffolding code that wraps a model and gives it tools, and its role is changing as models become more sophisticated. In the past, lots of scaffolding was built around models, which had to be told explicitly that they could use browsers, scripts and other tools to accomplish their tasks. Today, they do not need such guidance any more.
 
-![lol](/images/blog/recon-harness-meme.png)
+![](/images/blog/recon-harness-meme.png)
 
 Each new model absorbs the harness built for the previous one
 
@@ -96,7 +96,7 @@ I built the workflow based on everything above. Most of it is scripts that run b
 
 To test it, I used a public vulnerability disclosure programme (VDP) whose scope I'd already hunted by hand. The models started with no prior context, including none of my earlier reports. VDP scopes tend to be large, so recon gives me a lot of data to work with.
 
-![Methodology](/images/blog/recon-methodology.svg)
+![](/images/blog/recon-methodology.svg)
 
 Trying to save tokens by minimising AI usage
 
@@ -106,7 +106,7 @@ Collection started from the programme's main root domain. Later in the run, the 
 
 Grouping sorted the 924 applications by the 121 technologies that fingerprinting detected. The largest group had 188 applications, about a fifth of everything. Reading a group and asking which member behaves differently is much cheaper than reading 924 applications one at a time. Also, grouping helps to set aside third-party SaaS and static-looking websites, both of which rarely yield bugs. Bishop Fox did something similar with [screenshot hashes back in 2019](https://tldrsec.com/blog/pose-a-threat-how-perceptual-analysis-helps-bug-hunters/), and so did XBOW with SimHash and screenshot hashing. Mine groups by fingerprinted technology, and their responses to probes.
 
-![AWS, WordPress and Apache host groups, with a different response highlighted in the WordPress group.](/images/blog/recon-grouping.svg)
+![](/images/blog/recon-grouping.svg)
 
 Grouping hosts helps to find outliers
 
@@ -133,7 +133,7 @@ This is a term I personally use, and it reflects how I think when I'm on a black
 
 Let's say I find a JWT, a signed login token. A few questions come to mind straight away. I go and check those, and the answers bring up more questions.
 
-![An observation, finding a JWT, leads to 3 questions about a weak signing secret, alg none and algorithm confusion. The answers lead to more questions about what the token can do and which endpoints accept it.](/images/blog/recon-jwt-questions.svg)
+![](/images/blog/recon-jwt-questions.svg)
 
 Security questions for a JWT
 
@@ -155,7 +155,7 @@ This lines up with the Kali result I mentioned earlier, where the environment al
 
 I mainly use models from Anthropic, although I have substituted others like DeepSeek and OpenAI's models. All runs use medium or high effort, and I let each one decide when it needs to think harder.
 
-![Models](/images/blog/recon-models.svg)
+![](/images/blog/recon-models.svg)
 
 Agents delegate to cheaper models to save tokens
 
@@ -186,7 +186,7 @@ Here's a resolved finding from another programme I ran the workflow on, with the
 
 Early on in that programme, a misconfiguration broke the application's normal flow, so no one could complete it. An agent went through the JavaScript itself and found a `/resend` endpoint for appointment letters. By asking questions about this endpoint, it helped to uncover a High severity issue.
 
-![Worked example](/images/blog/recon-worked-example.svg)
+![](/images/blog/recon-worked-example.svg)
 
 From observation to outcome
 

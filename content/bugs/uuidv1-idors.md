@@ -23,7 +23,9 @@ Only the first group changed, with both ending in `fcdb-f111-84e8-7ced8de54b88`.
 
 These turned out to be UUIDv1 values, which are time-based. A UUIDv1 contains a timestamp, a clock sequence, and a node value. The timestamp is split across the first three fields, while the clock sequence helps avoid duplicate IDs. [The RFC describes the fields here](https://www.rfc-editor.org/rfc/rfc9562.html#section-5.1).
 
-![The UUIDv1 fields after the account ID's GUID byte ordering is normalised: timestamp, version, clock sequence, and node.](/images/bugs/uuidv1-format.svg)
+![](/images/bugs/uuidv1-format.svg)
+
+Fields of a UUIDv1
 
 My samples shared the same clock sequence and node. The node can be a MAC address or a generated value, so seeing it repeat seemed to indicate this was a MAC address.
 
@@ -44,7 +46,6 @@ IDS = {
     "B": "ef07ce08-fcdb-f111-84e8-7ced8de54b88",
 }
 
-
 def decode(value):
     uid = UUID(bytes_le=bytes.fromhex(value.replace("-", "")))
     if uid.variant != RFC_4122 or uid.version != 1:
@@ -54,7 +55,6 @@ def decode(value):
     created = (EPOCH + timedelta(microseconds=microseconds)).astimezone(SGT)
     timestamp = f"{created:%Y-%m-%d %H:%M:%S}.{created.microsecond:06d}{extra_digit}"
     return uid, timestamp
-
 
 decoded = {}
 for label, value in IDS.items():
