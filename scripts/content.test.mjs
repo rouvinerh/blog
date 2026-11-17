@@ -278,7 +278,7 @@ test('GFM tables and tasks render while raw executable HTML and unsafe URLs stay
     assert.ok(html.includes('checked=""'));
     assert.ok(html.includes('href="https://example.com"'));
     assert.ok(html.includes('src="/images/example.png"'));
-    assert.ok(html.includes('src="/images/bugs/example.svg"'));
+    assert.ok(html.includes('src="/images/bugs/example.dark.svg"'));
     assert.ok(!html.includes('href="/images/bugs/example.svg"'));
     assert.ok(!html.includes('<script>'));
     assert.ok(!html.includes('onerror='));

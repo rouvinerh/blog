@@ -87,15 +87,36 @@ export default function Markdown({
                                 <table>{children}</table>
                             </div>
                         ),
-                        img: ({ src, alt, title }) => (
-                            <img
-                                src={src}
-                                alt={alt ?? ''}
-                                title={title}
-                                loading="lazy"
-                                decoding="async"
-                            />
-                        ),
+                        img: ({ src, alt, title }) => {
+                            const svg = typeof src === 'string' && /^\/images\/.+\.svg$/.test(src);
+                            if (!svg) {
+                                return (
+                                    <img
+                                        src={src}
+                                        alt={alt ?? ''}
+                                        title={title}
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
+                                );
+                            }
+                            const base = src.slice(0, -4);
+                            return (
+                                <span className="themed-img">
+                                    {(['light', 'dark'] as const).map((theme) => (
+                                        <img
+                                            key={theme}
+                                            className={`themed-img-${theme}`}
+                                            src={`${base}.${theme}.svg`}
+                                            alt={alt ?? ''}
+                                            title={title}
+                                            loading="lazy"
+                                            decoding="async"
+                                        />
+                                    ))}
+                                </span>
+                            );
+                        },
                     }}
                 >
                     {content}

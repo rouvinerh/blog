@@ -1,6 +1,7 @@
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import markdownContent from './plugins/markdown-content';
+import themedSvgs from './plugins/themed-svgs';
 
 const cloudflareAnalytics = (): Plugin => ({
     name: 'cloudflare-analytics',
@@ -19,7 +20,7 @@ const cloudflareAnalytics = (): Plugin => ({
 });
 
 export default defineConfig({
-    plugins: [react(), markdownContent(), cloudflareAnalytics()],
+    plugins: [react(), markdownContent(), themedSvgs(), cloudflareAnalytics()],
     base: '/',
     build: {
         manifest: true,
