@@ -64,3 +64,16 @@ Protect the content with [repository permissions](https://experienceleague.adobe
 For Dispatcher, [allow only the requests the site needs](https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/getting-started/security-checklist). Check alternate selectors, suffixes and trailing slashes when testing the rules. Clear affected caches after changing filters, and check other sites using the same setup.
 
 This issue has many bypasses, such as `.xml`, `.json/a.xml`, adding more `/` characters.
+## References
+
+**Apache Sling**
+
+- [URL decomposition](https://sling.apache.org/documentation/the-sling-engine/url-decomposition.html), Apache Sling documentation
+- [Rendering Content - GET Servlets](https://sling.apache.org/documentation/bundles/rendering-content-default-get-servlets.html), Apache Sling documentation
+
+**Adobe Experience Manager**
+
+- [Query Builder API](https://experienceleague.adobe.com/en/docs/experience-manager-65-lts/content/implementing/developing/platform/query-builder/querybuilder-api), Adobe Experience League
+- [Configure AEM Dispatcher](https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/configuring/dispatcher-configuration), Adobe Experience League
+- [Dispatcher endpoint configuration with AEM Headless](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/headless/deployment/dispatcher), Adobe Experience League
+- [Dispatcher Security Checklist](https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/getting-started/security-checklist), Adobe Experience League

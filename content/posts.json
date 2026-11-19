@@ -23,6 +23,10 @@
         "description": "Can AI be a good triager?",
         "status": "wip"
     },
+    "blog/building-holistic-benchmarks": {
+        "description": "Evaluating AI models with help from some unlikely friends!",
+        "status": "wip"
+    },
     "bugs/oracle-error-sqli": {
         "description": "Getting a blind SQLi past a WAF with only division",
         "date": "2026-11-17"

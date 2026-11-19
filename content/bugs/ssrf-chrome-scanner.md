@@ -72,3 +72,10 @@ Based on this, a script to enumerate ports was created:
 ```
 
 The above worked, as ports like 80 and 443 did return the `data` parameter, whereas other ports returned `err`. I could not see the actual data that was fetched, but it sufficed to show that I had some form of enumeration that was possible. This made the issue acceptable.
+## References
+
+**Chromium and Puppeteer**
+
+- [Chrome Headless command-line reference](https://developer.chrome.com/docs/automation-and-testing/headless-cli), Chrome for Developers
+- [Page.setJavaScriptEnabled()](https://pptr.dev/api/puppeteer.page.setjavascriptenabled), Puppeteer documentation
+- [Sandbox FAQ](https://github.com/chromium/chromium/blob/main/docs/design/sandbox_faq.md), Chromium

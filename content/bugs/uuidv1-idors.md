@@ -86,3 +86,14 @@ Gap: 100.1290401 s
 
 So these UUIDs were not random at all, and were basically integers. This means the IDOR was a valid issue since an attacker can easily calculate more UUIDs to change details of other accounts.
 
+
+## References
+
+**Standards**
+
+- [RFC 9562: Universally Unique IDentifiers (UUIDs)](https://www.rfc-editor.org/rfc/rfc9562.html), IETF, 2024
+- [RFC 4122: A Universally Unique IDentifier (UUID) URN Namespace](https://www.rfc-editor.org/rfc/rfc4122.html), IETF, 2005, replaced by RFC 9562
+
+**Tools**
+
+- [uuid](https://docs.python.org/3/library/uuid.html), Python documentation
