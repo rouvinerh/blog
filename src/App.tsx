@@ -338,6 +338,15 @@ function App({ initialPath, MarkdownComponent }: AppProps = {}) {
                                 <p data-home-reveal data-home-delay="100">
                                     Sometimes I write blogs here about what I feel is interesting.
                                 </p>
+                                <p
+                                    className="home-about-link"
+                                    data-home-reveal
+                                    data-home-delay="110"
+                                >
+                                    <a href={routePath({ page: 'about' })}>
+                                        More about me.
+                                    </a>
+                                </p>
                             </section>
 
                             <div className="home-paths">

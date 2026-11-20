@@ -20,8 +20,13 @@
 .about-detail-first {
     color: var(--text);
 }
-.about-detail-intro > p:last-child {
+.about-detail-intro > p:last-child,
+.about-detail-hunting > p:last-child {
     margin-bottom: 0;
+}
+
+.about-detail-hunting {
+    margin-top: 28px;
 }
 
 .about-detail-scene {

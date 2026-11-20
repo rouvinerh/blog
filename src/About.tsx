@@ -59,10 +59,9 @@ export default function About() {
                         </p>
                         <p>
                             I've been on both sides of bug bounty, finding bugs
-                            and triaging reports on HackerOne for PayPal. These
-                            days, I look into ways to improve black-box testing.
-                            I also enjoy building tools to find bugs and make my
-                            team's work easier.
+                            and triaging reports on HackerOne for PayPal. I enjoy
+                            building tools to either find bugs better, or make
+                            my team's work easier.
                         </p>
                         <p>
                             I write about whatever I find cool or get curious
@@ -72,6 +71,24 @@ export default function About() {
                         </p>
                     </div>
                 </div>
+
+                <section
+                    className="about-detail-hunting"
+                    aria-labelledby="bug-hunting-title"
+                    data-home-reveal
+                    data-home-delay="140"
+                >
+                    <h2 id="bug-hunting-title">Bug hunting</h2>
+                    <p>
+                        I stick to unpaid vulnerability disclosure programmes
+                        because my civil service role limits outside paid work.
+                    </p>
+                    <p>
+                        Find me @erh on{' '}
+                        <a href="https://hackerone.com/erh">HackerOne</a> and{' '}
+                        <a href="https://bugcrowd.com/h/erh">Bugcrowd</a>.
+                    </p>
+                </section>
 
                 <div
                     className="about-detail-links"
