@@ -18,9 +18,12 @@ const styles = [
     .filter((path) => !template.includes(`href="/${path}"`))
     .map((path) => `<link rel="stylesheet" href="/${path}" />`)
     .join('\n');
+const descriptionTag = /<meta\s+name="description"\s+content="[^"]*"\s*\/?\s*>/;
 
 if (!template.includes('<!--app-html-->'))
     throw new Error('The HTML template is missing its app placeholder.');
+if (!descriptionTag.test(template))
+    throw new Error('The HTML template is missing its description tag.');
 
 const server = await createServer({
     root,
@@ -68,7 +71,7 @@ try {
                 path: `/${kind}/${encodeURIComponent(post.slug)}/`,
                 title: `${post.title} | Rouvin Erh`,
                 description: post.description ?? post.title,
-                includeInSitemap: post.status !== 'wip',
+                noIndex: post.status === 'wip',
             })),
         ),
     ];
@@ -80,22 +83,23 @@ try {
                 MarkdownComponent: Markdown,
             }),
         );
+        const metadata = [
+            styles,
+            `<link rel="canonical" href="${siteUrl}${route.path}" />`,
+            route.noIndex ? '<meta name="robots" content="noindex" />' : '',
+        ].filter(Boolean).join('\n');
         const page = template
-            .replace('<!--app-html-->', () => html)
             .replace(
                 /<title>.*?<\/title>/,
                 () => `<title>${escape(route.title)}</title>`,
             )
             .replace(
-                /<meta name="description" content="[^"]*"\s*\/>/,
+                descriptionTag,
                 () =>
                     `<meta name="description" content="${escape(route.description)}" />`,
             )
-            .replace(
-                '</head>',
-                () =>
-                    `${styles}\n<link rel="canonical" href="${siteUrl}${route.path}" />\n</head>`,
-            );
+            .replace('</head>', () => `${metadata}\n</head>`)
+            .replace('<!--app-html-->', () => html);
         const directory = join(
             output,
             ...route.path.split('/').filter(Boolean).map(decodeURIComponent),
@@ -104,7 +108,7 @@ try {
         await writeFile(join(directory, 'index.html'), page, 'utf8');
     }
 
-    const sitemapRoutes = routes.filter((route) => route.includeInSitemap !== false);
+    const sitemapRoutes = routes.filter((route) => !route.noIndex);
     const sitemap = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
