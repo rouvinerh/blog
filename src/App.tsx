@@ -7,7 +7,7 @@ import ThemeSwitch from './ThemeSwitch.tsx';
 import HomeEntrance from './HomeEntrance.tsx';
 import PathCard from './PathCard.tsx';
 import HelloText from './HelloText.tsx';
-import { PixelCharacter, PixelScene } from './PixelCharacters.tsx';
+import { PixelCharacter, PixelIcon, PixelScene } from './PixelCharacters.tsx';
 import { getLatestPosts, getPost, getPosts } from './content.ts';
 import type { Post, PostKind } from './content.ts';
 import About from './About.tsx';
@@ -77,6 +77,7 @@ function PostMeta({
         <div className="post-meta">
             {showKind && (
                 <span className="post-kind">
+                    <PixelIcon kind={post.kind === 'bugs' ? 'bug' : 'book'} />
                     {post.kind === 'bugs' ? 'Bug' : 'Blog'}
                 </span>
             )}

@@ -1,34 +1,34 @@
 {
     "bugs/ssrf-chrome-scanner": {
-        "description": "Chromium PDF converter = Arbitrary JS execution",
+        "description": "PDF converter == Arbitrary JS execution",
         "date": "2026-09"
     },
     "bugs/aem-misconfigurations": {
-        "description": "Common things AEM apps miss out, and various bypasses to farm reports",
+        "description": "Common AEM misconfigurations and various bypasses to farm reports",
         "date": "2026-10"
     },
     "bugs/uuidv1-idors": {
-        "description": "RFC4122 is not random!",
+        "description": "Not all UUIDs are random, allowing for IDORs",
         "date": "2026-11-10"
     },
     "blog/pre-gbbp-experience": {
-        "description": "Hunting for bugs on Singapore government websites",
+        "description": "Experience hunting bugs on Singapore government websites",
         "status": "wip"
     },
     "blog/recon-with-ai": {
-        "description": "Deterministically and cheaply finding the right applications to point LLMs at",
+        "description": "Using AI for recon to find the right applications to point LLMs at when finding bugs",
         "date": "2026-11-16"
     },
     "blog/finding-signal-through-noise": {
-        "description": "Can AI be a good triager?",
+        "description": "Using AI to triage reports and determine severity",
         "status": "wip"
     },
     "blog/building-holistic-benchmarks": {
-        "description": "Evaluating AI models with help from some unlikely friends!",
+        "description": "Creating AI benchmarks with help from some unlikely friends",
         "status": "wip"
     },
     "bugs/oracle-error-sqli": {
-        "description": "Getting a blind SQLi past a WAF with only division",
+        "description": "Getting a blind SQLi past a WAF by dividing by zero",
         "date": "2026-11-17"
     }
 }

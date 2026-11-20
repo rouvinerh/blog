@@ -234,6 +234,10 @@ function Sprite({ rows, size, className = '' }: { rows: readonly string[]; size:
   return <svg className={className} width={size} height={size * (height + 2) / (width + 2)} viewBox={`-1 -1 ${width + 2} ${height + 2}`} shapeRendering="crispEdges" aria-hidden="true" focusable="false">{pixels}</svg>;
 }
 
+export function PixelIcon({ kind }: { kind: 'bug' | 'book' }) {
+  return <Sprite rows={kind === 'bug' ? maps.bugA : maps.book} size={18} />;
+}
+
 export function PixelCharacter({ kind = 'human', size = 54, className = '' }: { kind?: PixelKind; size?: number; className?: string }) {
   const toolScale = Math.max(1, Math.round(size / 27));
   const frames = {

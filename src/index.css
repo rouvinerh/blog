@@ -104,7 +104,7 @@ p { margin: 0 0 18px; }
 .post-link:is(:hover, :focus-visible) h3 { color: var(--accent); }
 .post-list p { margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.8; }
 .post-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 7px 14px; font-family: var(--mono); color: var(--muted); font-size: .875rem; line-height: 1.7; }
-.post-kind { color: var(--accent); font-size: 1rem; font-weight: 600; }
+.post-kind { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: 1rem; font-weight: 600; }
 .post-date { margin-left: auto; }
 .post-status { color: #dfc16e; border: 1px solid color-mix(in srgb, currentColor 30%, transparent); border-radius: 3px; padding: 2px 8px; font-size: .875rem; }
 :root[data-theme="light"] .post-status { color: #805d0c; }
