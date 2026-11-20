@@ -4,6 +4,7 @@ import { Link2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
+import imageSizes from 'virtual:image-sizes';
 import { remarkHeadingIds } from './markdown-headings.ts';
 import type { ArticleSection } from './markdown-headings.ts';
 import ArticleContents from './ArticleContents.tsx';
@@ -89,12 +90,15 @@ export default function Markdown({
                         ),
                         img: ({ src, alt, title }) => {
                             const svg = typeof src === 'string' && /^\/images\/.+\.svg$/.test(src);
+                            const [width, height] = (typeof src === 'string' && imageSizes[src]) || [];
                             if (!svg) {
                                 return (
                                     <img
                                         src={src}
                                         alt={alt ?? ''}
                                         title={title}
+                                        width={width}
+                                        height={height}
                                         loading="lazy"
                                         decoding="async"
                                     />
@@ -110,6 +114,8 @@ export default function Markdown({
                                             src={`${base}.${theme}.svg`}
                                             alt={alt ?? ''}
                                             title={title}
+                                            width={width}
+                                            height={height}
                                             loading="lazy"
                                             decoding="async"
                                         />

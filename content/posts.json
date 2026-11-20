@@ -1,14 +1,17 @@
 {
     "bugs/ssrf-chrome-scanner": {
         "description": "PDF converter == Arbitrary JS execution",
+        "searchDescription": "A PDF converter that used Chromium to visit a URL supplied by the user, allowing arbitrary JavaScript execution",
         "date": "2026-09"
     },
     "bugs/aem-misconfigurations": {
         "description": "Common AEM misconfigurations and various bypasses to farm reports",
+        "searchDescription": "Adobe Experience Manager (AEM) sites exposing internal content through JSON responses",
         "date": "2026-10"
     },
     "bugs/uuidv1-idors": {
         "description": "Not all UUIDs are random, allowing for IDORs",
+        "searchDescription": "An IDOR issue that was valid because the site's IDs were UUIDv1, which are time-based and not random",
         "date": "2026-11-10"
     },
     "blog/pre-gbbp-experience": {
@@ -17,6 +20,7 @@
     },
     "blog/recon-with-ai": {
         "description": "Using AI for recon to find the right applications to point LLMs at when finding bugs",
+        "searchDescription": "A recon workflow that finds the right applications to point LLMs at when hunting for bugs",
         "date": "2026-11-16"
     },
     "blog/finding-signal-through-noise": {
@@ -29,6 +33,7 @@
     },
     "bugs/oracle-error-sqli": {
         "description": "Getting a blind SQLi past a WAF by dividing by zero",
+        "searchDescription": "Getting a blind SQL injection past an aggressive WAF by dividing by zero",
         "date": "2026-11-17"
     }
 }

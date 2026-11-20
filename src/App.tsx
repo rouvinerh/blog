@@ -1,6 +1,6 @@
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import type { ComponentType, MouseEvent as ReactMouseEvent } from 'react';
-import { ArrowLeft, ArrowUpRight, Info, Mail } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Info, Mail, Rss } from 'lucide-react';
 import { GitHubIcon, LinkedInIcon } from './BrandIcons.tsx';
 import PageTransition from './PageTransition.tsx';
 import ThemeSwitch from './ThemeSwitch.tsx';
@@ -8,8 +8,8 @@ import HomeEntrance from './HomeEntrance.tsx';
 import PathCard from './PathCard.tsx';
 import HelloText from './HelloText.tsx';
 import { PixelCharacter, PixelIcon, PixelScene } from './PixelCharacters.tsx';
-import { getLatestPosts, getPost, getPosts } from './content.ts';
-import type { Post, PostKind } from './content.ts';
+import { getLatestPosts, getPost, getPosts, pageDescriptions } from './content.ts';
+import type { Post } from './content.ts';
 import About from './About.tsx';
 import type { MarkdownProps } from './Markdown.tsx';
 import { canonicalPath, isKnownPathname, parseRoute, routePath } from './routes.ts';
@@ -29,10 +29,9 @@ const pageNames: Record<Page, string> = {
     bugs: 'Bugs',
 };
 
-const pageDescriptions: Record<PostKind, string> = {
-    blog: 'Writing down my thought process for the things I build or test',
-    bugs: "Cool bugs I've found while testing other people's applications",
-};
+type View = Route | { page: 'missing'; slug?: undefined; section?: undefined };
+
+const missing: View = { page: 'missing' };
 
 function browserPath(): string {
     return typeof window === 'undefined'
@@ -40,7 +39,7 @@ function browserPath(): string {
         : `${window.location.pathname}${window.location.search}${window.location.hash}`;
 }
 
-function sameRoute(left: Route, right: Route): boolean {
+function sameRoute(left: View, right: View): boolean {
     return left.page === right.page
         && left.slug === right.slug
         && left.section === right.section;
@@ -60,7 +59,6 @@ function setHistoryEntry(method: 'pushState' | 'replaceState', path: string, ind
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-/** "2026-11-16" becomes "16 Nov 2026" and "2026-06" becomes "Jun 2026", the same on the server and in every browser. */
 function formatDate(date: string): string {
     const [year, month, day] = date.split('-').map(Number);
     return day ? `${day} ${MONTHS[month - 1]} ${year}` : `${MONTHS[month - 1]} ${year}`;
@@ -131,7 +129,7 @@ function PostList({
 
 function App({ initialPath, MarkdownComponent }: AppProps = {}) {
     const [{ route, direction }, setNavigation] = useState(() => ({
-        route: parseRoute(initialPath ?? browserPath()) ?? { page: 'home' } as Route,
+        route: parseRoute(initialPath ?? browserPath()) ?? missing,
         direction: 1,
     }));
     const visibleRoute = useRef(route);
@@ -149,7 +147,7 @@ function App({ initialPath, MarkdownComponent }: AppProps = {}) {
     const homePosts = getLatestPosts(4);
     const ArticleMarkdown = MarkdownComponent ?? LazyMarkdown;
 
-    const navigate = useCallback((nextRoute: Route, nextIndex: number) => {
+    const navigate = useCallback((nextRoute: View, nextIndex: number) => {
         const previousIndex = historyIndex.current;
         const sameDocument = nextRoute.page === currentRoute.current.page
             && nextRoute.slug === currentRoute.current.slug;
@@ -158,7 +156,7 @@ function App({ initialPath, MarkdownComponent }: AppProps = {}) {
         else if (main?.contains(document.activeElement)) restoreContentFocus.current = true;
         else if (document.activeElement !== document.body) restoreContentFocus.current = false;
 
-        const pageOrder: Page[] = ['home', 'about', 'blog', 'bugs'];
+        const pageOrder: View['page'][] = ['home', 'about', 'blog', 'bugs'];
         const difference = pageOrder.indexOf(nextRoute.page)
             - pageOrder.indexOf(visibleRoute.current.page);
         historyIndex.current = nextIndex;
@@ -176,7 +174,7 @@ function App({ initialPath, MarkdownComponent }: AppProps = {}) {
 
     useEffect(() => {
         const initialLocation = browserPath();
-        const initialRoute = parseRoute(initialLocation) ?? { page: 'home' } as Route;
+        const initialRoute = parseRoute(initialLocation) ?? missing;
         const initialCanonical = canonicalPath(initialLocation) ?? initialLocation;
         setHistoryEntry('replaceState', initialCanonical, historyIndex.current);
         lastLocation.current = initialCanonical;
@@ -191,7 +189,7 @@ function App({ initialPath, MarkdownComponent }: AppProps = {}) {
             const nextIndex = typeof storedIndex === 'number' && storedIndex !== historyIndex.current
                 ? storedIndex
                 : historyIndex.current + 1;
-            const nextRoute = parseRoute(location) ?? { page: 'home' } as Route;
+            const nextRoute = parseRoute(location) ?? missing;
             const canonical = canonicalPath(location) ?? location;
             setHistoryEntry('replaceState', canonical, nextIndex);
             lastLocation.current = canonical;
@@ -238,9 +236,11 @@ function App({ initialPath, MarkdownComponent }: AppProps = {}) {
     };
 
     useEffect(() => {
-        const title = route.slug
-            ? (post?.title ?? 'Post not found')
-            : pageNames[route.page];
+        const title = route.page === 'missing'
+            ? 'Page not found'
+            : route.slug
+                ? (post?.title ?? 'Post not found')
+                : pageNames[route.page];
         document.title =
             route.page === 'home' ? 'Rouvin Erh' : `${title} | Rouvin Erh`;
     }, [route, post]);
@@ -467,14 +467,33 @@ function App({ initialPath, MarkdownComponent }: AppProps = {}) {
                         ))}
 
                     {route.page === 'about' && <About />}
+
+                    {route.page === 'missing' && (
+                        <div className="not-found">
+                            <h1>Couldn't find that page.</h1>
+                            <p>
+                                The link might be old, or the page may have
+                                moved.
+                            </p>
+                            <a className="back-link" href={routePath({ page: 'home' })}>
+                                <ArrowLeft size={15} /> Back to{' '}
+                                {pageNames.home}
+                            </a>
+                        </div>
+                    )}
                 </main>
             </PageTransition>
 
             <footer className="site-footer">
                 <span>&copy; {new Date().getFullYear()} Rouvin Erh</span>
-                <a href="mailto:erhrouvin@gmail.com">
-                    <Mail size={14} strokeWidth={1.7} /> Email
-                </a>
+                <span className="footer-links">
+                    <a href="/feed.xml">
+                        <Rss size={14} strokeWidth={1.7} /> RSS
+                    </a>
+                    <a href="mailto:erhrouvin@gmail.com">
+                        <Mail size={14} strokeWidth={1.7} /> Email
+                    </a>
+                </span>
             </footer>
         </div>
     );

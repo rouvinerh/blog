@@ -39,7 +39,6 @@ function fromPath(pathname: string): Route | undefined {
     return { page: parts[0], slug: decode(parts[1]) };
 }
 
-/** Parse a normal page URL or an old root hash route without browser globals. */
 export function parseRoute(input: string): Route | undefined {
     let url: URL;
     try {
@@ -78,7 +77,6 @@ export function parseRoute(input: string): Route | undefined {
     return section ? { ...route, section } : route;
 }
 
-/** Normal page path, including an optional native heading fragment. */
 export function routePath(route: Route): string {
     let path = route.page === 'home' ? '/' : `/${route.page}/`;
     if ((route.page === 'blog' || route.page === 'bugs') && route.slug) {
@@ -87,7 +85,6 @@ export function routePath(route: Route): string {
     return route.section ? `${path}#${encodeURIComponent(route.section)}` : path;
 }
 
-/** Resolve aliases and old section queries while retaining unrelated query values. */
 export function canonicalPath(input: string): string | undefined {
     const route = parseRoute(input);
     if (!route) return undefined;

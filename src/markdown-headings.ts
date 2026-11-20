@@ -8,7 +8,6 @@ export interface ArticleSection {
     depth: number;
 }
 
-/** Use one heading pass for both the contents list and rendered anchor IDs. */
 export function getSections(tree: Root): ArticleSection[] {
     const slugger = new GithubSlugger();
     const sections: ArticleSection[] = [];

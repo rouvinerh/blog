@@ -3,6 +3,7 @@ import remarkParse from 'remark-parse';
 import remarkGfm from 'remark-gfm';
 import { toString } from 'mdast-util-to-string';
 import { getSections } from './markdown-headings.ts';
+import { byDate } from './post-order.ts';
 import type { ArticleSection } from './markdown-headings.ts';
 
 export type PostKind = 'blog' | 'bugs';
@@ -12,11 +13,10 @@ export interface Post {
     slug: string;
     title: string;
     description?: string;
+    searchDescription?: string;
     status?: 'wip';
-    /** Publication date as YYYY-MM-DD, or YYYY-MM for older posts. WIP entries, and posts marked `"date": null`, have none. */
     date?: string;
     sections: ArticleSection[];
-    /** Estimated minutes to read, 265 words a minute, from the words alone. */
     readingMinutes: number;
     content: string;
 }
@@ -29,7 +29,6 @@ interface MarkdownNode {
     children?: MarkdownNode[];
 }
 
-/** Count words in text and code; images don't add time. */
 export function estimateReadingMinutes(tree: MarkdownNode): number {
     const text: string[] = [];
     const visit = (node: MarkdownNode) => {
@@ -41,7 +40,6 @@ export function estimateReadingMinutes(tree: MarkdownNode): number {
     return Math.max(1, Math.round(words / WORDS_PER_MINUTE));
 }
 
-/** A trailing "References" or "Sources" section is a link list, so it doesn't count as reading. */
 function withoutReferences<T extends { type: string }>(children: T[]): T[] {
     const start = children.findIndex(
         (node) =>
@@ -59,6 +57,7 @@ interface ContentEntry {
     key: string;
     details: Record<string, unknown>;
     description?: string;
+    searchDescription?: string;
     status?: 'wip';
     date?: string;
 }
@@ -87,9 +86,7 @@ function readDate(
     key: string,
 ): string | undefined {
     const value = details.date;
-    // null marks an older post (from the GitBook) that is published without a date.
     if (value === undefined || value === null) return undefined;
-    // Older posts can give just the month, as YYYY-MM.
     const day = typeof value === 'string' && /^\d{4}-\d{2}$/.test(value) ? `${value}-01` : value;
     const valid =
         typeof day === 'string' &&
@@ -100,7 +97,6 @@ function readDate(
     return value as string;
 }
 
-/** Today's date where the site is being built, as YYYY-MM-DD. */
 function today(): string {
     const now = new Date();
     const pad = (value: number) => String(value).padStart(2, '0');
@@ -140,6 +136,7 @@ function visibleEntries(
             key,
             details,
             description: optionalText(details, 'description', key),
+            searchDescription: optionalText(details, 'searchDescription', key),
             status: details.status as 'wip' | undefined,
             date: readDate(details, key),
         });
@@ -147,7 +144,6 @@ function visibleEntries(
     return entries;
 }
 
-/** Date a post once, when it's first published. Editing an existing article does not change its date. */
 export function registerPublications(
     files: Record<string, string>,
     catalogue: Record<string, unknown> = {},
@@ -165,12 +161,6 @@ export function registerPublications(
     return { catalogue: updatedCatalogue, assignments };
 }
 
-/** Newest first. Undated posts go last, and posts on the same date keep their posts.json order. */
-export function byDate(left: Pick<Post, 'date'>, right: Pick<Post, 'date'>): number {
-    return (right.date ?? '').localeCompare(left.date ?? '');
-}
-
-/** Markdown holds the writing. List details and publication order live in content/posts.json. */
 export function createPostIndex(
     files: Record<string, string>,
     catalogue: Record<string, unknown> = {},
@@ -212,6 +202,7 @@ export function createPostIndex(
                 title ??
                 `${fallback.charAt(0).toUpperCase()}${fallback.slice(1)}`,
             description: entry.description ?? description,
+            searchDescription: entry.searchDescription,
             status: entry.status,
             date: entry.date,
             sections: getSections(tree),

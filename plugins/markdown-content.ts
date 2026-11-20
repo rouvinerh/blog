@@ -7,7 +7,6 @@ import { createPostIndex, registerPublications } from '../src/content-parser';
 const publicId = 'virtual:published-posts';
 const resolvedId = `\0${publicId}`;
 
-/** Only the filtered, published index becomes browser code. */
 export function serializePublishedPosts(
     files: Record<string, string>,
     catalogue: Record<string, unknown> = {},

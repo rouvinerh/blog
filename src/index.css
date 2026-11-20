@@ -119,7 +119,6 @@ p { margin: 0 0 18px; }
 .article .markdown-content pre { background: var(--surface); border-color: var(--line); }
 .article .markdown-content blockquote { border-color: var(--line); background: var(--surface); color: var(--text); }
 .article .markdown-content blockquote::before { background-color: var(--muted); opacity: 1; }
-/* In posts, the paragraph right after a table or diagram is its caption. */
 .article .markdown-content :is(.markdown-table-wrap, p:has(> :is(img, .themed-img):only-child)) + p {
   margin-top: -0.35em;
   color: var(--muted);
@@ -139,6 +138,7 @@ p { margin: 0 0 18px; }
 .site-footer { display: flex; justify-content: space-between; align-items: center; gap: 20px; border-top: 1px solid var(--line); margin-top: 58px; padding-top: 22px; color: var(--soft); font-size: .875rem; }
 .site-footer a { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); text-decoration: none; }
 .site-footer a:hover { color: var(--accent); }
+.footer-links { display: inline-flex; align-items: center; gap: 18px; }
 .site--listing main { min-height: 0; }
 .site--listing .site-footer { margin-top: 8px; }
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .22s; animation-timing-function: cubic-bezier(.2, 0, 0, 1); }
