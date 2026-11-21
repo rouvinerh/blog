@@ -2,9 +2,15 @@
 
 ## Summary
 
-Many companies use bug bounty programmes and vulnerability disclosure programmes (VDPs) as a proactive approach to defence, and a hunter's recon is the discovery side of attack surface management (ASM). I built a workflow to try to do ASM better, based on the methodology bug bounty hunters adopt. It combines existing recon techniques with one addition of my own: unranked security questions that a model writes from the recon output. On a VDP scope I had already hunted by hand, the workflow and a few lightly prompted models surfaced 18 issues. I reported 12, and the programme triaged (accepted as valid) all of them, 2 of them critical, in about 4 hours for an estimated US$280 in tokens at API prices.
+A bug bounty hunter's recon is the discovery side of attack surface management (ASM). I wanted to see if that approach could help organisations look at their own assets. I built a workflow that combines existing recon techniques with unranked security questions written by a model.
 
-The idea for this workflow came from what I have learned as a triager, how I have seen elite bug bounty hunters work, and the advancement of models in source code review, exploitation and reverse engineering.
+I tried it on the scope of a vulnerability disclosure programme (VDP) I'd already hunted by hand. Here's what I got with a few lightly prompted models.
+
+- **18 issues** surfaced.
+- **12 reports accepted as valid**, including 2 critical issues.
+- **About 4 hours**, with an estimated **US$280 in tokens** at API prices.
+
+The idea came from my time as a triager, watching elite hunters work, and seeing models improve at source code review, exploitation and reverse engineering.
 
 ## Hunters == APTs
 
@@ -12,21 +18,25 @@ Attack surface management (ASM) means continuously discovering and monitoring ev
 
 However, this runs into scaling issues when it comes to targeting hundreds of websites. The time taken for the whole scan will skyrocket, and the compute bill will add up quickly. Using frontier models is expensive, and you might just get guardrailed nowadays. Running open-weight models on your own hardware is one viable solution, provided you already have the hardware.
 
-To me, bug bounty hunters can be treated as advanced persistent threats (APTs). Usually, the term refers to a state-backed group, but the letters fit hunters well. Hunters are advanced and persistent in their own way since they keep coming back to the same scope. They can be seen as real threats, since they're financially motivated to hunt for issues across every application they can reach, with elite hunters commonly reporting critical bugs.
+To me, bug bounty hunters can be treated as advanced persistent threats (APTs). The term usually refers to state-backed groups, but the letters fit hunters well. They keep coming back to the same scope and have a financial reason to look at every application they can reach. The best hunters regularly report critical bugs.
 
-What a hunter does before finding anything is the discovery side of ASM. They enumerate everything an organisation exposes, compare it, and decide which application is worth their time. I think defenders can look at their own assets the same way. At PayPal, the team I was with that managed the bug bounty programme is aptly named "Bug Bounty and Proactive Pentest" to reflect this.
+A hunter starts by mapping what an organisation exposes and deciding where to spend their time. That's the discovery side of ASM, and I think defenders can look at their own assets the same way. My old team at PayPal ran the bug bounty programme and was aptly named "Bug Bounty and Proactive Pentest".
 
 ## Models and Benchmarks
 
-Pointing an AI pentest framework at everything is tempting because of how far models have come in exploitation and reverse engineering.
+Pointing an AI pentest framework at everything is tempting because of how far models have come in exploitation and reverse engineering. AI is already better at finding and exploiting bugs than any human. An agent solved all 9 Flare-On 13 challenges on its first attempt in about 80 minutes of agent time. [Flare-On 13 results](https://mahaloz.github.io/ilio-mini/flareon13_results/)
 
-The art of exploitation is moving fast. AI is able to better find and exploit bugs than any human can currently. An agent [solved all 9 Flare-On 13 challenges](https://mahaloz.github.io/ilio-mini/flareon13_results/), each on its first attempt, in about 80 minutes of agent time. [Mozilla shipped fixes for 271 vulnerabilities in Firefox 150](https://blog.mozilla.org/en/firefox/ai-security-zero-day-vulnerabilities/) found with an early version of Claude Mythos Preview, and the [Gogs maintainers published a 2FA bypass discovered with GPT-5](https://github.com/gogs/gogs/security/advisories/GHSA-p6x6-9mx6-26wj). OpenAI now offers [GPT-6 Cyber](https://developers.openai.com/api/docs/models/gpt-6-cyber) to approved organisations for investigating and reproducing vulnerabilities.
+Mozilla shipped fixes for 271 vulnerabilities in Firefox 150 found with an early version of Claude Mythos Preview. The Gogs maintainers also published a 2FA bypass discovered with GPT-5. [Mozilla's writeup](https://blog.mozilla.org/en/firefox/ai-security-zero-day-vulnerabilities/) · [Gogs advisory](https://github.com/gogs/gogs/security/advisories/GHSA-p6x6-9mx6-26wj)
+
+OpenAI now offers GPT-6 Cyber to approved organisations for investigating and reproducing vulnerabilities. [OpenAI's model docs](https://developers.openai.com/api/docs/models/gpt-6-cyber)
 
 Almost every week there's a new story, like Anthropic announcing that Mythos was too dangerous for the public, the OpenAI agent that [escaped its sandbox during a security test and broke into Hugging Face](https://www.malwarebytes.com/blog/news/2026/07/openais-agent-escaped-its-sandbox-during-a-security-test), or the report of close to [1,000 local privilege escalation exploits in the Linux kernel](https://openai.com/index/a-thousand-fewer-paths-to-root/).
 
 On the reverse engineering side, tools like [Reverse Engineer Anything](https://github.com/morluto/rea) have made it easy for anyone to get started in what was once an extremely difficult field to enter. In October 2026, a wave of AI-made browser ports of games like Call of Duty: Black Ops 2 appeared, until Activision started issuing [DMCA takedowns](https://www.tweaktown.com/news/114029/activision-takes-down-ai-made-black-ops-2-browser-ports/index.html). That's something I could never have anticipated.
 
-To quantify AI's exploitation capabilities, benchmarks like [ExploitGym](https://rdi.berkeley.edu/blog/exploitgym/) are used. It gives an agent the source code, a known bug and an input that triggers it, and asks for a working exploit. [BenchLM](https://benchlm.ai/benchmarks/exploitgym) collects the results as a share of ExploitGym's 898 tasks, and these are the top 5 along with the 3 author-run results BenchLM lists:
+To quantify AI's exploitation capabilities, benchmarks like [ExploitGym](https://rdi.berkeley.edu/blog/exploitgym/) are used. It gives an agent the source code, a known bug and an input that triggers it, and asks for a working exploit.
+
+BenchLM reports the share of ExploitGym's 898 tasks each model solved. The table shows the top 5 results and the 3 runs from the benchmark's authors.
 
 | Model | Exploited | Who ran it |
 | --- | --- | --- |
@@ -41,13 +51,15 @@ To quantify AI's exploitation capabilities, benchmarks like [ExploitGym](https:/
 
 ExploitGym results from [BenchLM](https://benchlm.ai/benchmarks/exploitgym)
 
+### Where Benchmarks Fall Short
+
 Seeing all this has made me a firm believer that reverse engineering and exploitation involving **source code / binary + LLMs** are "solved problems". However, on a black-box target, we do not have the well-defined boundaries that benchmarks, source code and binaries provide for models.
 
-To me, benchmarks themselves are simply capture-the-flag (CTF) competitions for models. Do CTFs reflect the real world exactly? Not really. Hacking something that you _already know_ has a vulnerability and a right answer feels vastly different from targeting real applications. It's what makes bug bounty so hard for most, because you are effectively walking in the dark on black-box programmes.
+To me, benchmarks are capture-the-flag (CTF) competitions for models. In a CTF, you _already know_ there's a vulnerability and a right answer. On a black-box programme, you're walking in the dark.
 
 > To get a bounty, you must be the first reporter. This means nobody else, including the developers, security teams, triagers and **all** other hunters, can have reported or logged this bug before you. In other words, **there is no 'right' answer** because no one knows what you are looking for.
 
-Fixed benchmarks also stop being useful as models improve. As models get smarter and more capable, they might just absorb all our arbitrary measurements as well. [XBOW's maintainers](https://github.com/xbow-engineering/validation-benchmarks) say their suite is saturated as of mid-2026, with the vulnerabilities trained into the models, and I expect the others to end up saturated too.
+Fixed benchmarks can lose value as models improve. XBOW's maintainers say their suite is saturated as of mid-2026, with the vulnerabilities trained into the models. I expect other suites to run into the same problem. [XBOW's validation benchmarks](https://github.com/xbow-engineering/validation-benchmarks)
 
 On a real attack surface, I have to pick the application myself first. In [MITRE ATT&CK](https://attack.mitre.org/tactics/enterprise/) terms that's reconnaissance, the first of its 15 tactics. By my reading, the tasks in ExploitGym and [NYU CTF Bench](https://arxiv.org/abs/2406.05590) (200 CTF challenges) map most closely to 3 of them, Initial Access, Execution and Privilege Escalation, where most exploitation techniques sit. Reconnaissance and the other 11 aren't covered as much.
 
@@ -61,13 +73,15 @@ Neither benchmark covers how an agent finds and compares applications before cho
 
 ## The Harness
 
-Before deciding where to point them, I looked at how much a model still needs built around it. A harness is the scaffolding code that wraps a model and gives it tools, and its role is changing as models become more sophisticated. In the past, lots of scaffolding was built around models, which had to be told explicitly that they could use browsers, scripts and other tools to accomplish their tasks. Today, they do not need such guidance any more.
+I first looked at how much code a model still needs around it. A harness is the code that wraps a model and gives it tools. Older models needed explicit instructions to use browsers, scripts and other tools. Newer models need less of that guidance.
 
 ![](/images/blog/recon-harness-meme.png)
 
 Each new model absorbs the harness built for the previous one
 
-In [Is the Agent Harness Dead?](https://www.youtube.com/watch?v=7Y4sbZgBdnc), Jediah Katz argues the harness isn't dead, but coding harnesses are getting simpler as models take over what the scaffolding used to do. Context and orchestration still matter. [Arize's post on harness distillation](https://arize.com/blog/agent-harness-distillation/) makes a similar point. General scaffolding can be trained into a model, but domain knowledge and context management don't transfer as well, so their advice is to keep the harness without treating any version of it as finished.
+Jediah Katz argues that coding harnesses are getting simpler as models take over some of what the scaffolding used to do. Context and orchestration still matter. [Is the Agent Harness Dead?](https://www.youtube.com/watch?v=7Y4sbZgBdnc)
+
+Arize makes a similar point. General scaffolding can be trained into a model. Domain knowledge and context management transfer less easily, so they suggest keeping the harness and revisiting it as models improve. [Arize's post on harness distillation](https://arize.com/blog/agent-harness-distillation/)
 
 I believe the harness is there to **support** the model with context, instead of teaching it how to use tools or forcing it to think a certain way. Each new model will be able to call tools on its own, but there is still some value in having preset deterministic tools or workflows do the heavy lifting first before a model takes over.
 
@@ -86,7 +100,11 @@ A [2026 study](https://arxiv.org/html/2604.17159v1) ran Gemini 3 Pro on the 200 
 
 Challenges solved by Gemini 3 Pro on NYU CTF Bench, from a 2026 study using D-CIPHER
 
-On Kali, which already has the tooling installed, the tips made things worse. On Ubuntu they helped by 2 points, which is 4 challenges out of 200. The authors concluded that the tips didn't consistently improve performance, while the Kali environment and the choice of model made a clear difference. The tips comparison only used 1 model, though. A July 2026 paper, [Baselines Before Architecture](https://arxiv.org/abs/2607.13085), found the same with pentest agents: on XBOW's 104 benchmarks, both custom security prompts they tried scored below Codex CLI's default prompt and cost more to run.
+On Kali, which already has the tooling installed, the tips made things worse. On Ubuntu they helped by 2 percentage points, which is 4 challenges out of 200.
+
+The authors found that the tips didn't consistently help. The environment and choice of model made a clear difference. The tips comparison only used 1 model, though.
+
+A separate study found that both custom security prompts it tried scored below the baseline and cost more to run across 104 benchmark tasks. [Baselines Before Architecture](https://arxiv.org/abs/2607.13085)
 
 [Yan Shoshitaishvili's Black Hat USA 2026 keynote](https://www.youtube.com/watch?v=VNYe3Cnk5Pw) got me thinking about vulnerability properties. As I understood it, his idea is to stop asking AI to hunt for bugs directly, and instead work out the properties vulnerable code tends to have and feed those to it. I wondered whether the same works black-box. Without the source code, is there something about **how an application behaves that makes it look vulnerable to an AI**? And **just how deterministic can I be when hunting for bugs across huge scopes?**
 
@@ -165,7 +183,7 @@ On my runs, the agents stopped to ask before changing account details, deleting 
 
 ## Results
 
-On one of my weekends, I let the agents run for about 4 hours while I was working on other things, stopping only for the approvals required. It surfaced a total of 18 issues, of which I reported 12. All 12 were triaged by the programme, and they were a mix of broken access control and information disclosure:
+One weekend, I let the agents run for about 4 hours while I worked on other things, stepping in when they needed approval. They surfaced 18 issues. I reported 12, and the programme accepted all 12 as valid. They were a mix of broken access control and information disclosure.
 
 | Severity | Issues |
 | --- | --- |
@@ -180,7 +198,9 @@ The models went much further than I had, working through endpoints I'd never got
 
 The model picked the sites it found these issues on because they returned many dynamic API endpoints without authentication. By first targeting one site, and asking more and more questions, it fanned out to apps it deemed 'similar' in terms of region and stack. Some of the issues reported used a feature of one site to attack the other, which was really cool to see.
 
-The 4 hours came to about US$280 worth of tokens at API prices, going by [ccusage](https://github.com/ccusage/ccusage). That covers writing the security questions and the investigations. I ran it on a Claude subscription, so that isn't what I actually paid, but even at API prices that was pretty cheap and fast for finding new issues.
+The 4-hour run came to about **US$280 in tokens at API prices**, covering both the security questions and the investigations. [ccusage](https://github.com/ccusage/ccusage)
+
+I ran it on a Claude subscription, so my actual bill was different. Even at API prices, I thought it was pretty cheap and fast for finding new issues.
 
 Here's a resolved finding from another programme I ran the workflow on, with the details removed and the endpoint names changed. It isn't one of the 12, but it shows how one odd response turned into a bug. 
 
@@ -209,7 +229,7 @@ Each letter held personal details about the person and their appointment, plus a
 
 An organisation looking at its own assets would use this a bit differently. In bug bounty, a finding only counts if it proves impact, so that's where the model spends its effort. An ASM sweep of your own estate is about hardening, so proving impact matters less, and informational findings like a weak Content Security Policy or an Origin header reflected without `Access-Control-Allow-Credentials: true` are worth raising too.
 
-I'm still working out how much of the preparation I can handle with ordinary code. I also run this exact workflow on smaller recon datasets where I already know the findings, to benchmark how well the models pick out outliers and what else they choose to look at. It's a small sample scored by hand, so I treat it as a sanity check. If the models keep improving the way they have, I think the context I hand them will matter more than how I prompt them. 
+I'm still working out how much of the preparation I can handle with ordinary code. I run the same workflow on smaller recon datasets with known findings to see which outliers the models pick up and what else they notice. I score the small sample by hand as a sanity check. If models keep improving, I think the context I give them will matter more than how I prompt them.
 
 So to do ASM better, I'd still use the bug bounty approach. Let scripts do the recon and filter for what looks different, then spend tokens on that.
 
