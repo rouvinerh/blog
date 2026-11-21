@@ -7,8 +7,8 @@ A bug bounty hunter's recon is the discovery side of attack surface management (
 I tried it on the scope of a vulnerability disclosure programme (VDP) I'd already hunted by hand. Here's what I got with a few lightly prompted models.
 
 - **18 issues** surfaced.
-- **12 reports accepted as valid**, including 2 critical issues.
-- **About 4 hours**, with an estimated **US$280 in tokens** at API prices.
+- **12 reports accepted as valid**, including 2 Criticals and 3 Highs.
+- **About 3 hours**, mostly unattended, on a Claude subscription.
 
 The idea came from my time as a triager, watching elite hunters work, and seeing models improve at source code review, exploitation and reverse engineering.
 
@@ -183,7 +183,7 @@ On my runs, the agents stopped to ask before changing account details, deleting 
 
 ## Results
 
-One weekend, I let the agents run for about 4 hours while I worked on other things, stepping in when they needed approval. They surfaced 18 issues. I reported 12, and the programme accepted all 12 as valid. They were a mix of broken access control and information disclosure.
+One weekend, I let the agents run mostly unattended for about 3 hours while I worked on other things. I stepped in when they needed approval. They surfaced 18 issues. I reported 12, and the programme accepted all 12 as valid. They were a mix of broken access control and information disclosure.
 
 | Severity | Issues |
 | --- | --- |
@@ -198,9 +198,7 @@ The models went much further than I had, working through endpoints I'd never got
 
 The model picked the sites it found these issues on because they returned many dynamic API endpoints without authentication. By first targeting one site, and asking more and more questions, it fanned out to apps it deemed 'similar' in terms of region and stack. Some of the issues reported used a feature of one site to attack the other, which was really cool to see.
 
-The 4-hour run came to about **US$280 in tokens at API prices**, covering both the security questions and the investigations. [ccusage](https://github.com/ccusage/ccusage)
-
-I ran it on a Claude subscription, so my actual bill was different. Even at API prices, I thought it was pretty cheap and fast for finding new issues.
+I ran it on my Claude subscription. Getting **2 Criticals and 3 Highs** from about 3 hours of mostly unattended work felt well worth it to me.
 
 Here's a resolved finding from another programme I ran the workflow on, with the details removed and the endpoint names changed. It isn't one of the 12, but it shows how one odd response turned into a bug. 
 
@@ -275,4 +273,3 @@ I'll keep applying this workflow to more VDPs and bug bounty programmes as I ref
 - [gau](https://github.com/lc/gau)
 - [jsluice](https://github.com/BishopFox/jsluice), Bishop Fox
 - [REA: Reverse Engineer Anything](https://github.com/morluto/rea)
-- [ccusage](https://github.com/ccusage/ccusage)
