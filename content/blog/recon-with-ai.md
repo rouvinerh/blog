@@ -116,13 +116,13 @@ To test it, I used a public vulnerability disclosure programme (VDP) whose scope
 
 ![](/images/blog/recon-methodology.svg)
 
-Trying to save tokens by minimising AI usage
+Trying to minimise AI usage with deterministic tools
 
-The first 3 steps are the usual bug bounty recon. That's already well documented, so I used existing tools for them. No need to reinvent the wheel.
+The first 2 steps are the usual bug bounty recon. That's already well documented, so I used existing tools for them. No need to reinvent the wheel.
 
-Collection started from the programme's main root domain. Later in the run, the model found other in-scope root domains on its own and ran the same scripts on those too (more on that below), bringing the total to over 20 root domains. Subdomain enumeration found 2,518 names, of which 1,539 resolved, with 924 distinct applications on them. This stage uses [gau](https://github.com/lc/gau) to pull archived URLs, as well as [jsluice](https://github.com/BishopFox/jsluice) to parse JavaScript into an abstract syntax tree (AST) to extract more endpoints and scripts.
+This run found 92 live applications and collected about 2,500 routes and 1,500 JavaScript files. This stage uses [gau](https://github.com/lc/gau) to pull archived URLs, as well as [jsluice](https://github.com/BishopFox/jsluice) to parse JavaScript into an abstract syntax tree (AST) to extract more endpoints and scripts.
 
-Grouping sorted the 924 applications by the 121 technologies that fingerprinting detected. The largest group had 188 applications, about a fifth of everything. Reading a group and asking which member behaves differently is much cheaper than reading 924 applications one at a time. Also, grouping helps to set aside third-party SaaS and static-looking websites, both of which rarely yield bugs. Bishop Fox did something similar with [screenshot hashes back in 2019](https://tldrsec.com/blog/pose-a-threat-how-perceptual-analysis-helps-bug-hunters/), and so did XBOW with SimHash and screenshot hashing. Mine groups by fingerprinted technology, and their responses to probes.
+Reading a group and asking which member behaves differently is much cheaper than reading every response one at a time. Also, grouping helps to set aside third-party SaaS and static-looking websites, both of which rarely yield bugs. Bishop Fox did something similar with [screenshot hashes back in 2019](https://tldrsec.com/blog/pose-a-threat-how-perceptual-analysis-helps-bug-hunters/), and so did XBOW with SimHash and screenshot hashing. Mine groups by fingerprinted technology, and their responses to probes.
 
 ![](/images/blog/recon-grouping.svg)
 
@@ -141,7 +141,7 @@ Example probes the workflow sends
 
 The method probe is less benign than the others, since a POST can trigger an action, so it only sends an empty body or `{}`.
 
-The probe stage also replays ordinary requests and records what comes back. Of the 7,954 responses to those replays, 4,371 were distinct by status, content type, size and body hash, and 830 were WAF block pages, even though the requests had nothing malicious in them.
+The probe stage sent about 3,500 requests across 2,300 endpoints in this run, recording what came back.
 
 The stages above leave me with a large dataset, and I still need a way to hand the model what's worth looking at. That's what **security questions** are for.
 
