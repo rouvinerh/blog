@@ -15,8 +15,9 @@
         "date": "2026-11-10"
     },
     "blog/pre-gbbp-experience": {
-        "description": "Experience hunting bugs on Singapore government websites",
-        "status": "wip"
+        "description": "Hunting on Singapore government websites in Pre-GBBP",
+        "searchDescription": "Splitting bug hunting across agent roles during GovTech's Pre-GBBP",
+        "date": "2026-11-22"
     },
     "blog/recon-with-ai": {
         "description": "Using AI for recon to find the right applications to point LLMs at when finding bugs",

@@ -21,12 +21,27 @@ function pngSize(file: string): Size | undefined {
     return [bytes.readUInt32BE(16), bytes.readUInt32BE(20)];
 }
 
+function gifSize(file: string): Size | undefined {
+    const bytes = readFileSync(file);
+    if (bytes.length < 10 || !/^GIF8[79]a$/.test(bytes.toString('ascii', 0, 6)))
+        return undefined;
+    const width = bytes.readUInt16LE(6);
+    const height = bytes.readUInt16LE(8);
+    return width > 0 && height > 0 ? [width, height] : undefined;
+}
+
+function imageSize(file: string): Size | undefined {
+    if (file.endsWith('.svg')) return svgSize(file);
+    if (file.endsWith('.gif')) return gifSize(file);
+    return pngSize(file);
+}
+
 function imageFiles(directory: string): string[] {
     if (!existsSync(directory)) return [];
     return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
         const path = join(directory, entry.name);
         if (entry.isDirectory()) return imageFiles(path);
-        return entry.isFile() && /\.(svg|png)$/.test(entry.name) ? [path] : [];
+        return entry.isFile() && /\.(svg|png|gif)$/.test(entry.name) ? [path] : [];
     });
 }
 
@@ -46,7 +61,7 @@ export default function imageSizes(): Plugin {
             const sizes: Record<string, Size> = {};
             for (const file of imageFiles(join(publicDir, 'images'))) {
                 this.addWatchFile(file);
-                const size = file.endsWith('.svg') ? svgSize(file) : pngSize(file);
+                const size = imageSize(file);
                 if (size) sizes[`/${normalizePath(relative(publicDir, file))}`] = size;
             }
             return `export default ${JSON.stringify(sizes)};`;

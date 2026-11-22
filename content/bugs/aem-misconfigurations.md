@@ -64,6 +64,7 @@ Protect the content with [repository permissions](https://experienceleague.adobe
 For Dispatcher, [allow only the requests the site needs](https://experienceleague.adobe.com/en/docs/experience-manager-dispatcher/using/getting-started/security-checklist). Check alternate selectors, suffixes and trailing slashes when testing the rules. Clear affected caches after changing filters, and check other sites using the same setup.
 
 This issue has many bypasses, such as `.xml`, `.json/a.xml`, adding more `/` characters.
+
 ## References
 
 **Apache Sling**

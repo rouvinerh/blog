@@ -1,95 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="126" height="126" viewBox="-1 -1 18 18" shape-rendering="crispEdges" role="img" aria-labelledby="title">
-    <title id="title">Work in Progress</title>
-    <rect x="4" y="0" width="1" height="1" fill="#17161F"/>
-    <rect x="5" y="0" width="1" height="1" fill="#17161F"/>
-    <rect x="6" y="0" width="1" height="1" fill="#17161F"/>
-    <rect x="7" y="0" width="1" height="1" fill="#17161F"/>
-    <rect x="8" y="0" width="1" height="1" fill="#17161F"/>
-    <rect x="9" y="0" width="1" height="1" fill="#17161F"/>
-    <rect x="10" y="0" width="1" height="1" fill="#17161F"/>
-    <rect x="11" y="0" width="1" height="1" fill="#17161F"/>
-    <rect x="3" y="1" width="1" height="1" fill="#17161F"/>
-    <rect x="12" y="1" width="1" height="1" fill="#17161F"/>
-    <rect x="2" y="2" width="1" height="1" fill="#17161F"/>
-    <rect x="13" y="2" width="1" height="1" fill="#17161F"/>
-    <rect x="2" y="3" width="1" height="1" fill="#17161F"/>
-    <rect x="13" y="3" width="1" height="1" fill="#17161F"/>
-    <rect x="1" y="4" width="1" height="1" fill="#17161F"/>
-    <rect x="14" y="4" width="1" height="1" fill="#17161F"/>
-    <rect x="2" y="5" width="1" height="1" fill="#17161F"/>
-    <rect x="3" y="5" width="1" height="1" fill="#17161F"/>
-    <rect x="12" y="5" width="1" height="1" fill="#17161F"/>
-    <rect x="13" y="5" width="1" height="1" fill="#17161F"/>
-    <rect x="3" y="6" width="1" height="1" fill="#17161F"/>
-    <rect x="12" y="6" width="1" height="1" fill="#17161F"/>
-    <rect x="3" y="7" width="1" height="1" fill="#17161F"/>
-    <rect x="12" y="7" width="1" height="1" fill="#17161F"/>
-    <rect x="3" y="8" width="1" height="1" fill="#17161F"/>
-    <rect x="4" y="8" width="1" height="1" fill="#17161F"/>
-    <rect x="11" y="8" width="1" height="1" fill="#17161F"/>
-    <rect x="12" y="8" width="1" height="1" fill="#17161F"/>
-    <rect x="2" y="9" width="1" height="1" fill="#17161F"/>
-    <rect x="13" y="9" width="1" height="1" fill="#17161F"/>
-    <rect x="1" y="10" width="1" height="1" fill="#17161F"/>
-    <rect x="14" y="10" width="1" height="1" fill="#17161F"/>
-    <rect x="1" y="11" width="1" height="1" fill="#17161F"/>
-    <rect x="14" y="11" width="1" height="1" fill="#17161F"/>
-    <rect x="2" y="12" width="1" height="1" fill="#17161F"/>
-    <rect x="13" y="12" width="1" height="1" fill="#17161F"/>
-    <rect x="2" y="13" width="1" height="1" fill="#17161F"/>
-    <rect x="7" y="13" width="1" height="1" fill="#17161F"/>
-    <rect x="8" y="13" width="1" height="1" fill="#17161F"/>
-    <rect x="13" y="13" width="1" height="1" fill="#17161F"/>
-    <rect x="2" y="14" width="1" height="1" fill="#17161F"/>
-    <rect x="7" y="14" width="1" height="1" fill="#17161F"/>
-    <rect x="8" y="14" width="1" height="1" fill="#17161F"/>
-    <rect x="13" y="14" width="1" height="1" fill="#17161F"/>
-    <rect x="2" y="15" width="1" height="1" fill="#17161F"/>
-    <rect x="7" y="15" width="1" height="1" fill="#17161F"/>
-    <rect x="8" y="15" width="1" height="1" fill="#17161F"/>
-    <rect x="13" y="15" width="1" height="1" fill="#17161F"/>
-    <rect x="3" y="16" width="1" height="1" fill="#17161F"/>
-    <rect x="4" y="16" width="1" height="1" fill="#17161F"/>
-    <rect x="5" y="16" width="1" height="1" fill="#17161F"/>
-    <rect x="6" y="16" width="1" height="1" fill="#17161F"/>
-    <rect x="9" y="16" width="1" height="1" fill="#17161F"/>
-    <rect x="10" y="16" width="1" height="1" fill="#17161F"/>
-    <rect x="11" y="16" width="1" height="1" fill="#17161F"/>
-    <rect x="12" y="16" width="1" height="1" fill="#17161F"/>
-    <rect x="4" y="1" width="8" height="1" fill="#EFB63C"/>
-    <rect x="3" y="2" width="10" height="1" fill="#EFB63C"/>
-    <rect x="3" y="3" width="4" height="1" fill="#EFB63C"/>
-    <rect x="7" y="3" width="2" height="1" fill="#EDEFF5"/>
-    <rect x="9" y="3" width="4" height="1" fill="#EFB63C"/>
-    <rect x="2" y="4" width="12" height="1" fill="#B8831F"/>
-    <rect x="4" y="5" width="8" height="1" fill="#F0C193"/>
-    <rect x="4" y="6" width="1" height="1" fill="#F0C193"/>
-    <rect x="5" y="6" width="1" height="1" fill="#17161F"/>
-    <rect x="6" y="6" width="4" height="1" fill="#F0C193"/>
-    <rect x="10" y="6" width="1" height="1" fill="#17161F"/>
-    <rect x="11" y="6" width="1" height="1" fill="#F0C193"/>
-    <rect x="4" y="7" width="8" height="1" fill="#F0C193"/>
-    <rect x="5" y="8" width="6" height="1" fill="#F0C193"/>
-    <rect x="3" y="9" width="10" height="1" fill="#3C6FA6"/>
-    <rect x="2" y="10" width="1" height="1" fill="#F0C193"/>
-    <rect x="3" y="10" width="1" height="1" fill="#3C6FA6"/>
-    <rect x="4" y="10" width="1" height="1" fill="#5B3C20"/>
-    <rect x="5" y="10" width="6" height="1" fill="#3C6FA6"/>
-    <rect x="11" y="10" width="1" height="1" fill="#5B3C20"/>
-    <rect x="12" y="10" width="1" height="1" fill="#3C6FA6"/>
-    <rect x="13" y="10" width="1" height="1" fill="#F0C193"/>
-    <rect x="2" y="11" width="1" height="1" fill="#F0C193"/>
-    <rect x="3" y="11" width="1" height="1" fill="#3C6FA6"/>
-    <rect x="4" y="11" width="8" height="1" fill="#5B3C20"/>
-    <rect x="12" y="11" width="1" height="1" fill="#3C6FA6"/>
-    <rect x="13" y="11" width="1" height="1" fill="#F0C193"/>
-    <rect x="3" y="12" width="1" height="1" fill="#3C6FA6"/>
-    <rect x="4" y="12" width="8" height="1" fill="#5B3C20"/>
-    <rect x="12" y="12" width="1" height="1" fill="#3C6FA6"/>
-    <rect x="3" y="13" width="4" height="1" fill="#5B3C20"/>
-    <rect x="9" y="13" width="4" height="1" fill="#5B3C20"/>
-    <rect x="3" y="14" width="4" height="1" fill="#5B3C20"/>
-    <rect x="9" y="14" width="4" height="1" fill="#5B3C20"/>
-    <rect x="3" y="15" width="4" height="1" fill="#17161F"/>
-    <rect x="9" y="15" width="4" height="1" fill="#17161F"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="138" height="102" viewBox="1 7 23 17" shape-rendering="crispEdges" role="img" aria-labelledby="title">
+    <title id="title">Construction worker in a yellow hard hat and orange safety vest waving beside a traffic cone</title>
+    <path fill="#17161F" d="M5 7h6v1h-6zM4 8h1v1h-1zM11 8h1v1h-1zM3 9h1v1h-1zM12 9h1v1h-1zM2 10h1v1h-1zM13 10h1v1h-1zM1 11h1v1h-1zM14 11h1v1h-1zM2 12h1v1h-1zM13 12h1v1h-1zM3 13h1v1h-1zM5 13h1v1h-1zM10 13h1v1h-1zM12 13h2v1h-2zM3 14h1v1h-1zM12 14h1v1h-1zM14 14h1v1h-1zM19 14h1v1h-1zM3 15h2v1h-2zM11 15h2v1h-2zM14 15h1v1h-1zM18 15h1v1h-1zM20 15h1v1h-1zM2 16h1v1h-1zM14 16h1v1h-1zM18 16h1v1h-1zM20 16h1v1h-1zM1 17h1v1h-1zM13 17h1v1h-1zM17 17h1v1h-1zM21 17h1v1h-1zM1 18h1v1h-1zM13 18h1v1h-1zM17 18h1v1h-1zM21 18h1v1h-1zM2 19h1v1h-1zM13 19h1v1h-1zM17 19h1v1h-1zM21 19h1v1h-1zM2 20h1v1h-1zM7 20h2v1h-2zM13 20h1v1h-1zM16 20h1v1h-1zM22 20h1v1h-1zM2 21h1v1h-1zM7 21h2v1h-2zM13 21h1v1h-1zM16 21h1v1h-1zM22 21h1v1h-1zM2 22h1v1h-1zM7 22h2v1h-2zM13 22h1v1h-1zM15 22h1v1h-1zM23 22h1v1h-1zM3 23h4v1h-4zM9 23h4v1h-4zM16 23h7v1h-7z" />
+    <path fill="#EFB63C" d="M5 8h6v1h-6zM4 9h1v1h-1zM6 9h6v1h-6zM3 10h1v1h-1zM5 10h8v1h-8z" />
+    <path fill="#B8831F" d="M2 11h12v1h-12z" />
+    <path fill="#FFEFA6" d="M5 9h1v1h-1zM4 10h1v1h-1z" />
+    <path fill="#6B7687" d="M3 12h2v1h-2zM11 12h2v1h-2z" />
+    <path fill="#F0C193" d="M5 12h6v1h-6zM4 13h1v1h-1zM6 13h4v1h-4zM11 13h1v1h-1zM5 14h6v1h-6zM13 14h1v1h-1zM5 15h6v1h-6zM13 15h1v1h-1zM2 17h1v1h-1zM2 18h1v1h-1z" />
+    <path fill="#EEA59C" d="M4 14h1v1h-1zM11 14h1v1h-1z" />
+    <path fill="#F68A32" d="M19 15h1v1h-1zM3 16h4v1h-4zM9 16h4v1h-4zM19 16h1v1h-1zM3 17h4v1h-4zM9 17h4v1h-4zM18 17h2v1h-2zM18 19h2v1h-2zM17 20h3v1h-3zM16 22h5v1h-5z" />
+    <path fill="#C65326" d="M20 17h1v1h-1zM3 19h4v1h-4zM9 19h4v1h-4zM20 19h1v1h-1zM20 20h2v1h-2zM21 22h2v1h-2z" />
+    <path fill="#FFF4D4" d="M3 18h4v1h-4zM9 18h4v1h-4zM18 18h2v1h-2zM17 21h3v1h-3z" />
+    <path fill="#586C79" d="M7 16h2v1h-2zM13 16h1v1h-1zM7 17h2v1h-2zM7 18h2v1h-2zM7 19h2v1h-2z" />
+    <path fill="#344552" d="M3 20h4v1h-4zM9 20h4v1h-4zM3 21h4v1h-4zM9 21h4v1h-4z" />
+    <path fill="#7A5230" d="M3 22h4v1h-4zM9 22h4v1h-4z" />
+    <path fill="#DAC9A7" d="M20 18h1v1h-1zM20 21h2v1h-2z" />
 </svg>

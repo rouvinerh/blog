@@ -17,10 +17,15 @@ export function getPost(kind: PostKind, slug: string): Post | undefined {
     return posts.find((post) => post.kind === kind && post.slug === slug);
 }
 
+function latestPostPriority(post: Post): number {
+    if (post.kind === 'bugs') return 2;
+    return post.slug === 'recon-with-ai' ? 0 : 1;
+}
+
 export function getLatestPosts(limit = 4): Post[] {
     return posts
         .filter((post) => post.status !== 'wip')
         .sort((left, right) =>
-            (left.kind === 'blog' ? 0 : 1) - (right.kind === 'blog' ? 0 : 1) || byDate(left, right))
+            latestPostPriority(left) - latestPostPriority(right) || byDate(left, right))
         .slice(0, limit);
 }

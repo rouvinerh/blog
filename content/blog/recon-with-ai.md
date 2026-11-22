@@ -6,7 +6,6 @@ A bug bounty hunter's recon is the discovery side of attack surface management (
 
 I tried it on the scope of a vulnerability disclosure programme (VDP) I'd already hunted by hand. Here's what I got with a few lightly prompted models.
 
-- **18 issues** surfaced.
 - **12 reports accepted as valid**, including 2 Criticals and 3 Highs.
 - **About 3 hours**, mostly unattended, on a Claude subscription.
 
@@ -24,11 +23,11 @@ A hunter starts by mapping what an organisation exposes and deciding where to sp
 
 ## Models and Benchmarks
 
-Pointing an AI pentest framework at everything is tempting because of how far models have come in exploitation and reverse engineering. AI is already better at finding and exploiting bugs than any human. An agent solved all 9 Flare-On 13 challenges on its first attempt in about 80 minutes of agent time. [Flare-On 13 results](https://mahaloz.github.io/ilio-mini/flareon13_results/)
+Pointing an AI pentest framework at everything is tempting because of how far models have come in exploitation and reverse engineering. AI is already better at finding and exploiting bugs than any human. An agent solved all 9 [Flare-On 13 challenges](https://mahaloz.github.io/ilio-mini/flareon13_results/) on its first attempt in about 80 minutes of agent time.
 
-Mozilla shipped fixes for 271 vulnerabilities in Firefox 150 found with an early version of Claude Mythos Preview. The Gogs maintainers also published a 2FA bypass discovered with GPT-5. [Mozilla's writeup](https://blog.mozilla.org/en/firefox/ai-security-zero-day-vulnerabilities/) · [Gogs advisory](https://github.com/gogs/gogs/security/advisories/GHSA-p6x6-9mx6-26wj)
+Mozilla [shipped fixes for 271 vulnerabilities](https://blog.mozilla.org/en/firefox/ai-security-zero-day-vulnerabilities/) in Firefox 150, found with an early version of Claude Mythos Preview. The Gogs maintainers also [published a 2FA bypass advisory](https://github.com/gogs/gogs/security/advisories/GHSA-p6x6-9mx6-26wj) for an issue discovered with GPT-5.
 
-OpenAI now offers GPT-6 Cyber to approved organisations for investigating and reproducing vulnerabilities. [OpenAI's model docs](https://developers.openai.com/api/docs/models/gpt-6-cyber)
+OpenAI now offers [GPT-6 Cyber](https://developers.openai.com/api/docs/models/gpt-6-cyber) to approved organisations for investigating and reproducing vulnerabilities.
 
 Almost every week there's a new story, like Anthropic announcing that Mythos was too dangerous for the public, the OpenAI agent that [escaped its sandbox during a security test and broke into Hugging Face](https://www.malwarebytes.com/blog/news/2026/07/openais-agent-escaped-its-sandbox-during-a-security-test), or the report of close to [1,000 local privilege escalation exploits in the Linux kernel](https://openai.com/index/a-thousand-fewer-paths-to-root/).
 
@@ -59,7 +58,7 @@ To me, benchmarks are capture-the-flag (CTF) competitions for models. In a CTF, 
 
 > To get a bounty, you must be the first reporter. This means nobody else, including the developers, security teams, triagers and **all** other hunters, can have reported or logged this bug before you. In other words, **there is no 'right' answer** because no one knows what you are looking for.
 
-Fixed benchmarks can lose value as models improve. XBOW's maintainers say their suite is saturated as of mid-2026, with the vulnerabilities trained into the models. I expect other suites to run into the same problem. [XBOW's validation benchmarks](https://github.com/xbow-engineering/validation-benchmarks)
+Fixed benchmarks can lose value as models improve. XBOW's maintainers say [their validation suite](https://github.com/xbow-engineering/validation-benchmarks) is saturated as of mid-2026, with the vulnerabilities trained into the models. I expect other suites to run into the same problem.
 
 On a real attack surface, I have to pick the application myself first. In [MITRE ATT&CK](https://attack.mitre.org/tactics/enterprise/) terms that's reconnaissance, the first of its 15 tactics. By my reading, the tasks in ExploitGym and [NYU CTF Bench](https://arxiv.org/abs/2406.05590) (200 CTF challenges) map most closely to 3 of them, Initial Access, Execution and Privilege Escalation, where most exploitation techniques sit. Reconnaissance and the other 11 aren't covered as much.
 
@@ -79,9 +78,9 @@ I first looked at how much code a model still needs around it. A harness is the 
 
 Each new model absorbs the harness built for the previous one
 
-Jediah Katz argues that coding harnesses are getting simpler as models take over some of what the scaffolding used to do. Context and orchestration still matter. [Is the Agent Harness Dead?](https://www.youtube.com/watch?v=7Y4sbZgBdnc)
+In [*Is the Agent Harness Dead?*](https://www.youtube.com/watch?v=7Y4sbZgBdnc), Jediah Katz argues that coding harnesses are getting simpler as models take over some of what the scaffolding used to do. Context and orchestration still matter.
 
-Arize makes a similar point. General scaffolding can be trained into a model. Domain knowledge and context management transfer less easily, so they suggest keeping the harness and revisiting it as models improve. [Arize's post on harness distillation](https://arize.com/blog/agent-harness-distillation/)
+Arize makes a similar point in its [post on harness distillation](https://arize.com/blog/agent-harness-distillation/). General scaffolding can be trained into a model. Domain knowledge and context management transfer less easily, so they suggest keeping the harness and revisiting it as models improve.
 
 I believe the harness is there to **support** the model with context, instead of teaching it how to use tools or forcing it to think a certain way. Each new model will be able to call tools on its own, but there is still some value in having preset deterministic tools or workflows do the heavy lifting first before a model takes over.
 
@@ -102,9 +101,9 @@ Challenges solved by Gemini 3 Pro on NYU CTF Bench, from a 2026 study using D-CI
 
 On Kali, which already has the tooling installed, the tips made things worse. On Ubuntu they helped by 2 percentage points, which is 4 challenges out of 200.
 
-The authors found that the tips didn't consistently help. The environment and choice of model made a clear difference. The tips comparison only used 1 model, though.
+The authors found that the tips didn't consistently help. Across the wider study, the environment and choice of model made a clear difference. The tips comparison only used 1 model, though.
 
-A separate study found that both custom security prompts it tried scored below the baseline and cost more to run across 104 benchmark tasks. [Baselines Before Architecture](https://arxiv.org/abs/2607.13085)
+[*Baselines Before Architecture*](https://arxiv.org/abs/2607.13085) found the same with pentest agents. On XBOW's 104 benchmarks, both custom security prompts they tried scored below Codex CLI's default prompt and cost more to run.
 
 [Yan Shoshitaishvili's Black Hat USA 2026 keynote](https://www.youtube.com/watch?v=VNYe3Cnk5Pw) got me thinking about vulnerability properties. As I understood it, his idea is to stop asking AI to hunt for bugs directly, and instead work out the properties vulnerable code tends to have and feed those to it. I wondered whether the same works black-box. Without the source code, is there something about **how an application behaves that makes it look vulnerable to an AI**? And **just how deterministic can I be when hunting for bugs across huge scopes?**
 
@@ -118,17 +117,11 @@ To test it, I used a public vulnerability disclosure programme (VDP) whose scope
 
 Trying to minimise AI usage with deterministic tools
 
-The first 2 steps are the usual bug bounty recon. That's already well documented, so I used existing tools for them. No need to reinvent the wheel.
+The first step, collection, is the usual bug bounty recon. That's already well documented, so I used existing tools for it. No need to reinvent the wheel.
 
-This run found 92 live applications and collected about 2,500 routes and 1,500 JavaScript files. This stage uses [gau](https://github.com/lc/gau) to pull archived URLs, as well as [jsluice](https://github.com/BishopFox/jsluice) to parse JavaScript into an abstract syntax tree (AST) to extract more endpoints and scripts.
+This run found 92 live applications and collected about 2,500 routes and 1,500 JavaScript files. Collection uses [gau](https://github.com/lc/gau) to pull archived URLs, as well as [jsluice](https://github.com/BishopFox/jsluice) to parse JavaScript into an abstract syntax tree (AST) to extract more endpoints and scripts.
 
-Reading a group and asking which member behaves differently is much cheaper than reading every response one at a time. Also, grouping helps to set aside third-party SaaS and static-looking websites, both of which rarely yield bugs. Bishop Fox did something similar with [screenshot hashes back in 2019](https://tldrsec.com/blog/pose-a-threat-how-perceptual-analysis-helps-bug-hunters/), and so did XBOW with SimHash and screenshot hashing. Mine groups by fingerprinted technology, and their responses to probes.
-
-![](/images/blog/recon-grouping.svg)
-
-Grouping hosts helps to find outliers
-
-The probe stage sends benign markers to applications to see whether their behaviour changes. They're less likely to trip a WAF than full payloads, and unlikely to harm the application. For example, if I see `?id=` at the end of a URL, I would personally try `'` and `">` to test for SQLi and any reflection. AI doesn't need to do this for me. James Kettle described this back in 2016 with [Backslash Powered Scanning](https://portswigger.net/research/backslash-powered-scanning-hunting-unknown-vulnerability-classes), which sends harmless probes and looks for changes in behaviour.
+The probe stage sends benign markers to applications to see whether their behaviour changes. They're less likely to trip a WAF than full payloads, and unlikely to harm the application. For example, if I see `?id=` at the end of a URL, I would personally try `'` and `">` to test for SQLi and any reflection. AI doesn't need to do this for me. The stage also runs James Kettle's [Backslash Powered Scanner](https://portswigger.net/research/backslash-powered-scanning-hunting-unknown-vulnerability-classes) from 2016, which sends harmless probes and looks for changes in behaviour.
 
 | Probe | What it sends | What it looks for |
 | --- | --- | --- |
@@ -139,9 +132,13 @@ The probe stage sends benign markers to applications to see whether their behavi
 
 Example probes the workflow sends
 
-The method probe is less benign than the others, since a POST can trigger an action, so it only sends an empty body or `{}`.
+The method probe is less benign than the others, since a POST can trigger an action, so it only sends an empty body or `{}`. In this run, the probe stage sent about 3,500 requests across 2,300 endpoints and recorded what came back.
 
-The probe stage sent about 3,500 requests across 2,300 endpoints in this run, recording what came back.
+Once probing is done, the scripts group the applications. Reading a group and asking which member behaves differently is much cheaper than reading every response one at a time. Also, grouping helps to set aside third-party SaaS and static-looking websites, both of which rarely yield bugs. Bishop Fox did something similar with [screenshot hashes back in 2019](https://tldrsec.com/blog/pose-a-threat-how-perceptual-analysis-helps-bug-hunters/), and so did XBOW with SimHash and screenshot hashing. Mine groups applications by fingerprinted technology and by how they respond to probes.
+
+![](/images/blog/recon-grouping.svg)
+
+Grouping hosts helps to find outliers
 
 The stages above leave me with a large dataset, and I still need a way to hand the model what's worth looking at. That's what **security questions** are for.
 
@@ -159,9 +156,9 @@ I'd want to look at things like an endpoint that takes a file path, a reflected 
 
 A model writes the questions after reading these responses, along with the material around them. Each question is saved with the observation that prompted it, a check that could answer it, what's still unknown, the evidence behind it and any context about the application it was found on. Multiple passes over the same dataset are done before all questions are combined.
 
-The questions are based on what the application did. I don't use a playbook for each vulnerability class, and I keep them open-ended so the model can freely think about what could be there. 
+The questions are based on what the application did. I don't use a playbook for each vulnerability class, and I keep them open-ended so the model can freely think about what could be there.
 
-I keep the questions unranked because I don't find an LLM's rankings useful this early. From a broad unauthenticated ASM sweep alone, it doesn't have enough information to put one application first and another second. When I did do ranking, I found myself with a lot of triaging to do (could be a skill issue with my ranking algorithms). [PentestGPT](https://arxiv.org/abs/2308.06782) keeps a task tree and [MAPTA](https://arxiv.org/abs/2508.20816) generates hypotheses, but both work on a single target. Mine are written from recon across a whole scope or organisation, so the context is slightly different. 
+I keep the questions unranked because I don't find an LLM's rankings useful this early. From a broad unauthenticated ASM sweep alone, it doesn't have enough information to put one application first and another second. When I did do ranking, I found myself with a lot of triaging to do (could be a skill issue with my ranking algorithms). [PentestGPT](https://arxiv.org/abs/2308.06782) keeps a task tree and [MAPTA](https://arxiv.org/abs/2508.20816) generates hypotheses, but both work on a single target. Mine are written from recon across a whole scope or organisation, so the context is slightly different.
 
 ## Model Investigations
 
@@ -192,15 +189,15 @@ One weekend, I let the agents run mostly unattended for about 3 hours while I wo
 | Medium | 2 |
 | Low | 5 |
 
-Severity of the 12 triaged issues
+Severity of the 12 accepted issues
 
-The models went much further than I had, working through endpoints I'd never got to. They even found bypasses of the fixes for some of my earlier reports, which they did not have access to.
+The models went much further than I had, working through endpoints I'd never got to. They even found bypasses of the fixes for some of my earlier reports, without ever seeing those reports.
 
-The model picked the sites it found these issues on because they returned many dynamic API endpoints without authentication. By first targeting one site, and asking more and more questions, it fanned out to apps it deemed 'similar' in terms of region and stack. Some of the issues reported used a feature of one site to attack the other, which was really cool to see.
+The models picked the sites they found these issues on because they returned many dynamic API endpoints without authentication. By first targeting one site and asking more and more questions, they fanned out to apps they deemed 'similar' in terms of region and stack. Some of the issues reported used a feature of one site to attack another, which was really cool to see.
 
 I ran it on my Claude subscription. Getting **2 Criticals and 3 Highs** from about 3 hours of mostly unattended work felt well worth it to me.
 
-Here's a resolved finding from another programme I ran the workflow on, with the details removed and the endpoint names changed. It isn't one of the 12, but it shows how one odd response turned into a bug. 
+Here's a resolved finding from another programme I ran the workflow on, with the details removed and the endpoint names changed. It isn't one of the 12, but it shows how one odd response turned into a bug.
 
 Early on in that programme, a misconfiguration broke the application's normal flow, so no one could complete it. An agent went through the JavaScript itself and found a `/resend` endpoint for appointment letters. By asking questions about this endpoint, it helped to uncover a High severity issue.
 

@@ -1,0 +1,384 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="396" height="218" viewBox="0 0 396 218" role="img" aria-labelledby="title description">
+    <title id="title">The Farmer’s field</title>
+    <desc id="description">The Farmer sows and harvests five plots in each of three rows labelled SQLi, IDOR and Biz Logic. A star marks a finding.</desc>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --paper: #f0f4f7;
+            --ink: #243442;
+            --line: #697e90;
+            --accent: #1d5fa8;
+            --pink: #a52354;
+            --tint: #f9e8ef;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --paper: #151f28;
+                --ink: #e6edf3;
+                --line: #829aaf;
+                --accent: #8ab6e5;
+                --pink: #ee8fb6;
+                --tint: #332332;
+            }
+        }
+        .panel { fill: var(--paper); stroke: var(--line); }
+        .label { fill: var(--ink); text-anchor: middle; font: 600 16px ui-monospace, Consolas, monospace; }
+        .lane { fill: none; stroke: var(--line); stroke-dasharray: 3 4; }
+        .rim { fill: none; stroke: var(--accent); stroke-width: 2; }
+        .spark { fill: var(--accent); }
+        .sprout, .seeds, .empty { opacity: 0; }
+        @media (prefers-reduced-motion: no-preference) {
+            .walker, .sprout, .grown, .empty, .full, .seeds { animation-duration: 9s; animation-iteration-count: infinite; animation-timing-function: steps(1, end); }
+            .walker { animation-name: walk; }
+            .seeds { animation-name: scatter; animation-delay: -0.1s; }
+            .empty { opacity: 1; }
+            .full { opacity: 0; }
+            @keyframes walk {
+                0% { transform: translate(97px, 7px); animation-timing-function: steps(4, end); }
+                56% { transform: translate(293px, 7px); opacity: 1; }
+                94% { transform: translate(293px, 7px); opacity: 1; animation-timing-function: steps(3, end); }
+                99% { transform: translate(293px, 7px); opacity: 0; }
+                100% { transform: translate(97px, 7px); opacity: 0; }
+            }
+            @keyframes scatter {
+                0%, 13%, 27%, 41%, 55%, 69%, 100% { opacity: 0; }
+                7% { transform: translate(0, 0); opacity: 1; }
+                21% { transform: translate(49px, 0); opacity: 1; }
+                35% { transform: translate(98px, 0); opacity: 1; }
+                49% { transform: translate(147px, 0); opacity: 1; }
+                63% { transform: translate(196px, 0); opacity: 1; }
+            }
+            .column-0 .sprout { animation-name: sprout-0; }
+            .column-0 :is(.grown, .full) { animation-name: grow-0; }
+            .column-0 .empty { animation-name: fill-basket-0; }
+            @keyframes sprout-0 { 0%, 22%, 100% { opacity: 0; } 11% { opacity: 1; } }
+            @keyframes grow-0 { 0%, 100% { opacity: 0; } 22%, 94% { opacity: 1; } 99% { opacity: .2; } }
+            @keyframes fill-basket-0 { 0%, 100% { opacity: 1; } 22%, 99% { opacity: 0; } }
+            .column-1 .sprout { animation-name: sprout-1; }
+            .column-1 :is(.grown, .full) { animation-name: grow-1; }
+            .column-1 .empty { animation-name: fill-basket-1; }
+            @keyframes sprout-1 { 0%, 36%, 100% { opacity: 0; } 25% { opacity: 1; } }
+            @keyframes grow-1 { 0%, 100% { opacity: 0; } 36%, 94% { opacity: 1; } 99% { opacity: .2; } }
+            @keyframes fill-basket-1 { 0%, 100% { opacity: 1; } 36%, 99% { opacity: 0; } }
+            .column-2 .sprout { animation-name: sprout-2; }
+            .column-2 :is(.grown, .full) { animation-name: grow-2; }
+            .column-2 .empty { animation-name: fill-basket-2; }
+            @keyframes sprout-2 { 0%, 50%, 100% { opacity: 0; } 39% { opacity: 1; } }
+            @keyframes grow-2 { 0%, 100% { opacity: 0; } 50%, 94% { opacity: 1; } 99% { opacity: .2; } }
+            @keyframes fill-basket-2 { 0%, 100% { opacity: 1; } 50%, 99% { opacity: 0; } }
+            .column-3 .sprout { animation-name: sprout-3; }
+            .column-3 :is(.grown, .full) { animation-name: grow-3; }
+            .column-3 .empty { animation-name: fill-basket-3; }
+            @keyframes sprout-3 { 0%, 64%, 100% { opacity: 0; } 53% { opacity: 1; } }
+            @keyframes grow-3 { 0%, 100% { opacity: 0; } 64%, 94% { opacity: 1; } 99% { opacity: .2; } }
+            @keyframes fill-basket-3 { 0%, 100% { opacity: 1; } 64%, 99% { opacity: 0; } }
+            .column-4 .sprout { animation-name: sprout-4; }
+            .column-4 :is(.grown, .full) { animation-name: grow-4; }
+            .column-4 .empty { animation-name: fill-basket-4; }
+            @keyframes sprout-4 { 0%, 78%, 100% { opacity: 0; } 67% { opacity: 1; } }
+            @keyframes grow-4 { 0%, 100% { opacity: 0; } 78%, 94% { opacity: 1; } 99% { opacity: .2; } }
+            @keyframes fill-basket-4 { 0%, 100% { opacity: 1; } 78%, 99% { opacity: 0; } }
+        }
+    </style>
+    <defs>
+        <symbol id="farmerBody" viewBox="-1 -1 18 18" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M6 0h4v1h-4zM5 1h1v1h-1zM10 1h1v1h-1zM2 2h3v1h-3zM11 2h3v1h-3zM1 3h1v1h-1zM14 3h1v1h-1zM1 4h1v1h-1zM14 4h1v1h-1zM2 5h2v1h-2zM12 5h2v1h-2zM3 6h1v1h-1zM5 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM3 7h1v1h-1zM12 7h1v1h-1zM3 8h2v1h-2zM11 8h2v1h-2zM2 9h1v1h-1zM13 9h1v1h-1zM1 10h1v1h-1zM14 10h1v1h-1zM1 11h1v1h-1zM14 11h1v1h-1zM1 12h1v1h-1zM14 12h1v1h-1zM1 13h1v1h-1zM7 13h2v1h-2zM14 13h1v1h-1zM2 14h1v1h-1zM6 14h1v1h-1zM9 14h1v1h-1zM13 14h1v1h-1zM2 15h5v1h-5zM9 15h5v1h-5zM3 16h3v1h-3zM10 16h3v1h-3z" />
+            <path fill="#D9C06A" d="M6 1h4v1h-4zM5 2h6v1h-6zM2 3h12v1h-12z" />
+            <path fill="#A8914A" d="M2 4h12v1h-12z" />
+            <path fill="#F0C193" d="M4 5h8v1h-8zM4 6h1v1h-1zM6 6h4v1h-4zM11 6h1v1h-1zM4 7h8v1h-8zM5 8h6v1h-6zM2 10h1v1h-1zM13 10h1v1h-1zM2 11h1v1h-1zM13 11h1v1h-1z" />
+            <path fill="#4E9B52" d="M3 9h10v1h-10zM3 10h10v1h-10zM3 11h10v1h-10zM2 12h12v1h-12zM2 13h5v1h-5zM9 13h5v1h-5z" />
+            <path fill="#5B3C20" d="M3 14h3v1h-3zM10 14h3v1h-3z" />
+        </symbol>
+        <symbol id="rake" viewBox="-1 -1 12 12" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M4 -1h2v1h-2zM3 0h1v1h-1zM6 0h1v1h-1zM3 1h1v1h-1zM6 1h1v1h-1zM3 2h1v1h-1zM6 2h1v1h-1zM3 3h1v1h-1zM6 3h1v1h-1zM3 4h1v1h-1zM6 4h1v1h-1zM0 5h4v1h-4zM6 5h4v1h-4zM-1 6h1v1h-1zM10 6h1v1h-1zM-1 7h1v1h-1zM1 7h1v1h-1zM3 7h1v1h-1zM6 7h1v1h-1zM8 7h1v1h-1zM10 7h1v1h-1zM-1 8h1v1h-1zM1 8h1v1h-1zM3 8h1v1h-1zM6 8h1v1h-1zM8 8h1v1h-1zM10 8h1v1h-1zM0 9h1v1h-1zM2 9h1v1h-1zM4 9h2v1h-2zM7 9h1v1h-1zM9 9h1v1h-1z" />
+            <path fill="#7A5230" d="M4 0h2v1h-2zM4 1h2v1h-2zM4 2h2v1h-2zM4 3h2v1h-2zM4 4h2v1h-2zM4 5h2v1h-2z" />
+            <path fill="#99A2B4" d="M0 6h10v1h-10zM0 7h1v1h-1zM2 7h1v1h-1zM4 7h2v1h-2zM7 7h1v1h-1zM9 7h1v1h-1zM0 8h1v1h-1zM2 8h1v1h-1zM4 8h2v1h-2zM7 8h1v1h-1zM9 8h1v1h-1z" />
+        </symbol>
+        <symbol id="sprout" viewBox="-1 -1 14 14" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M3 5h2v1h-2zM7 5h2v1h-2zM2 6h1v1h-1zM5 6h2v1h-2zM9 6h1v1h-1zM3 7h1v1h-1zM8 7h1v1h-1zM4 8h1v1h-1zM7 8h1v1h-1zM4 9h1v1h-1zM7 9h1v1h-1zM4 10h1v1h-1zM7 10h1v1h-1zM5 11h2v1h-2z" />
+            <path fill="#4E9B52" d="M3 6h2v1h-2zM7 6h2v1h-2zM4 7h4v1h-4zM5 8h2v1h-2zM5 9h2v1h-2zM5 10h2v1h-2z" />
+        </symbol>
+        <symbol id="plantTreeA" viewBox="-1 -1 14 14" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M4 0h4v1h-4zM2 1h2v1h-2zM8 1h2v1h-2zM1 2h1v1h-1zM10 2h1v1h-1zM0 3h1v1h-1zM11 3h1v1h-1zM0 4h1v1h-1zM11 4h1v1h-1zM1 5h1v1h-1zM10 5h1v1h-1zM2 6h1v1h-1zM9 6h1v1h-1zM3 7h2v1h-2zM7 7h2v1h-2zM4 8h1v1h-1zM7 8h1v1h-1zM4 9h1v1h-1zM7 9h1v1h-1zM3 10h1v1h-1zM8 10h1v1h-1zM4 11h4v1h-4z" />
+            <path fill="#EFB63C" d="M4 1h4v1h-4zM2 2h8v1h-8zM1 3h10v1h-10zM1 4h10v1h-10zM3 5h6v1h-6zM4 6h4v1h-4z" />
+            <path fill="#B8831F" d="M2 5h1v1h-1zM9 5h1v1h-1zM3 6h1v1h-1zM8 6h1v1h-1z" />
+            <path fill="#7A5230" d="M5 7h2v1h-2zM5 8h2v1h-2zM5 9h2v1h-2z" />
+            <path fill="#5B3C20" d="M4 10h4v1h-4z" />
+        </symbol>
+        <symbol id="plantFruit" viewBox="-1 -1 14 14" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M5 0h2v1h-2zM3 1h2v1h-2zM7 1h2v1h-2zM2 2h1v1h-1zM9 2h1v1h-1zM1 3h1v1h-1zM10 3h1v1h-1zM0 4h1v1h-1zM11 4h1v1h-1zM0 5h1v1h-1zM11 5h1v1h-1zM0 6h1v1h-1zM11 6h1v1h-1zM1 7h1v1h-1zM10 7h1v1h-1zM2 8h1v1h-1zM9 8h1v1h-1zM3 9h1v1h-1zM8 9h1v1h-1zM4 10h1v1h-1zM7 10h1v1h-1zM3 11h1v1h-1zM8 11h1v1h-1zM4 12h4v1h-4z" />
+            <path fill="#35703C" d="M5 1h1v1h-1zM3 8h1v1h-1zM8 8h1v1h-1zM7 9h1v1h-1z" />
+            <path fill="#4E9B52" d="M6 1h1v1h-1zM3 2h6v1h-6zM2 3h1v1h-1zM5 3h5v1h-5zM1 4h1v1h-1zM6 4h2v1h-2zM10 4h1v1h-1zM1 5h1v1h-1zM5 5h2v1h-2zM1 6h2v1h-2zM4 6h3v1h-3zM10 6h1v1h-1zM2 7h3v1h-3zM7 7h3v1h-3z" />
+            <path fill="#D9483C" d="M3 3h2v1h-2zM2 4h1v1h-1zM4 4h2v1h-2zM8 4h2v1h-2zM2 5h3v1h-3zM7 5h1v1h-1zM9 5h2v1h-2zM3 6h1v1h-1zM7 6h3v1h-3zM5 7h2v1h-2zM4 8h1v1h-1zM6 8h2v1h-2zM4 9h3v1h-3z" />
+            <path fill="#EDEFF5" d="M3 4h1v1h-1zM8 5h1v1h-1zM5 8h1v1h-1z" />
+            <path fill="#7A5230" d="M5 10h2v1h-2z" />
+            <path fill="#5B3C20" d="M4 11h4v1h-4z" />
+        </symbol>
+        <symbol id="plantPine" viewBox="-1 -1 14 14" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M5 -1h2v1h-2zM4 0h1v1h-1zM7 0h1v1h-1zM3 1h1v1h-1zM8 1h1v1h-1zM2 2h1v1h-1zM9 2h1v1h-1zM3 3h1v1h-1zM8 3h1v1h-1zM2 4h1v1h-1zM9 4h1v1h-1zM1 5h1v1h-1zM10 5h1v1h-1zM2 6h1v1h-1zM9 6h1v1h-1zM1 7h1v1h-1zM10 7h1v1h-1zM0 8h1v1h-1zM11 8h1v1h-1zM1 9h4v1h-4zM7 9h4v1h-4zM3 10h1v1h-1zM8 10h1v1h-1zM4 11h4v1h-4z" />
+            <path fill="#4E9B52" d="M5 0h2v1h-2zM4 1h4v1h-4zM3 2h6v1h-6zM4 3h4v1h-4zM3 4h6v1h-6zM2 5h8v1h-8zM3 6h6v1h-6zM2 7h8v1h-8zM1 8h10v1h-10z" />
+            <path fill="#7A5230" d="M5 9h2v1h-2z" />
+            <path fill="#5B3C20" d="M4 10h4v1h-4z" />
+        </symbol>
+        <symbol id="plantBloom" viewBox="-1 -1 14 14" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M2 1h2v1h-2zM5 1h2v1h-2zM8 1h2v1h-2zM1 2h1v1h-1zM4 2h1v1h-1zM7 2h1v1h-1zM10 2h1v1h-1zM0 3h1v1h-1zM11 3h1v1h-1zM0 4h1v1h-1zM11 4h1v1h-1zM-1 5h1v1h-1zM12 5h1v1h-1zM0 6h1v1h-1zM11 6h1v1h-1zM0 7h1v1h-1zM11 7h1v1h-1zM1 8h1v1h-1zM10 8h1v1h-1zM2 9h1v1h-1zM5 9h2v1h-2zM9 9h1v1h-1zM3 10h2v1h-2zM7 10h2v1h-2z" />
+            <path fill="#4E9B52" d="M2 2h2v1h-2zM5 2h2v1h-2zM8 2h2v1h-2zM1 3h1v1h-1zM3 3h2v1h-2zM6 3h2v1h-2zM9 3h2v1h-2zM1 4h10v1h-10zM0 5h12v1h-12zM1 6h2v1h-2zM4 6h4v1h-4zM9 6h2v1h-2zM1 7h10v1h-10z" />
+            <path fill="#E0598C" d="M2 3h1v1h-1zM5 3h1v1h-1zM8 3h1v1h-1zM3 6h1v1h-1zM8 6h1v1h-1z" />
+            <path fill="#35703C" d="M2 8h8v1h-8zM3 9h2v1h-2zM7 9h2v1h-2z" />
+        </symbol>
+        <symbol id="plantGrass" viewBox="-1 -1 14 14" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M2 3h1v1h-1zM9 3h1v1h-1zM1 4h1v1h-1zM3 4h2v1h-2zM7 4h2v1h-2zM10 4h1v1h-1zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h2v1h-2zM8 5h1v1h-1zM10 5h1v1h-1zM0 6h1v1h-1zM3 6h1v1h-1zM5 6h2v1h-2zM8 6h1v1h-1zM11 6h1v1h-1zM0 7h1v1h-1zM11 7h1v1h-1zM0 8h1v1h-1zM11 8h1v1h-1zM-1 9h1v1h-1zM12 9h1v1h-1zM0 10h1v1h-1zM11 10h1v1h-1zM1 11h10v1h-10z" />
+            <path fill="#4E9B52" d="M2 4h1v1h-1zM9 4h1v1h-1zM2 5h1v1h-1zM4 5h1v1h-1zM7 5h1v1h-1zM9 5h1v1h-1zM1 6h2v1h-2zM4 6h1v1h-1zM7 6h1v1h-1zM9 6h2v1h-2zM1 7h10v1h-10zM1 8h10v1h-10zM0 9h12v1h-12z" />
+            <path fill="#35703C" d="M1 10h10v1h-10z" />
+        </symbol>
+        <symbol id="plantShrub" viewBox="-1 -1 14 14" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M3 2h6v1h-6zM2 3h1v1h-1zM9 3h1v1h-1zM1 4h1v1h-1zM10 4h1v1h-1zM0 5h1v1h-1zM11 5h1v1h-1zM0 6h1v1h-1zM11 6h1v1h-1zM1 7h1v1h-1zM10 7h1v1h-1zM2 8h1v1h-1zM9 8h1v1h-1zM3 9h2v1h-2zM7 9h2v1h-2zM3 10h1v1h-1zM8 10h1v1h-1zM4 11h4v1h-4z" />
+            <path fill="#EFB63C" d="M3 3h6v1h-6zM2 4h8v1h-8zM1 5h10v1h-10zM1 6h10v1h-10zM3 7h6v1h-6z" />
+            <path fill="#B8831F" d="M2 7h1v1h-1zM9 7h1v1h-1zM3 8h6v1h-6z" />
+            <path fill="#7A5230" d="M5 9h2v1h-2z" />
+            <path fill="#5B3C20" d="M4 10h4v1h-4z" />
+        </symbol>
+        <symbol id="plantSun" viewBox="-1 -1 14 14" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M4 0h4v1h-4zM3 1h1v1h-1zM8 1h1v1h-1zM2 2h1v1h-1zM9 2h1v1h-1zM2 3h1v1h-1zM9 3h1v1h-1zM2 4h1v1h-1zM9 4h1v1h-1zM2 5h1v1h-1zM9 5h1v1h-1zM3 6h1v1h-1zM8 6h1v1h-1zM2 7h3v1h-3zM7 7h1v1h-1zM1 8h1v1h-1zM8 8h2v1h-2zM2 9h3v1h-3zM10 9h1v1h-1zM4 10h1v1h-1zM7 10h3v1h-3zM3 11h1v1h-1zM8 11h1v1h-1zM4 12h4v1h-4z" />
+            <path fill="#EFB63C" d="M4 1h4v1h-4zM3 2h6v1h-6zM3 3h2v1h-2zM7 3h2v1h-2zM3 4h2v1h-2zM7 4h2v1h-2zM3 5h6v1h-6zM4 6h4v1h-4z" />
+            <path fill="#5B3C20" d="M5 3h2v1h-2zM5 4h2v1h-2z" />
+            <path fill="#4E9B52" d="M5 7h2v1h-2zM2 8h6v1h-6zM5 9h5v1h-5zM5 10h2v1h-2z" />
+            <path fill="#35703C" d="M4 11h4v1h-4z" />
+        </symbol>
+        <symbol id="plantTreeB" viewBox="-1 -1 14 14" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M4 0h4v1h-4zM2 1h2v1h-2zM8 1h2v1h-2zM1 2h1v1h-1zM10 2h1v1h-1zM0 3h1v1h-1zM11 3h1v1h-1zM-1 4h1v1h-1zM12 4h1v1h-1zM0 5h1v1h-1zM11 5h1v1h-1zM1 6h1v1h-1zM10 6h1v1h-1zM2 7h1v1h-1zM9 7h1v1h-1zM3 8h2v1h-2zM7 8h2v1h-2zM4 9h1v1h-1zM7 9h1v1h-1zM3 10h1v1h-1zM8 10h1v1h-1zM4 11h4v1h-4z" />
+            <path fill="#4E9B52" d="M4 1h4v1h-4zM2 2h8v1h-8zM1 3h10v1h-10zM0 4h12v1h-12zM1 5h10v1h-10zM3 6h6v1h-6zM5 7h2v1h-2z" />
+            <path fill="#35703C" d="M2 6h1v1h-1zM9 6h1v1h-1zM3 7h2v1h-2zM7 7h2v1h-2z" />
+            <path fill="#7A5230" d="M5 8h2v1h-2zM5 9h2v1h-2z" />
+            <path fill="#5B3C20" d="M4 10h4v1h-4z" />
+        </symbol>
+        <symbol id="plantFlowers" viewBox="-1 -1 14 14" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M2 1h1v1h-1zM9 1h1v1h-1zM1 2h1v1h-1zM3 2h1v1h-1zM8 2h1v1h-1zM10 2h1v1h-1zM0 3h1v1h-1zM4 3h2v1h-2zM7 3h1v1h-1zM11 3h1v1h-1zM1 4h1v1h-1zM3 4h2v1h-2zM6 4h1v1h-1zM8 4h1v1h-1zM10 4h1v1h-1zM1 5h1v1h-1zM3 5h1v1h-1zM7 5h2v1h-2zM10 5h1v1h-1zM1 6h1v1h-1zM3 6h2v1h-2zM6 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM1 7h1v1h-1zM3 7h2v1h-2zM6 7h3v1h-3zM10 7h1v1h-1zM0 8h1v1h-1zM11 8h1v1h-1zM-1 9h1v1h-1zM12 9h1v1h-1zM0 10h1v1h-1zM11 10h1v1h-1zM1 11h10v1h-10z" />
+            <path fill="#E0598C" d="M2 2h1v1h-1zM1 3h1v1h-1zM3 3h1v1h-1zM2 4h1v1h-1z" />
+            <path fill="#7B6BD6" d="M9 2h1v1h-1zM8 3h1v1h-1zM10 3h1v1h-1zM9 4h1v1h-1z" />
+            <path fill="#EDEFF5" d="M2 3h1v1h-1zM9 3h1v1h-1zM5 5h1v1h-1z" />
+            <path fill="#EFB63C" d="M5 4h1v1h-1zM4 5h1v1h-1zM6 5h1v1h-1zM5 6h1v1h-1z" />
+            <path fill="#4E9B52" d="M2 5h1v1h-1zM9 5h1v1h-1zM2 6h1v1h-1zM9 6h1v1h-1zM2 7h1v1h-1zM5 7h1v1h-1zM9 7h1v1h-1zM1 8h10v1h-10zM0 9h12v1h-12z" />
+            <path fill="#35703C" d="M1 10h10v1h-10z" />
+        </symbol>
+        <symbol id="plantBush" viewBox="-1 -1 14 14" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M3 1h6v1h-6zM2 2h1v1h-1zM9 2h1v1h-1zM1 3h1v1h-1zM10 3h1v1h-1zM0 4h1v1h-1zM11 4h1v1h-1zM0 5h1v1h-1zM11 5h1v1h-1zM0 6h1v1h-1zM11 6h1v1h-1zM1 7h1v1h-1zM10 7h1v1h-1zM2 8h1v1h-1zM9 8h1v1h-1zM3 9h2v1h-2zM7 9h2v1h-2zM3 10h1v1h-1zM8 10h1v1h-1zM4 11h4v1h-4z" />
+            <path fill="#4E9B52" d="M3 2h6v1h-6zM2 3h2v1h-2zM5 3h2v1h-2zM8 3h2v1h-2zM1 4h10v1h-10zM1 5h1v1h-1zM3 5h6v1h-6zM10 5h1v1h-1zM1 6h10v1h-10zM2 7h2v1h-2zM5 7h2v1h-2zM8 7h2v1h-2z" />
+            <path fill="#E0598C" d="M4 3h1v1h-1zM7 3h1v1h-1zM2 5h1v1h-1zM9 5h1v1h-1zM4 7h1v1h-1zM7 7h1v1h-1z" />
+            <path fill="#35703C" d="M3 8h6v1h-6z" />
+            <path fill="#7A5230" d="M5 9h2v1h-2z" />
+            <path fill="#5B3C20" d="M4 10h4v1h-4z" />
+        </symbol>
+        <symbol id="basketEmpty" viewBox="-1 -1 14 14" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M4 1h4v1h-4zM3 2h1v1h-1zM8 2h1v1h-1zM2 3h1v1h-1zM4 3h4v1h-4zM9 3h1v1h-1zM1 4h1v1h-1zM3 4h1v1h-1zM8 4h1v1h-1zM10 4h1v1h-1zM1 5h1v1h-1zM3 5h6v1h-6zM10 5h1v1h-1zM0 6h1v1h-1zM11 6h1v1h-1zM0 7h1v1h-1zM11 7h1v1h-1zM0 8h1v1h-1zM11 8h1v1h-1zM1 9h1v1h-1zM10 9h1v1h-1zM1 10h1v1h-1zM10 10h1v1h-1zM2 11h1v1h-1zM9 11h1v1h-1zM3 12h6v1h-6z" />
+            <path fill="#5B3C20" d="M4 2h4v1h-4zM3 3h1v1h-1zM8 3h1v1h-1zM2 4h1v1h-1zM9 4h1v1h-1zM2 5h1v1h-1zM9 5h1v1h-1z" />
+            <path fill="#D9C06A" d="M1 6h10v1h-10zM1 7h1v1h-1zM3 7h1v1h-1zM5 7h1v1h-1zM7 7h1v1h-1zM9 7h1v1h-1zM2 8h1v1h-1zM4 8h1v1h-1zM6 8h1v1h-1zM8 8h1v1h-1zM10 8h1v1h-1zM2 9h1v1h-1zM4 9h1v1h-1zM6 9h1v1h-1zM8 9h1v1h-1zM3 10h1v1h-1zM5 10h1v1h-1zM7 10h1v1h-1zM9 10h1v1h-1z" />
+            <path fill="#A8914A" d="M2 7h1v1h-1zM4 7h1v1h-1zM6 7h1v1h-1zM8 7h1v1h-1zM10 7h1v1h-1zM1 8h1v1h-1zM3 8h1v1h-1zM5 8h1v1h-1zM7 8h1v1h-1zM9 8h1v1h-1zM3 9h1v1h-1zM5 9h1v1h-1zM7 9h1v1h-1zM9 9h1v1h-1zM2 10h1v1h-1zM4 10h1v1h-1zM6 10h1v1h-1zM8 10h1v1h-1zM3 11h6v1h-6z" />
+        </symbol>
+        <symbol id="basketFull" viewBox="-1 -1 14 14" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M4 1h4v1h-4zM3 2h1v1h-1zM8 2h1v1h-1zM2 3h1v1h-1zM4 3h4v1h-4zM9 3h1v1h-1zM1 4h1v1h-1zM5 4h2v1h-2zM10 4h1v1h-1zM0 5h1v1h-1zM11 5h1v1h-1zM0 6h1v1h-1zM11 6h1v1h-1zM0 7h1v1h-1zM11 7h1v1h-1zM0 8h1v1h-1zM11 8h1v1h-1zM1 9h1v1h-1zM10 9h1v1h-1zM1 10h1v1h-1zM10 10h1v1h-1zM2 11h1v1h-1zM9 11h1v1h-1zM3 12h6v1h-6z" />
+            <path fill="#5B3C20" d="M4 2h4v1h-4zM3 3h1v1h-1zM8 3h1v1h-1zM2 4h1v1h-1zM9 4h1v1h-1z" />
+            <path fill="#D9483C" d="M3 4h2v1h-2zM7 4h2v1h-2zM1 5h1v1h-1zM3 5h4v1h-4zM8 5h3v1h-3z" />
+            <path fill="#EDEFF5" d="M2 5h1v1h-1zM7 5h1v1h-1z" />
+            <path fill="#D9C06A" d="M1 6h10v1h-10zM1 7h1v1h-1zM3 7h1v1h-1zM5 7h1v1h-1zM7 7h1v1h-1zM9 7h1v1h-1zM2 8h1v1h-1zM4 8h1v1h-1zM6 8h1v1h-1zM8 8h1v1h-1zM10 8h1v1h-1zM2 9h1v1h-1zM4 9h1v1h-1zM6 9h1v1h-1zM8 9h1v1h-1zM3 10h1v1h-1zM5 10h1v1h-1zM7 10h1v1h-1zM9 10h1v1h-1z" />
+            <path fill="#A8914A" d="M2 7h1v1h-1zM4 7h1v1h-1zM6 7h1v1h-1zM8 7h1v1h-1zM10 7h1v1h-1zM1 8h1v1h-1zM3 8h1v1h-1zM5 8h1v1h-1zM7 8h1v1h-1zM9 8h1v1h-1zM3 9h1v1h-1zM5 9h1v1h-1zM7 9h1v1h-1zM9 9h1v1h-1zM2 10h1v1h-1zM4 10h1v1h-1zM6 10h1v1h-1zM8 10h1v1h-1zM3 11h6v1h-6z" />
+        </symbol>
+    </defs>
+    <rect class="panel" x="97" y="7" width="239" height="50" rx="4" />
+    <path class="lane" d="M113 49h210" />
+    <g class="walker" transform="translate(293 7)">
+        <use href="#farmerBody" x="0" y="1" width="43" height="43" />
+        <use href="#rake" x="29" y="20" width="21" height="21" />
+    </g>
+    <rect class="panel" x="4" y="63" width="90" height="46" rx="4" />
+    <text class="label" x="49" y="92">SQLi</text>
+    <g class="plot column-0">
+        <rect class="panel" x="97" y="63" width="43" height="46" rx="4" />
+        <path fill="#785533" shape-rendering="crispEdges" d="M102 98h33v6h-33z" />
+        <g class="sprout">
+            <use href="#sprout" x="104" y="71" width="29" height="29" />
+        </g>
+        <g class="grown">
+            <use href="#plantTreeA" x="100" y="64" width="37" height="37" />
+        </g>
+    </g>
+    <g class="plot column-1">
+        <rect class="panel" x="146" y="63" width="43" height="46" rx="4" />
+        <path fill="#785533" shape-rendering="crispEdges" d="M151 98h33v6h-33z" />
+        <g class="sprout">
+            <use href="#sprout" x="153" y="71" width="29" height="29" />
+        </g>
+        <g class="grown finding">
+            <use href="#plantFruit" x="149" y="64" width="37" height="37" />
+            <rect class="rim" x="147" y="64" width="41" height="44" rx="4" />
+            <path class="spark" d="M180 67l1.5 3 3 .5-2.2 2 .6 3-2.9-1.5-2.9 1.5.6-3-2.2-2 3-.5z" />
+        </g>
+    </g>
+    <g class="plot column-2">
+        <rect class="panel" x="195" y="63" width="43" height="46" rx="4" />
+        <path fill="#785533" shape-rendering="crispEdges" d="M200 98h33v6h-33z" />
+        <g class="sprout">
+            <use href="#sprout" x="202" y="71" width="29" height="29" />
+        </g>
+        <g class="grown">
+            <use href="#plantPine" x="198" y="64" width="37" height="37" />
+        </g>
+    </g>
+    <g class="plot column-3">
+        <rect class="panel" x="244" y="63" width="43" height="46" rx="4" />
+        <path fill="#785533" shape-rendering="crispEdges" d="M249 98h33v6h-33z" />
+        <g class="sprout">
+            <use href="#sprout" x="251" y="71" width="29" height="29" />
+        </g>
+        <g class="grown">
+            <use href="#plantBloom" x="247" y="64" width="37" height="37" />
+        </g>
+    </g>
+    <g class="plot column-4">
+        <rect class="panel" x="293" y="63" width="43" height="46" rx="4" />
+        <path fill="#785533" shape-rendering="crispEdges" d="M298 98h33v6h-33z" />
+        <g class="sprout">
+            <use href="#sprout" x="300" y="71" width="29" height="29" />
+        </g>
+        <g class="grown">
+            <use href="#plantGrass" x="296" y="64" width="37" height="37" />
+        </g>
+    </g>
+    <g class="basket column-1">
+        <g class="empty">
+            <use href="#basketEmpty" x="351" y="66" width="38" height="38" />
+        </g>
+        <g class="full">
+            <use href="#basketFull" x="351" y="66" width="38" height="38" />
+        </g>
+    </g>
+    <rect class="panel" x="4" y="115" width="90" height="46" rx="4" />
+    <text class="label" x="49" y="144">IDOR</text>
+    <g class="plot column-0">
+        <rect class="panel" x="97" y="115" width="43" height="46" rx="4" />
+        <path fill="#785533" shape-rendering="crispEdges" d="M102 150h33v6h-33z" />
+        <g class="sprout">
+            <use href="#sprout" x="104" y="123" width="29" height="29" />
+        </g>
+        <g class="grown">
+            <use href="#plantShrub" x="100" y="116" width="37" height="37" />
+        </g>
+    </g>
+    <g class="plot column-1">
+        <rect class="panel" x="146" y="115" width="43" height="46" rx="4" />
+        <path fill="#785533" shape-rendering="crispEdges" d="M151 150h33v6h-33z" />
+        <g class="sprout">
+            <use href="#sprout" x="153" y="123" width="29" height="29" />
+        </g>
+        <g class="grown">
+            <use href="#plantSun" x="149" y="116" width="37" height="37" />
+        </g>
+    </g>
+    <g class="plot column-2">
+        <rect class="panel" x="195" y="115" width="43" height="46" rx="4" />
+        <path fill="#785533" shape-rendering="crispEdges" d="M200 150h33v6h-33z" />
+        <g class="sprout">
+            <use href="#sprout" x="202" y="123" width="29" height="29" />
+        </g>
+        <g class="grown">
+            <use href="#plantTreeB" x="198" y="116" width="37" height="37" />
+        </g>
+    </g>
+    <g class="plot column-3">
+        <rect class="panel" x="244" y="115" width="43" height="46" rx="4" />
+        <path fill="#785533" shape-rendering="crispEdges" d="M249 150h33v6h-33z" />
+        <g class="sprout">
+            <use href="#sprout" x="251" y="123" width="29" height="29" />
+        </g>
+        <g class="grown finding">
+            <use href="#plantFruit" x="247" y="116" width="37" height="37" />
+            <rect class="rim" x="245" y="116" width="41" height="44" rx="4" />
+            <path class="spark" d="M278 119l1.5 3 3 .5-2.2 2 .6 3-2.9-1.5-2.9 1.5.6-3-2.2-2 3-.5z" />
+        </g>
+    </g>
+    <g class="plot column-4">
+        <rect class="panel" x="293" y="115" width="43" height="46" rx="4" />
+        <path fill="#785533" shape-rendering="crispEdges" d="M298 150h33v6h-33z" />
+        <g class="sprout">
+            <use href="#sprout" x="300" y="123" width="29" height="29" />
+        </g>
+        <g class="grown">
+            <use href="#plantFlowers" x="296" y="116" width="37" height="37" />
+        </g>
+    </g>
+    <g class="basket column-3">
+        <g class="empty">
+            <use href="#basketEmpty" x="351" y="118" width="38" height="38" />
+        </g>
+        <g class="full">
+            <use href="#basketFull" x="351" y="118" width="38" height="38" />
+        </g>
+    </g>
+    <rect class="panel" x="4" y="167" width="90" height="46" rx="4" />
+    <text class="label" x="49" y="196">Biz Logic</text>
+    <g class="plot column-0">
+        <rect class="panel" x="97" y="167" width="43" height="46" rx="4" />
+        <path fill="#785533" shape-rendering="crispEdges" d="M102 202h33v6h-33z" />
+        <g class="sprout">
+            <use href="#sprout" x="104" y="175" width="29" height="29" />
+        </g>
+        <g class="grown finding">
+            <use href="#plantFruit" x="100" y="168" width="37" height="37" />
+            <rect class="rim" x="98" y="168" width="41" height="44" rx="4" />
+            <path class="spark" d="M131 171l1.5 3 3 .5-2.2 2 .6 3-2.9-1.5-2.9 1.5.6-3-2.2-2 3-.5z" />
+        </g>
+    </g>
+    <g class="plot column-1">
+        <rect class="panel" x="146" y="167" width="43" height="46" rx="4" />
+        <path fill="#785533" shape-rendering="crispEdges" d="M151 202h33v6h-33z" />
+        <g class="sprout">
+            <use href="#sprout" x="153" y="175" width="29" height="29" />
+        </g>
+        <g class="grown">
+            <use href="#plantBush" x="149" y="168" width="37" height="37" />
+        </g>
+    </g>
+    <g class="plot column-2">
+        <rect class="panel" x="195" y="167" width="43" height="46" rx="4" />
+        <path fill="#785533" shape-rendering="crispEdges" d="M200 202h33v6h-33z" />
+        <g class="sprout">
+            <use href="#sprout" x="202" y="175" width="29" height="29" />
+        </g>
+        <g class="grown">
+            <use href="#plantGrass" x="198" y="168" width="37" height="37" />
+        </g>
+    </g>
+    <g class="plot column-3">
+        <rect class="panel" x="244" y="167" width="43" height="46" rx="4" />
+        <path fill="#785533" shape-rendering="crispEdges" d="M249 202h33v6h-33z" />
+        <g class="sprout">
+            <use href="#sprout" x="251" y="175" width="29" height="29" />
+        </g>
+        <g class="grown finding">
+            <use href="#plantFruit" x="247" y="168" width="37" height="37" />
+            <rect class="rim" x="245" y="168" width="41" height="44" rx="4" />
+            <path class="spark" d="M278 171l1.5 3 3 .5-2.2 2 .6 3-2.9-1.5-2.9 1.5.6-3-2.2-2 3-.5z" />
+        </g>
+    </g>
+    <g class="plot column-4">
+        <rect class="panel" x="293" y="167" width="43" height="46" rx="4" />
+        <path fill="#785533" shape-rendering="crispEdges" d="M298 202h33v6h-33z" />
+        <g class="sprout">
+            <use href="#sprout" x="300" y="175" width="29" height="29" />
+        </g>
+        <g class="grown">
+            <use href="#plantPine" x="296" y="168" width="37" height="37" />
+        </g>
+    </g>
+    <g class="basket column-0">
+        <g class="empty">
+            <use href="#basketEmpty" x="351" y="170" width="38" height="38" />
+        </g>
+        <g class="full">
+            <use href="#basketFull" x="351" y="170" width="38" height="38" />
+        </g>
+    </g>
+    <g class="seeds" shape-rendering="crispEdges">
+        <path fill="#8F6A40" d="M115 59h3v4h-3zM121 64h3v4h-3zM125 57h3v4h-3z" />
+    </g>
+</svg>

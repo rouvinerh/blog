@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="322" viewBox="0 0 360 322" role="img" aria-labelledby="title description">
+    <title id="title">The Cheerleader’s pep talk</title>
+    <desc id="description">The Cheerleader offers four suggestions to a farmer who came back empty-handed.</desc>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --paper: #f0f4f7;
+            --ink: #243442;
+            --line: #697e90;
+            --pink: #a52354;
+            --tint: #f9e8ef;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --paper: #151f28;
+                --ink: #e6edf3;
+                --line: #829aaf;
+                --pink: #ee8fb6;
+                --tint: #332332;
+            }
+        }
+        .card, .bubble { fill: var(--paper); stroke: var(--line); stroke-width: 1.5; }
+        .bubble { stroke: var(--pink); stroke-width: 2; }
+        .option .card {
+            fill: var(--card-fill, var(--paper));
+            stroke: var(--card-stroke, var(--line));
+            stroke-width: var(--card-weight, 1.5);
+        }
+        .featured {
+            --card-fill: var(--tint);
+            --card-stroke: var(--pink);
+            --card-text: var(--pink);
+            --card-weight: 2;
+            --speech-visibility: visible;
+        }
+        .label, .speech { fill: var(--ink); text-anchor: middle; font: 600 16px ui-monospace, Consolas, monospace; }
+        .speech { font-size: 17px; visibility: var(--speech-visibility, hidden); }
+        .pointer { fill: var(--pink); }
+        .option .label { fill: var(--card-text, var(--ink)); }
+        .agent { filter: saturate(.25); }
+        @media (prefers-reduced-motion: no-preference) {
+            .option { animation: highlight-card 12s steps(1, end) infinite; }
+            .option:nth-child(2) { animation-delay: -9s; }
+            .option:nth-child(3) { animation-delay: -6s; }
+            .option:nth-child(4) { animation-delay: -3s; }
+            @keyframes highlight-card {
+                0% {
+                    --card-fill: var(--tint);
+                    --card-stroke: var(--pink);
+                    --card-text: var(--pink);
+                    --card-weight: 2;
+                    --speech-visibility: visible;
+                }
+                25%, 100% {
+                    --card-fill: var(--paper);
+                    --card-stroke: var(--line);
+                    --card-text: var(--ink);
+                    --card-weight: 1.5;
+                    --speech-visibility: hidden;
+                }
+            }
+        }
+    </style>
+    <defs>
+        <symbol id="chompyA" viewBox="-1 -1 18 18" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M5 2h6v1h-6zM3 3h2v1h-2zM11 3h2v1h-2zM2 4h1v1h-1zM13 4h1v1h-1zM1 5h1v1h-1zM14 5h1v1h-1zM1 6h1v1h-1zM4 6h1v1h-1zM11 6h1v1h-1zM14 6h1v1h-1zM1 7h1v1h-1zM14 7h1v1h-1zM1 8h1v1h-1zM4 8h8v1h-8zM14 8h1v1h-1zM1 9h1v1h-1zM4 9h1v1h-1zM6 9h1v1h-1zM8 9h1v1h-1zM10 9h1v1h-1zM14 9h1v1h-1zM0 10h2v1h-2zM4 10h8v1h-8zM14 10h2v1h-2zM-1 11h1v1h-1zM16 11h1v1h-1zM-1 12h1v1h-1zM2 12h1v1h-1zM13 12h1v1h-1zM16 12h1v1h-1zM0 13h2v1h-2zM3 13h1v1h-1zM12 13h1v1h-1zM14 13h2v1h-2zM4 14h1v1h-1zM7 14h2v1h-2zM11 14h1v1h-1zM3 15h10v1h-10zM4 16h3v1h-3zM9 16h3v1h-3z" />
+            <path fill="#E0598C" d="M5 3h6v1h-6zM3 4h10v1h-10zM2 5h12v1h-12zM2 6h2v1h-2zM5 6h6v1h-6zM12 6h2v1h-2zM2 7h12v1h-12zM2 8h2v1h-2zM12 8h2v1h-2zM2 9h2v1h-2zM12 9h2v1h-2zM2 10h2v1h-2zM12 10h2v1h-2zM3 11h10v1h-10zM3 12h10v1h-10z" />
+            <path fill="#EDEFF5" d="M5 9h1v1h-1zM7 9h1v1h-1zM9 9h1v1h-1zM11 9h1v1h-1z" />
+            <path fill="#A93C68" d="M0 11h3v1h-3zM13 11h3v1h-3zM0 12h2v1h-2zM14 12h2v1h-2zM4 13h8v1h-8zM5 14h2v1h-2zM9 14h2v1h-2z" />
+        </symbol>
+        <symbol id="pompomUp" viewBox="-1 -1 10 10" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M3 -1h2v1h-2zM2 0h1v1h-1zM5 0h1v1h-1zM1 1h2v1h-2zM5 1h2v1h-2zM0 2h1v1h-1zM2 2h1v1h-1zM5 2h1v1h-1zM7 2h1v1h-1zM0 3h1v1h-1zM7 3h1v1h-1zM-1 4h1v1h-1zM8 4h1v1h-1zM-1 5h1v1h-1zM8 5h1v1h-1zM0 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM2 7h1v1h-1zM5 7h1v1h-1zM7 7h1v1h-1zM1 8h1v1h-1zM3 8h2v1h-2zM6 8h1v1h-1z" />
+            <path fill="#5B3C20" d="M3 0h2v1h-2zM3 1h2v1h-2z" />
+            <path fill="#EFB63C" d="M1 2h1v1h-1zM3 2h2v1h-2zM6 2h1v1h-1zM1 3h6v1h-6zM0 4h8v1h-8zM0 5h8v1h-8zM1 6h6v1h-6zM1 7h1v1h-1zM3 7h2v1h-2zM6 7h1v1h-1z" />
+        </symbol>
+        <symbol id="chest" viewBox="-1 -1 14 14" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M2 1h8v1h-8zM1 2h1v1h-1zM10 2h1v1h-1zM0 3h1v1h-1zM11 3h1v1h-1zM0 4h1v1h-1zM11 4h1v1h-1zM0 5h1v1h-1zM11 5h1v1h-1zM0 6h1v1h-1zM11 6h1v1h-1zM0 7h1v1h-1zM11 7h1v1h-1zM0 8h1v1h-1zM11 8h1v1h-1zM0 9h1v1h-1zM11 9h1v1h-1zM0 10h1v1h-1zM11 10h1v1h-1zM1 11h10v1h-10z" />
+            <path fill="#7A5230" d="M2 2h8v1h-8zM1 3h1v1h-1zM10 3h1v1h-1zM1 4h10v1h-10zM1 5h1v1h-1zM10 5h1v1h-1zM1 6h4v1h-4zM7 6h4v1h-4zM1 7h1v1h-1zM10 7h1v1h-1zM1 8h1v1h-1zM10 8h1v1h-1zM1 9h1v1h-1zM10 9h1v1h-1zM1 10h10v1h-10z" />
+            <path fill="#5B3C20" d="M2 3h8v1h-8zM2 7h3v1h-3zM7 7h3v1h-3zM2 8h8v1h-8zM2 9h8v1h-8z" />
+            <path fill="#EFB63C" d="M2 5h8v1h-8zM5 6h2v1h-2zM5 7h2v1h-2z" />
+        </symbol>
+        <symbol id="book" viewBox="-1 -1 14 14" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M1 0h9v1h-9zM0 1h1v1h-1zM10 1h1v1h-1zM0 2h1v1h-1zM11 2h1v1h-1zM0 3h1v1h-1zM11 3h1v1h-1zM0 4h1v1h-1zM11 4h1v1h-1zM0 5h1v1h-1zM11 5h1v1h-1zM0 6h1v1h-1zM11 6h1v1h-1zM0 7h1v1h-1zM11 7h1v1h-1zM0 8h1v1h-1zM11 8h1v1h-1zM0 9h1v1h-1zM11 9h1v1h-1zM1 10h1v1h-1zM11 10h1v1h-1zM2 11h9v1h-9z" />
+            <path fill="#6CB8AB" d="M1 1h9v1h-9zM1 2h1v1h-1zM9 2h1v1h-1zM1 3h1v1h-1zM9 3h1v1h-1zM1 4h1v1h-1zM9 4h1v1h-1zM1 5h1v1h-1zM9 5h1v1h-1zM1 6h1v1h-1zM9 6h1v1h-1zM1 7h1v1h-1zM9 7h1v1h-1zM1 8h1v1h-1zM9 8h1v1h-1zM1 9h9v1h-9z" />
+            <path fill="#EDEFF5" d="M2 2h7v1h-7zM2 3h1v1h-1zM8 3h1v1h-1zM2 4h7v1h-7zM2 5h1v1h-1zM7 5h2v1h-2zM2 6h7v1h-7zM2 7h1v1h-1zM8 7h1v1h-1zM2 8h7v1h-7z" />
+            <path fill="#3F8179" d="M10 2h1v1h-1zM10 3h1v1h-1zM10 4h1v1h-1zM10 5h1v1h-1zM10 6h1v1h-1zM10 7h1v1h-1zM10 8h1v1h-1zM10 9h1v1h-1zM2 10h9v1h-9z" />
+            <path fill="#99A2B4" d="M3 3h5v1h-5zM3 5h4v1h-4zM3 7h5v1h-5z" />
+        </symbol>
+        <symbol id="shield" viewBox="-1 -1 14 14" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M2 0h8v1h-8zM1 1h1v1h-1zM10 1h1v1h-1zM0 2h1v1h-1zM11 2h1v1h-1zM0 3h1v1h-1zM11 3h1v1h-1zM0 4h1v1h-1zM11 4h1v1h-1zM0 5h1v1h-1zM11 5h1v1h-1zM1 6h1v1h-1zM10 6h1v1h-1zM1 7h1v1h-1zM10 7h1v1h-1zM2 8h1v1h-1zM9 8h1v1h-1zM3 9h1v1h-1zM8 9h1v1h-1zM4 10h1v1h-1zM7 10h1v1h-1zM5 11h2v1h-2z" />
+            <path fill="#3C6FA6" d="M2 1h8v1h-8zM1 2h2v1h-2zM4 2h4v1h-4zM9 2h2v1h-2zM1 3h4v1h-4zM6 3h5v1h-5zM1 4h5v1h-5zM7 4h4v1h-4zM1 5h4v1h-4zM6 5h5v1h-5zM2 6h4v1h-4zM7 6h3v1h-3zM2 7h3v1h-3zM6 7h4v1h-4zM3 8h6v1h-6zM4 9h4v1h-4zM5 10h2v1h-2z" />
+            <path fill="#2A5080" d="M3 2h1v1h-1zM8 2h1v1h-1z" />
+            <path fill="#EDEFF5" d="M5 3h1v1h-1zM6 4h1v1h-1zM5 5h1v1h-1zM6 6h1v1h-1zM5 7h1v1h-1z" />
+        </symbol>
+        <symbol id="bulbIcon" viewBox="-1 -1 14 14" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M4 0h4v1h-4zM3 1h1v1h-1zM8 1h1v1h-1zM2 2h1v1h-1zM9 2h1v1h-1zM1 3h1v1h-1zM10 3h1v1h-1zM1 4h1v1h-1zM10 4h1v1h-1zM1 5h1v1h-1zM10 5h1v1h-1zM2 6h1v1h-1zM9 6h1v1h-1zM3 7h1v1h-1zM8 7h1v1h-1zM3 8h1v1h-1zM8 8h1v1h-1zM3 9h1v1h-1zM8 9h1v1h-1zM4 10h1v1h-1zM7 10h1v1h-1zM5 11h2v1h-2z" />
+            <path fill="#EFB63C" d="M4 1h4v1h-4zM3 2h1v1h-1zM6 2h3v1h-3zM2 3h1v1h-1zM4 3h6v1h-6zM2 4h8v1h-8zM2 5h8v1h-8zM3 6h6v1h-6zM4 7h4v1h-4z" />
+            <path fill="#FFEFA6" d="M4 2h2v1h-2zM3 3h1v1h-1z" />
+            <path fill="#99A2B4" d="M4 8h4v1h-4zM4 9h4v1h-4zM5 10h2v1h-2z" />
+        </symbol>
+        <symbol id="farmerBody" viewBox="-1 -1 18 18" shape-rendering="crispEdges">
+            <path fill="#17161F" d="M6 0h4v1h-4zM5 1h1v1h-1zM10 1h1v1h-1zM2 2h3v1h-3zM11 2h3v1h-3zM1 3h1v1h-1zM14 3h1v1h-1zM1 4h1v1h-1zM14 4h1v1h-1zM2 5h2v1h-2zM12 5h2v1h-2zM3 6h1v1h-1zM5 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM3 7h1v1h-1zM12 7h1v1h-1zM3 8h2v1h-2zM11 8h2v1h-2zM2 9h1v1h-1zM13 9h1v1h-1zM1 10h1v1h-1zM14 10h1v1h-1zM1 11h1v1h-1zM14 11h1v1h-1zM1 12h1v1h-1zM14 12h1v1h-1zM1 13h1v1h-1zM7 13h2v1h-2zM14 13h1v1h-1zM2 14h1v1h-1zM6 14h1v1h-1zM9 14h1v1h-1zM13 14h1v1h-1zM2 15h5v1h-5zM9 15h5v1h-5zM3 16h3v1h-3zM10 16h3v1h-3z" />
+            <path fill="#D9C06A" d="M6 1h4v1h-4zM5 2h6v1h-6zM2 3h12v1h-12z" />
+            <path fill="#A8914A" d="M2 4h12v1h-12z" />
+            <path fill="#F0C193" d="M4 5h8v1h-8zM4 6h1v1h-1zM6 6h4v1h-4zM11 6h1v1h-1zM4 7h8v1h-8zM5 8h6v1h-6zM2 10h1v1h-1zM13 10h1v1h-1zM2 11h1v1h-1zM13 11h1v1h-1z" />
+            <path fill="#4E9B52" d="M3 9h10v1h-10zM3 10h10v1h-10zM3 11h10v1h-10zM2 12h12v1h-12zM2 13h5v1h-5zM9 13h5v1h-5z" />
+            <path fill="#5B3C20" d="M3 14h3v1h-3zM10 14h3v1h-3z" />
+        </symbol>
+    </defs>
+    <g class="mascot">
+        <use href="#chompyA" x="33" y="25" width="76" height="76" />
+        <use href="#pompomUp" x="21" y="64" width="26" height="26" />
+        <use href="#pompomUp" x="93" y="64" width="26" height="26" />
+    </g>
+    <path class="pointer" d="M139 46l-9 7 9 7z" />
+    <rect class="bubble" x="139" y="20" width="212" height="66" rx="3" />
+    <g>
+        <g class="option">
+            <rect class="card" x="9" y="112" width="166" height="68" rx="5" />
+            <use href="#chest" x="77" y="121" width="30" height="30" />
+            <text class="label" x="92" y="166">payload list</text>
+            <text class="speech" x="245" y="49">
+                <tspan>try this new</tspan>
+                <tspan x="245" y="70">payload!</tspan>
+            </text>
+        </g>
+        <g class="option">
+            <rect class="card" x="185" y="112" width="166" height="68" rx="5" />
+            <use href="#book" x="253" y="121" width="30" height="30" />
+            <text class="label" x="268" y="166">CTF writeup</text>
+            <text class="speech" x="245" y="59">read this writeup!</text>
+        </g>
+        <g class="option">
+            <rect class="card" x="9" y="190" width="166" height="68" rx="5" />
+            <use href="#shield" x="77" y="199" width="30" height="30" />
+            <text class="label" x="92" y="244">WAF bypass</text>
+            <text class="speech" x="245" y="59">use this bypass!</text>
+        </g>
+        <g class="option featured">
+            <rect class="card" x="185" y="190" width="166" height="68" rx="5" />
+            <use href="#bulbIcon" x="253" y="199" width="30" height="30" />
+            <text class="label" x="268" y="244">new technique</text>
+            <text class="speech" x="245" y="49">
+                <tspan>try a newer</tspan>
+                <tspan x="245" y="70">technique!</tspan>
+            </text>
+        </g>
+    </g>
+    <g class="agent">
+        <use href="#farmerBody" x="86" y="266" width="42" height="42" />
+    </g>
+    <rect class="card" x="139" y="276" width="132" height="30" rx="4" />
+    <text class="label" x="205" y="296">nothing found</text>
+</svg>

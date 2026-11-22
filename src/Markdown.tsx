@@ -1,4 +1,4 @@
-import { createElement, useEffect, useRef } from 'react';
+import { createElement, useEffect, useRef, useState } from 'react';
 import type { ComponentPropsWithoutRef } from 'react';
 import { Link2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
@@ -9,6 +9,69 @@ import { remarkHeadingIds } from './markdown-headings.ts';
 import type { ArticleSection } from './markdown-headings.ts';
 import ArticleContents from './ArticleContents.tsx';
 import './Markdown.css';
+
+type MarkdownImageProps = Pick<ComponentPropsWithoutRef<'img'>, 'src' | 'alt' | 'title'>;
+
+function MarkdownImage({ src, alt = '', title }: MarkdownImageProps) {
+    const figure = useRef<HTMLSpanElement>(null);
+    const [animate, setAnimate] = useState(false);
+    const base = typeof src === 'string' && /^\/images\/.+\.svg$/.test(src)
+        ? src.slice(0, -4)
+        : undefined;
+    const hasStill = !!base && !!imageSizes[`${base}-still.svg`];
+
+    useEffect(() => {
+        if (!hasStill || !figure.current || !('IntersectionObserver' in window)) return;
+
+        const preference = window.matchMedia('(prefers-reduced-motion: no-preference)');
+        let visible = false;
+        const syncMotion = () => setAnimate(visible && preference.matches);
+        const observer = new IntersectionObserver(([entry]) => {
+            visible = entry.isIntersecting;
+            syncMotion();
+        });
+
+        observer.observe(figure.current);
+        preference.addEventListener('change', syncMotion);
+        return () => {
+            observer.disconnect();
+            preference.removeEventListener('change', syncMotion);
+        };
+    }, [hasStill]);
+
+    const [width, height] = (src && imageSizes[src]) || [];
+    if (!base) {
+        return <img src={src} alt={alt} title={title} width={width} height={height} loading="lazy" decoding="async" />;
+    }
+
+    const still = hasStill && !animate ? '-still' : '';
+    const [mobileWidth, mobileHeight] = imageSizes[`${base}-mobile.svg`] ?? [];
+    return (
+        <span className="themed-img" data-scroll-animation={hasStill || undefined} ref={figure}>
+            {(['light', 'dark'] as const).map((theme) => (
+                <picture key={theme} className={`themed-img-${theme}`}>
+                    {mobileWidth && mobileHeight && (
+                        <source
+                            media="(max-width: 680px)"
+                            srcSet={`${base}-mobile${still}.${theme}.svg`}
+                            width={mobileWidth}
+                            height={mobileHeight}
+                        />
+                    )}
+                    <img
+                        src={`${base}${still}.${theme}.svg`}
+                        alt={alt}
+                        title={title}
+                        width={width}
+                        height={height}
+                        loading="lazy"
+                        decoding="async"
+                    />
+                </picture>
+            ))}
+        </span>
+    );
+}
 
 export interface MarkdownProps {
     content: string;
@@ -88,41 +151,7 @@ export default function Markdown({
                                 <table>{children}</table>
                             </div>
                         ),
-                        img: ({ src, alt, title }) => {
-                            const svg = typeof src === 'string' && /^\/images\/.+\.svg$/.test(src);
-                            const [width, height] = (typeof src === 'string' && imageSizes[src]) || [];
-                            if (!svg) {
-                                return (
-                                    <img
-                                        src={src}
-                                        alt={alt ?? ''}
-                                        title={title}
-                                        width={width}
-                                        height={height}
-                                        loading="lazy"
-                                        decoding="async"
-                                    />
-                                );
-                            }
-                            const base = src.slice(0, -4);
-                            return (
-                                <span className="themed-img">
-                                    {(['light', 'dark'] as const).map((theme) => (
-                                        <img
-                                            key={theme}
-                                            className={`themed-img-${theme}`}
-                                            src={`${base}.${theme}.svg`}
-                                            alt={alt ?? ''}
-                                            title={title}
-                                            width={width}
-                                            height={height}
-                                            loading="lazy"
-                                            decoding="async"
-                                        />
-                                    ))}
-                                </span>
-                            );
-                        },
+                        img: MarkdownImage,
                     }}
                 >
                     {content}

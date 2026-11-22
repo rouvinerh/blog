@@ -21,15 +21,13 @@ Only the first group changed, with both ending in `fcdb-f111-84e8-7ced8de54b88`.
 
 ## UUIDv1
 
-These turned out to be UUIDv1 values, which are time-based. A UUIDv1 contains a timestamp, a clock sequence, and a node value. The timestamp is split across the first three fields, while the clock sequence helps avoid duplicate IDs. [The RFC describes the fields here](https://www.rfc-editor.org/rfc/rfc9562.html#section-5.1).
+These turned out to be UUIDv1 values, which are time-based. [RFC 9562](https://www.rfc-editor.org/rfc/rfc9562.html#section-5.1) describes their fields and replaces [RFC 4122](https://www.rfc-editor.org/rfc/rfc4122.html). A UUIDv1 contains a timestamp, a clock sequence, and a node value. The timestamp is split across the first three fields, while the clock sequence helps avoid duplicate IDs.
 
 ![](/images/bugs/uuidv1-format.svg)
 
 Fields of a UUIDv1
 
 My samples shared the same clock sequence and node. The node can be a MAC address or a generated value, so seeing it repeat seemed to indicate this was a MAC address.
-
-The RFC allows us to build a script to decode the UUIDs easily.
 
 ## Decoding the UUIDs
 
@@ -86,14 +84,9 @@ Gap: 100.1290401 s
 
 So these UUIDs were not random at all, and were basically integers. This means the IDOR was a valid issue since an attacker can easily calculate more UUIDs to change details of other accounts.
 
-
 ## References
 
 **Standards**
 
 - [RFC 9562: Universally Unique IDentifiers (UUIDs)](https://www.rfc-editor.org/rfc/rfc9562.html), IETF, 2024
 - [RFC 4122: A Universally Unique IDentifier (UUID) URN Namespace](https://www.rfc-editor.org/rfc/rfc4122.html), IETF, 2005, replaced by RFC 9562
-
-**Tools**
-
-- [uuid](https://docs.python.org/3/library/uuid.html), Python documentation

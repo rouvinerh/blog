@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="293" viewBox="0 0 480 293" role="img" aria-labelledby="title">
+    <title id="title">The Writer’s desk, with shared notes and a report draft</title>
+    <style>
+        :root { color-scheme: light dark; --paper: #f0f4f7; --line: #697e90; --ink: #243442; --muted: #475c70; --accent: #5546a8; }
+        @media (prefers-color-scheme: dark) {
+            :root { --paper: #151f28; --line: #829aaf; --ink: #e6edf3; --muted: #b6c8da; --accent: #b8a9ff; }
+        }
+        .paper { fill: var(--paper); stroke: var(--line); stroke-width: 1.5; }
+        .flow { fill: none; stroke: var(--line); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .heading { fill: var(--ink); font: 700 25px ui-monospace, Consolas, monospace; }
+        .detail { fill: var(--muted); font: 21px system-ui, "Segoe UI", sans-serif; }
+        .tag { fill: var(--accent); font: 700 22px ui-monospace, Consolas, monospace; }
+    </style>
+    <path class="flow" d="M240 111v17M118 146v-18h236v18" />
+    <g transform="translate(200 4) scale(5)" shape-rendering="crispEdges">
+        <path fill="#17161F" d="M4 1h8v1h-8zM3 2h1v1h-1zM12 2h1v1h-1zM2 3h1v1h-1zM13 3h1v1h-1zM2 4h1v1h-1zM13 4h1v1h-1zM3 5h1v1h-1zM12 5h1v1h-1zM3 6h1v1h-1zM5 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM3 7h1v1h-1zM12 7h1v1h-1zM3 8h2v1h-2zM11 8h2v1h-2zM2 9h1v1h-1zM13 9h1v1h-1zM1 10h1v1h-1zM14 10h1v1h-1zM1 11h1v1h-1zM14 11h1v1h-1zM2 12h1v1h-1zM13 12h1v1h-1zM2 13h1v1h-1zM7 13h2v1h-2zM13 13h1v1h-1zM2 14h1v1h-1zM7 14h2v1h-2zM13 14h1v1h-1zM2 15h12v1h-12zM3 16h4v1h-4zM9 16h4v1h-4z" />
+        <path fill="#5B3C20" d="M4 2h8v1h-8zM3 3h10v1h-10zM3 4h2v1h-2zM11 4h2v1h-2z" />
+        <path fill="#F0C193" d="M5 4h6v1h-6zM4 5h8v1h-8zM4 6h1v1h-1zM6 6h4v1h-4zM11 6h1v1h-1zM4 7h8v1h-8zM5 8h6v1h-6zM2 10h1v1h-1zM13 10h1v1h-1zM2 11h1v1h-1zM13 11h1v1h-1z" />
+        <path fill="#7B6BD6" d="M3 9h10v1h-10zM3 10h10v1h-10zM3 11h10v1h-10zM3 12h10v1h-10z" />
+        <path fill="#5546A8" d="M3 13h4v1h-4zM9 13h4v1h-4zM3 14h4v1h-4zM9 14h4v1h-4z" />
+    </g>
+    <g transform="translate(183 58) scale(3)" shape-rendering="crispEdges">
+        <path fill="#17161F" d="M2 -1h4v1h-4zM1 0h1v1h-1zM6 0h1v1h-1zM0 1h1v1h-1zM7 1h1v1h-1zM0 2h1v1h-1zM7 2h1v1h-1zM0 3h1v1h-1zM7 3h1v1h-1zM0 4h1v1h-1zM7 4h1v1h-1zM0 5h1v1h-1zM7 5h1v1h-1zM0 6h1v1h-1zM7 6h1v1h-1zM0 7h1v1h-1zM7 7h1v1h-1zM1 8h6v1h-6z" />
+        <path fill="#5B3C20" d="M2 0h4v1h-4z" />
+        <path fill="#EDEFF5" d="M1 1h6v1h-6zM1 2h1v1h-1zM6 2h1v1h-1zM1 3h6v1h-6zM1 4h1v1h-1zM6 4h1v1h-1zM1 5h6v1h-6zM1 6h1v1h-1zM6 6h1v1h-1zM1 7h6v1h-6z" />
+        <path fill="#99A2B4" d="M2 2h4v1h-4zM2 4h4v1h-4zM2 6h4v1h-4z" />
+    </g>
+    <g transform="translate(272 49) scale(3)" shape-rendering="crispEdges">
+        <path fill="#17161F" d="M5 0h3v1h-3zM4 1h1v1h-1zM8 1h1v1h-1zM3 2h1v1h-1zM8 2h1v1h-1zM2 3h1v1h-1zM7 3h1v1h-1zM1 4h1v1h-1zM6 4h1v1h-1zM0 5h1v1h-1zM5 5h1v1h-1zM-1 6h2v1h-2zM3 6h2v1h-2zM0 7h3v1h-3z" />
+        <path fill="#D9483C" d="M5 1h3v1h-3zM4 2h4v1h-4zM3 3h4v1h-4zM2 4h4v1h-4zM3 5h2v1h-2z" />
+        <path fill="#EDEFF5" d="M1 5h2v1h-2zM1 6h2v1h-2z" />
+    </g>
+    <text class="tag" x="240" y="107" text-anchor="middle">Writer</text>
+    <rect class="paper" x="13" y="153" width="219" height="128" rx="8" />
+    <rect class="paper" x="248" y="153" width="219" height="128" rx="8" />
+    <rect class="paper" x="9" y="147" width="219" height="128" rx="8" />
+    <rect class="paper" x="244" y="147" width="219" height="128" rx="8" />
+    <text class="heading" x="118" y="182" text-anchor="middle">Shared notes</text>
+    <text class="heading" x="354" y="182" text-anchor="middle">Report draft</text>
+    <text class="detail" x="118" y="215" text-anchor="middle">What we checked</text>
+    <text class="detail" x="118" y="242" text-anchor="middle">What came back</text>
+    <text class="detail" x="354" y="215" text-anchor="middle">What we confirmed</text>
+    <text class="detail" x="354" y="242" text-anchor="middle">Why it matters</text>
+</svg>

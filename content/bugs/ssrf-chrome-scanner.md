@@ -72,6 +72,7 @@ Based on this, a script to enumerate ports was created:
 ```
 
 The above worked, as ports like 80 and 443 did return the `data` parameter, whereas other ports returned `err`. I could not see the actual data that was fetched, but it sufficed to show that I had some form of enumeration that was possible. This made the issue acceptable.
+
 ## References
 
 **Chromium and Puppeteer**
